@@ -1,0 +1,93 @@
+{
+	"pages": [
+		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path":"pages/tabBar/home/home",
+			"style":{
+				"navigationBarBackgroundColor":"#f2ebe5",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText":"my-music"
+			}
+		},
+		{
+			"path":"pages/tabBar/Blog/blog",
+			"style":{
+				"navigationBarBackgroundColor":"#f2ebe5",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText":"博客"
+			}
+		},
+		{
+			"path":"pages/tabBar/my/my",
+			"style":{
+				"navigationBarBackgroundColor":"#f2ebe5",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText":"我的"
+			}
+		},
+		{
+			"path":"pages/tabBar/Karaoke/Karaoke",
+			"style":{
+				"navigationBarBackgroundColor":"#f2ebe5",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText":"k歌"
+			}
+		},
+		{
+			"path":"pages/tabBar/yuncun/yuncun",
+			"style":{
+				"navigationBarBackgroundColor":"#f2ebe5",
+				"navigationBarTextStyle":"black",
+				"navigationBarTitleText":"云村"
+			}
+		}
+	],
+	
+	"globalStyle": {
+		"pageOrientation": "portrait",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "Hello uniapp",
+		"navigationBarBackgroundColor": "#007AFF",
+		"backgroundColor": "#F8F8F8",
+		"backgroundColorTop": "#F4F5F6",
+		"backgroundColorBottom": "#F4F5F6",
+		"mp-360": {
+			"navigationStyle": "custom"
+		}
+	},
+	"tabBar": {
+		"color": "#b3b3b3",
+		"selectedColor": "#fe3a3b",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+				"pagePath": "pages/tabBar/home/home",
+				"iconPath": "static/faxian.png",
+				"selectedIconPath": "static/faxian-active.png",
+				"text": "发现"
+			},
+			{
+				"pagePath": "pages/tabBar/Blog/blog",
+				"iconPath": "static/boke.png",
+				"selectedIconPath": "static/boke-active.png",
+				"text": "播客"
+			}, {
+				"pagePath": "pages/tabBar/my/my",
+				"iconPath": "static/wode.png",
+				"selectedIconPath": "static/wode-active.png",
+				"text": "我的"
+			}, {
+				"pagePath": "pages/tabBar/Karaoke/Karaoke",
+				"iconPath": "static/kge.png",
+				"selectedIconPath": "static/kege-active.png",
+				"text": "K歌"
+			},
+			{
+				"pagePath": "pages/tabBar/yuncun/yuncun",
+				"iconPath": "static/yuncun.png",
+				"selectedIconPath": "static/yuncun-active.png",
+				"text": "云村"
+			}
+		]
+	}
+}

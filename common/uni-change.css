@@ -1,0 +1,16 @@
+.uni-searchbar[data-v-64ee3838]{
+	background-color: transparent !important;
+}
+.uni-searchbar__box[data-v-64ee3838]{
+	background-color: #fdfdfd !important;
+	border: none !important;
+}
+/*#ifdef MP*/
+	.uni-searchbar.data-v-64ee3838{
+		background-color: transparent !important;
+	}
+	.uni-searchbar__box.data-v-64ee3838{
+		background-color: #fdfdfd !important;
+		border: none !important;
+	}
+/*#endif*/

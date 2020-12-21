@@ -1,0 +1,1 @@
+<view class="drawer"><uni-drawer class="vue-ref" vue-id="5392096c-1" mask="{{mask}}" maskClick="{{maskClick}}" mode="{{mode}}" width="{{drawWid}}" data-ref="draw" bind:__l="__l"></uni-drawer></view>
