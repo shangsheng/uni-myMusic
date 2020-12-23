@@ -5,6 +5,25 @@
 	background-color: #fdfdfd !important;
 	border: none !important;
 }
+.uni-card-section{
+	background-color: #FFFFFF;
+	padding-bottom: 50px;
+}
+.icon{
+	display: inline-block;
+}
+.icon-width-12{
+	width: 21.6rpx;
+	height: 21.6rpx;
+}
+.icon-width-14{
+	width: 25.2rpx;
+	height: 25.2rpx;
+}
+.icon-width-18{
+	width: 36rpx;
+	height: 36rpx;
+}
 /*#ifdef MP*/
 	.uni-searchbar.data-v-64ee3838{
 		background-color: transparent !important;
@@ -12,5 +31,11 @@
 	.uni-searchbar__box.data-v-64ee3838{
 		background-color: #fdfdfd !important;
 		border: none !important;
+	}
+	.uni-tag.data-v-3f606880{
+		padding: 4rpx 8rpx !important;
+		height: 25.2rpx !important;
+		line-height: 25.2rpx !important;
+		margin-right: 10.8rpx !important;
 	}
 /*#endif*/

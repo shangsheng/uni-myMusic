@@ -43,6 +43,7 @@
 </script>
 
 <style>
+	@import './common/iocnfont.css';
 	@import './common/uni-change.css';
 	
 	

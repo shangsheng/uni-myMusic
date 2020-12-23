@@ -1,0 +1,204 @@
+
+.block.data-v-1aa06752{
+	width: 100%;
+}
+.homePage.data-v-1aa06752{
+	width: 100%;
+	padding: 40rpx 0;
+}
+.recommended.data-v-1aa06752{
+	width: 100%;
+}
+.uni-header.data-v-1aa06752{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 0 30rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.uni-h3 .text.data-v-1aa06752{
+	font-size: 36rpx;
+	color: #333333;
+}
+.text-gd.data-v-1aa06752{
+	padding: 9rpx 22rpx;
+	border: 1px solid #e8e8e8;
+	-webkit-border-radius: 32rpx;
+	        border-radius: 32rpx;
+	color: #424242;
+	font-size:36rpx;
+	display: block;
+}
+.uni-songList.data-v-1aa06752{
+	padding-top:36rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	padding: 20px 30px;
+}
+.songList.data-v-1aa06752{
+	width: 194rpx;
+	-webkit-border-radius: 36rpx;
+	        border-radius: 36rpx;
+	padding: 20px 0;
+}
+.recommendList.data-v-1aa06752{
+	width: 194rpx;
+	-webkit-border-radius: 36rpx;
+	        border-radius: 36rpx;
+	position: relative;
+}
+.songImg.data-v-1aa06752{
+	width: 194rpx;
+	height: 194rpx;
+	-webkit-border-radius: 36rpx;
+	        border-radius: 36rpx;
+}
+.recommend-playData.data-v-1aa06752{
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	        justify-content: flex-end;
+	color: #FFFFFF;
+	font-size: 26rpx;
+	background-color: rgba(0,0,0,0.3);
+	padding:3.6rpx 7rpx;
+	-webkit-border-radius: 36rpx;
+	        border-radius: 36rpx;
+}
+.titleSong.data-v-1aa06752{
+	font-size: 28rpx;
+	color: #373737;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.count.data-v-1aa06752,.icon-icon-bofang.data-v-1aa06752{
+	line-height: inherit;
+}
+.count.data-v-1aa06752{
+	margin-left: 7rpx;
+}
+.plays.data-v-1aa06752{
+	margin: 0;
+	padding: 9rpx 22rpx;
+	background-color: transparent;
+	border-color: #e6e6e6;
+	font-size: 26rpx;
+	height: auto;
+}
+.icon-icon_play.data-v-1aa06752{
+	margin-right: 7.2rpx;
+}
+.plays.data-v-1aa06752::after{
+	-webkit-border-radius: 144rpx;
+	        border-radius: 144rpx;
+}
+.uni-mainTitle.data-v-1aa06752{
+	padding-left: 30rpx;
+	color: #afafaf;
+	font-size: 26rpx;
+}
+.uni-private.data-v-1aa06752{
+	width: 100%;
+	margin-top: 36rpx;
+}
+.private-item.data-v-1aa06752{
+	margin-bottom: 36rpx;
+}
+.private-left.data-v-1aa06752{
+	width: 144rpx;
+	height: 144rpx;
+	-webkit-border-radius: 18rpx;
+	        border-radius: 18rpx;
+	position: relative;
+}
+.private-img.data-v-1aa06752{
+	width: 144rpx;
+	height: 144rpx;
+	-webkit-border-radius:18rpx;
+	        border-radius:18rpx;
+}
+.bofang-color.data-v-1aa06752{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -54rpx;
+	margin-left: -36rpx;
+	color: rgba(255,255,255,0.6);
+	width: 72rpx;
+	height:72rpx;
+	font-size: 72rpx;
+}
+.private-middle.data-v-1aa06752{
+	margin-left:28.8rpx;
+	width: 468rpx;
+	-webkit-flex-shrink: 1;
+	        flex-shrink: 1;
+}
+.uni-p.data-v-1aa06752{
+	color: #aaaaaa;
+	font-size: 28.8rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.p-color.data-v-1aa06752{
+	color: #404040;
+	font-size:36rpx;
+}
+.uni-span.data-v-1aa06752{
+	color: #808080;
+	font-size: 25.2rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.swiper-private.data-v-1aa06752{
+	height: 580rpx;
+}
+.uni-tag--12px.data-v-1aa06752{
+	padding: 4rpx 8rpx;
+	height: 25.2rpx;
+	line-height: 25.2rpx;
+	margin-right: 10.8rpx;
+}
+.title-color.data-v-1aa06752{
+	background-color: #f7e2e7;
+	color: #dd4a5a;
+	padding: 0 7.2rpx;
+}
+.ellipsis.data-v-1aa06752{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.text-w.data-v-1aa06752{
+	width: 360rpx;
+}
+

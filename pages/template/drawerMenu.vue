@@ -26,5 +26,8 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
+	.drawer{
+		width: 100%;
+	}
 </style>

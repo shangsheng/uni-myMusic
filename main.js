@@ -3,6 +3,12 @@ import App from './App'
 
 import store from './store'
 
+import pluginUnit from './common/plugInUnit.js'
+import API from './common/api.js'
+
+Vue.use(pluginUnit)
+Vue.use(API)
+
 Vue.config.productionTip = false
 
 Vue.prototype.$store = store

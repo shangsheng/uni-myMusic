@@ -121,6 +121,7 @@
         "usingComponents" : true
     },
     "h5" : {
+		"div":false,
         "template" : "template.h5.html",
         "router" : {
             "mode" : "history",
@@ -135,20 +136,18 @@
         },
         "async" : {
             "timeout" : 20000
-        }
-		// "devServer" : {
-		//     "port" : "3000",
-		//     "disableHostCheck" : true,
-		//     "proxy" : {
-		//         "/api" : {
-		//             "target" : "http://localhost/",
-		//             "changeOrigin" : true,
-		//             "secure" : true,
-		// 			"pathRewrite": {
-		// 			"/api": ""//从定向
-		// 			}
-		// 		}
-		// 	}
-		// }
+        },
+		"devServer": {
+		    "proxy": {
+		        "/api": {
+		            "target": "http://localhost:3000",
+					"changeOrigin" : true,
+					"secure" : false,
+		            "pathRewrite": {
+		                "^/api": ""
+		            }
+		        }
+		    }
+		}
     }
 }

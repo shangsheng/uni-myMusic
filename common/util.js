@@ -65,9 +65,19 @@ var dateUtils = {
 		return new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
 	}
 };
+function playCount(number){
+	if(number>=100000000){
+		return Number.parseFloat(number/100000000).toFixed(2)+'亿';
+	}else if(number>=100000){
+		return Number.parseFloat(number/100000).toFixed(2)+'万';
+	}else{
+		return number;
+	}
+} 
 
 module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
-	dateUtils: dateUtils
+	dateUtils: dateUtils,
+	playCount:playCount
 }

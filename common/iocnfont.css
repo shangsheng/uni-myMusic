@@ -1,0 +1,28 @@
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.eot?t=1608710949770'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.eot?t=1608710949770#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAM8AAsAAAAAB0gAAALtAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqCBIFqATYCJAMQCwoABCAFhG0HRRtZBsgehXFj3axcSpSF7eMKnj458s/unIUKjokqL2V6VVIJlekOl2v5AGB35iWwekVFtoebHOcAjS/YugrbGtfgPric/ijLHqR1luU21qK9KBoTMLA0sLEmbeECyb1h7CYCh7AZArgSSTpSf3bzkiqhgF4CyAKVCqlSzoGiVtgZwbFmoiJHcMDZ7DUvgcP8+/KHXHEGg4MFDOyedSqndt+b30PslsktDFEE3nxmwJoGFkgHFGRObWAaWcQiLK7NcxQCzjhjYK66gO8hk5NSDzvmQBuY0X+eOAJS3QHIV4MWvnthFgx8D5BQJwtR+S+QoQA480ZJjaToBVDCOcYgGG/vTjs7v7LvTrCevevmtv++OGy955En0C3vC3M4d2/9jN93mffE4fLrov0pM//epp+ZfiLwlIx+BZ0OWPpxxn/J+4nRIboZa+rsMdfMHt+m7h6/a1j+nMv96hag2Gf8X1R43zzmErWkcvZK9JbcXYobXfI3Phn86La7WVnd/fR2ZPlP8O64otbjcHo+4ZsnSwBb2UozAZP2iY0EsG2ZDz/+NwzsiT486lX+39lNAfjiEp7AHZNK/6AzBizeb+b1LNNQAHSqvhBzI7sSPbqHAVxxBX5uBHz5Nocy4A1CgjMBKRiciACLM/GoktPBATfywRFnqsCVNJqmu+HHMrKIugCp7FRA8OYxGDx5BhZvXqFK/goOBPIPHPEWC670iN+CbiTK3Eqdi4KPMkxLYK7ELIIMfkWkPyENDMHNCjj1DV1PdUPObFEMn6OF7hxDlod0tcInMMtlJjQq26FhMFjiMg0lfzbH9+1t1pzU3Wg2nZmpCnW4IAI+iAwwjQRgLhIMC0Jr+1RKn38CoQQYCLgtWQP2NxAXD7VxIIdMsnug51KrV9a9XLOcEMqKFfgQgFm4MEyARsWMGDDAAJbUt9NAJHxmzBnhs9mSpVWb1Vc6W19ufkCOlQdormLEiooDTuuE57BYtHz/cZxtCEleWqYAAAAA') format('woff2'),
+  url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.woff?t=1608710949770') format('woff'),
+  url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.ttf?t=1608710949770') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.svg?t=1608710949770#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 14px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-zanting:before {
+  content: "\e619";
+}
+
+.icon-icon_play:before {
+  content: "\e60f";
+}
+
+.icon-icon-bofang:before {
+  content: "\e615";
+}
