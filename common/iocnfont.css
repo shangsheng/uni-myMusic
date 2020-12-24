@@ -1,10 +1,10 @@
 @font-face {font-family: "iconfont";
-  src: url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.eot?t=1608710949770'); /* IE9 */
-  src: url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.eot?t=1608710949770#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAM8AAsAAAAAB0gAAALtAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqCBIFqATYCJAMQCwoABCAFhG0HRRtZBsgehXFj3axcSpSF7eMKnj458s/unIUKjokqL2V6VVIJlekOl2v5AGB35iWwekVFtoebHOcAjS/YugrbGtfgPric/ijLHqR1luU21qK9KBoTMLA0sLEmbeECyb1h7CYCh7AZArgSSTpSf3bzkiqhgF4CyAKVCqlSzoGiVtgZwbFmoiJHcMDZ7DUvgcP8+/KHXHEGg4MFDOyedSqndt+b30PslsktDFEE3nxmwJoGFkgHFGRObWAaWcQiLK7NcxQCzjhjYK66gO8hk5NSDzvmQBuY0X+eOAJS3QHIV4MWvnthFgx8D5BQJwtR+S+QoQA480ZJjaToBVDCOcYgGG/vTjs7v7LvTrCevevmtv++OGy955En0C3vC3M4d2/9jN93mffE4fLrov0pM//epp+ZfiLwlIx+BZ0OWPpxxn/J+4nRIboZa+rsMdfMHt+m7h6/a1j+nMv96hag2Gf8X1R43zzmErWkcvZK9JbcXYobXfI3Phn86La7WVnd/fR2ZPlP8O64otbjcHo+4ZsnSwBb2UozAZP2iY0EsG2ZDz/+NwzsiT486lX+39lNAfjiEp7AHZNK/6AzBizeb+b1LNNQAHSqvhBzI7sSPbqHAVxxBX5uBHz5Nocy4A1CgjMBKRiciACLM/GoktPBATfywRFnqsCVNJqmu+HHMrKIugCp7FRA8OYxGDx5BhZvXqFK/goOBPIPHPEWC670iN+CbiTK3Eqdi4KPMkxLYK7ELIIMfkWkPyENDMHNCjj1DV1PdUPObFEMn6OF7hxDlod0tcInMMtlJjQq26FhMFjiMg0lfzbH9+1t1pzU3Wg2nZmpCnW4IAI+iAwwjQRgLhIMC0Jr+1RKn38CoQQYCLgtWQP2NxAXD7VxIIdMsnug51KrV9a9XLOcEMqKFfgQgFm4MEyARsWMGDDAAJbUt9NAJHxmzBnhs9mSpVWb1Vc6W19ufkCOlQdormLEiooDTuuE57BYtHz/cZxtCEleWqYAAAAA') format('woff2'),
-  url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.woff?t=1608710949770') format('woff'),
-  url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.ttf?t=1608710949770') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('//at.alicdn.com/t/font_2286010_r4ie67ce7p.svg?t=1608710949770#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_2286010_n6lnwc5on8c.eot?t=1608793707762'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_2286010_n6lnwc5on8c.eot?t=1608793707762#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAASYAAsAAAAACWAAAARMAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDSAqFNIRKATYCJAMYCw4ABCAFhG0HeBsgCMgeA+7GeV1hojImOhkNIVq2zO7efml0B6pUiaYrusIoLKjqkCAsSuGQCIXuRvzP12nvJ645K1VAslCaTNKpZoLaN5F7g3XScUtUu70HiyAJtZmA8YS6OFTNtLFA5lssLnMPyoXC4QAFaKyOtc4L3IKUexWzKohnM/CYwIsJdC04DR0GhMUBR6FsCsQVIREAJ2RQcspDW6gpBxaIF2Bqp2raTeDZ/v74hxMOSJoMyo4Xz18EXoX+oxftF7loIkDYng3cYWRsAoW4TXXcoLuJTXTdz29gOAL62pLyBVX/rPvZ8PO//X1CEsUT+qpwTv/wGlkiKlCKPrAnyYYv0NkEX+psCl+6gnylIXQylP/QIYHaIh9FHyBmQMFtumGokpCmVVRMzXRVNTS0NOlyXlNNQ5FufJxxssZafb6+fnOx4PFn3pMv/Eef4h9+zNFkcQ4vOOvx54sqTW36T57oIX0Pfm1jUYPew4dx0PjQTfmzn6pKTVNxs7Ly1mN99Pgxj2ShR4/ioQH7NrZcXbpvVtxc2witm7Xbxm5hx93LNU0I8aeCx4ZkpZoRA0brqLJy7ThiFo+phqnAePxMxsy2sVzRymOLMcTsfuBYewJffXS6Rdig14SuNOs360obW3SohoYrFyVFNd9/xKm1qfm9efPypZ/aqGrch49aGv5qMJbcZmhrM26rXJNnSPwqld/juwxQQN4FErzG+4DujvO8n6FR5KF2FEkQkYhdpdZKeSEeH3m3aakHyB9EuKpc11zIfiBXD9BuRd58vneZc2ax4WIIAkW0HTWO8DG45nzg/M66Cp9Qa/VoVXOjKuunTdiWgvfnmTuC3Q/UqqL10aq0ArWrtPt01XVbpZ12AnBap+46OkSq13HNKaXWHqwo9CFOapGiHtDcVw8Nq9DSlSuXh83chg0qDzlqROsLmUdeq8EtxZaeaN4jxy35Kz0RgLxN+w/GL/Mi3QyAfEx7+vr8jNeNyM9X1N3+cpQZAJ9KV5LtwLilQH1V+9w5g5dFWHKgfMWKsRa5v94iUF2f3VhCVx3hFfFMed2WarZ0KaFt1oekZR6ytkVkwW5Co2cLqrYd6NoQeHjPNBm6KFxgXTmBMGEakqE3yCbcQhbsK2jM+QXVROjQdRntE/Ysh1DyleECBS7CErIxQkimiTWzQskpj8El6SkCWVBs03i4TE6EMWsLq2g6EE/DZW3sIs+Q2CgUYkwsI1OxAHI5PCWFxCgZmYQLFRaJCgXlYmkpTnsnCyGZCkoOyOAEFHAimATZMAQhUhqxOV5BKfb1MXAS6VIIyHL6fjh5cDJyxPQYaxasSiADFWml+o5lvlwGCRsKCmJ6nZgMKRUmADZcipogYaj0ZUlwQgoWEmvEKC4sqWHisgqL/lWpR3kCupS/rAYN0REDMRELsWHpJuIZMjLtjJCkso1sTgqRJhEJdC07BzKFL+duWd4VKkWQzXTtZwAA') format('woff2'),
+  url('//at.alicdn.com/t/font_2286010_n6lnwc5on8c.woff?t=1608793707762') format('woff'),
+  url('//at.alicdn.com/t/font_2286010_n6lnwc5on8c.ttf?t=1608793707762') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_2286010_n6lnwc5on8c.svg?t=1608793707762#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -13,6 +13,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chevron-copy:before {
+  content: "\e600";
+}
+
+.icon-lingdang:before {
+  content: "\e6f6";
 }
 
 .icon-zanting:before {

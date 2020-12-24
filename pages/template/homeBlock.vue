@@ -1,13 +1,13 @@
 <template>
 	<view class="block">
-		<view class="homePage" v-for="(pageItem,index) in blockData" :key="index" v-if="pageItem.type !== 'banners'">
+		<view class="homePage uni-card-modular" v-for="(pageItem,index) in blockData" :key="index" v-if="pageItem.type !== 'banners'">
 			<view class="recommended" >
 				<text class="uni-mainTitle" v-if="pageItem.uiElement.mainTitle">{{pageItem.uiElement.mainTitle.title}}</text>
 				<view class="uni-header" >
 					<view class="uni-h3">
 						<text class="text" v-if="pageItem.uiElement.subTitle">{{pageItem.uiElement.subTitle.title}}</text>
 					</view>
-					<navigator url="/playlistCollection" v-if=" pageItem.uiElement.button && pageItem.uiElement.button.actionType === 'orpheus'"><text class="text-gd">{{pageItem.uiElement.button.text}}</text></navigator>
+					<navigator url="/playlistCollection" v-if=" pageItem.uiElement.button && pageItem.uiElement.button.actionType === 'orpheus'"><text class="text-gd">{{pageItem.uiElement.button.text}} <view class="icon-chevron-copy icon iconfont icon-width-12"></view></text></navigator>
 					
 					<button type="button" class="plays" v-else-if="pageItem.uiElement.button && pageItem.uiElement.button.actionType === 'client_customized'" :data-type="pageItem.type"><view class="icon icon-icon_play iconfont icon-width-14"></view>{{pageItem.uiElement.button.text}}</button>
 				</view>
@@ -51,6 +51,51 @@
 					 </swiper>
 				</view>
 				<!-- 音乐日历 -->
+				<view class="musicCalendar" v-else-if="pageItem.type === 'musicCalendar'">
+					<view class=" calendar-item" :class="{'calendar-border':calendarIndex<pageItem.creatives.length-1}" v-for="(item,calendarIndex) in pageItem.creatives" :key="calendarIndex">
+						<view class="calendar-resources uni-flex" :class="{'calendar-border':resourcesIndex<item.resources.length-1}" v-for="(resourcesItem,resourcesIndex) in item.resources" :key="resourcesItem.resourceId">
+							<view class="private-left calendar-img">
+								<image :src="resourcesItem.uiElement.image.imageUrl" class="private-img"></image>
+								<view class="icon icon-icon_play iconfont icon-width-18 bofang-color" v-if="resourcesItem.resourceType === 'SONG'"></view>
+							</view>
+							<view class="calendar-sub" :data-startTime="resourcesItem.resourceExtInfo.startTime" :data-endTime="resourcesItem.resourceExtInfo.endTime">
+								<view class=" iconfont icon-width-84 icon-lingdang"></view>
+								<text class="color">{{resourcesItem.resourceExtInfo.subCount}}</text>
+							</view>
+							<view class="calendar-content">
+								<view class="calendar-top">
+									<text class="color-time">{{resourcesItem.resourceExtInfo.startTime | noticeTime }}</text>
+									<view class="uni-display" v-if="resourcesItem.uiElement.labelTexts">
+										<text class="calendar-color ellipsis"  v-for="(labelTextsItem,labelTextsIndex) in resourcesItem.uiElement.labelTexts" :key="labelTextsIndex">{{labelTextsIndex>0? '/'+ labelTextsItem:labelTextsItem}}</text>
+									</view>
+									
+								</view>
+								<view class="calendar-bottom ellipsis">{{resourcesItem.uiElement.mainTitle.title}}</view>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="uni-songList uni-exclusive" v-if="pageItem.type === 'exclusive'">
+					<swiper class="exclusiveSwiper" :autoplay="autoplay" :display-multiple-items="3"   :circular="circular">
+						<swiper-item class="exclusiveItem" v-for="(item,exclusiveIndex) in pageItem.creatives" :key="exclusiveIndex">
+							<view class="swiper-item">
+								<view class="songList" >
+									<navigator :url="'/playlist?id='+item.creativeId">
+										<view class="recommendList">
+											<image :src="item.uiElement.image.imageUrl" class="songImg"></image>
+											<view class="recommend-playData">
+												<view class="icon icon-icon-bofang iconfont icon-width-12"></view>
+												<text class="count">{{item.resources[0].resourceExtInfo.playCount | countNumber}}</text>
+											</view>
+										</view>
+										<text class="titleSong">{{item.uiElement.mainTitle.title}}</text>
+									</navigator>
+								</view>
+							</view>
+						</swiper-item>
+					</swiper>
+					
+				</view>
 			</view>
 		</view>
 		
@@ -59,7 +104,7 @@
 
 <script>
 	// import carousel from '@/components/vear-carousel/vear-carousel'
-	import { playCount } from '@/common/util.js'
+	import { playCount, dateUtils } from '@/common/util.js'
 	export default{
 		// components:{carousel},
 		data(){
@@ -83,6 +128,9 @@
 		filters:{
 			countNumber(num){
 				return playCount(num)
+			},
+			noticeTime(time){
+				return dateUtils.noticeTime(time)
 			}
 		}
 	}
@@ -95,6 +143,7 @@
 	.homePage{
 		width: 100%;
 		padding: 40rpx 0;
+		margin-bottom: 30rpx;
 	}
 	.recommended{
 		width: 100%;
@@ -114,7 +163,7 @@
 		border: 1px solid #e8e8e8;
 		border-radius: 32rpx;
 		color: #424242;
-		font-size:36rpx;
+		font-size:24rpx;
 		display: block;
 	}
 	.uni-songList{
@@ -142,7 +191,7 @@
 	.recommend-playData{
 		position: absolute;
 		right: 0;
-		top: 0;
+		top: 4rpx;
 		display: flex;
 		justify-content: flex-end;
 		color: #FFFFFF;
@@ -172,7 +221,7 @@
 		padding: 9rpx 22rpx;
 		background-color: transparent;
 		border-color: #e6e6e6;
-		font-size: 26rpx;
+		font-size: 24rpx;
 		height: auto;
 	}
 	.icon-icon_play{
@@ -262,5 +311,83 @@
 	}
 	.text-w{
 		width: 360rpx;
+	}
+	.musicCalendar{
+		border-top: 2rpx solid #e6e6e6;
+		margin-top: 48rpx;
+	}
+	.calendar-item{
+		width: 100%;
+		padding: 0 32rpx;
+		box-sizing: border-box;
+	}
+	.calendar-resources{
+		justify-content: space-between;
+		align-items: center;
+		padding: 45rpx 0;
+	}
+	.calendar-border{
+		border-bottom: 2rpx solid #e6e6e6;
+	}
+	.calendar-img{
+		order:3
+	}
+	.calendar-sub{
+		order: 2;
+		font-size: 28rpx;
+		text-align: center;
+	}
+	.calendar-sub .color{
+		color: #999999;
+	}
+	.icon-lingdang{
+		font-size: 56rpx;
+	}
+	.calendar-content{
+		order: 1;
+		font-size: 44rpx;
+		color: #333333;
+		width: 408rpx;
+	}
+	.calendar-top{
+		margin-bottom: 26rpx;
+		display: flex;
+		justify-content: flex-start;
+	}
+	.calendar-color{
+		padding: 15rpx 10px;
+		color: #e0ad38;
+		background-color: #fffcf7;
+		font-size: 28rpx;
+	}
+	.calendar-bottom{
+		color: #333333;
+		font-size: 28rpx;
+	}
+	.color-time{
+		font-size: 26rpx;
+		color: #999999;
+		margin-right: 18rpx;
+	}
+	.exclusiveItem{
+		width: 236rpx !important;
+	}
+	.exclusiveSwiper{
+		width: 100%;
+		display: flex;
+	}
+	.uni-exclusive{
+		padding: 20rpx 30rpx;
+	}
+	.uni-exclusive>.exclusiveSwiper{
+		height: 320rpx;
+	}
+	.uni-exclusive .songList{
+		padding: 0;
+	}
+	.icon-chevron-copy{
+		font-size: 28rpx;
+		font-weight: bold;
+		color: #343434;
 	}
 </style>

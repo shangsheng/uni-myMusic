@@ -20,7 +20,7 @@
 					</swiper>
 				</uni-swiper-dot>
 			</view>
-			<view class="ball">
+			<view class="ball uni-card-modular">
 				<scroll-view class="" scroll-x  :show-scrollbar="showScrollbar">
 					<view class="uni-flex">
 						<view class="uni-li" v-for="item in dragonBall" :key="item.id" :data-id="item.id" :data-url="item.url">

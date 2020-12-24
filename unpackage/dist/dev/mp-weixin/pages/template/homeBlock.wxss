@@ -5,6 +5,7 @@
 .homePage.data-v-1aa06752{
 	width: 100%;
 	padding: 40rpx 0;
+	margin-bottom: 30rpx;
 }
 .recommended.data-v-1aa06752{
 	width: 100%;
@@ -31,7 +32,7 @@
 	-webkit-border-radius: 32rpx;
 	        border-radius: 32rpx;
 	color: #424242;
-	font-size:36rpx;
+	font-size:24rpx;
 	display: block;
 }
 .uni-songList.data-v-1aa06752{
@@ -67,7 +68,7 @@
 .recommend-playData.data-v-1aa06752{
 	position: absolute;
 	right: 0;
-	top: 0;
+	top: 4rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -101,7 +102,7 @@
 	padding: 9rpx 22rpx;
 	background-color: transparent;
 	border-color: #e6e6e6;
-	font-size: 26rpx;
+	font-size: 24rpx;
 	height: auto;
 }
 .icon-icon_play.data-v-1aa06752{
@@ -200,5 +201,100 @@
 }
 .text-w.data-v-1aa06752{
 	width: 360rpx;
+}
+.musicCalendar.data-v-1aa06752{
+	border-top: 2rpx solid #e6e6e6;
+	margin-top: 48rpx;
+}
+.calendar-item.data-v-1aa06752{
+	width: 100%;
+	padding: 0 32rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.calendar-resources.data-v-1aa06752{
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	padding: 45rpx 0;
+}
+.calendar-border.data-v-1aa06752{
+	border-bottom: 2rpx solid #e6e6e6;
+}
+.calendar-img.data-v-1aa06752{
+	-webkit-box-ordinal-group:4;
+	-webkit-order:3;
+	        order:3
+}
+.calendar-sub.data-v-1aa06752{
+	-webkit-box-ordinal-group: 3;
+	-webkit-order: 2;
+	        order: 2;
+	font-size: 28rpx;
+	text-align: center;
+}
+.calendar-sub .color.data-v-1aa06752{
+	color: #999999;
+}
+.icon-lingdang.data-v-1aa06752{
+	font-size: 56rpx;
+}
+.calendar-content.data-v-1aa06752{
+	-webkit-box-ordinal-group: 2;
+	-webkit-order: 1;
+	        order: 1;
+	font-size: 44rpx;
+	color: #333333;
+	width: 408rpx;
+}
+.calendar-top.data-v-1aa06752{
+	margin-bottom: 26rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	        justify-content: flex-start;
+}
+.calendar-color.data-v-1aa06752{
+	padding: 15rpx 10px;
+	color: #e0ad38;
+	background-color: #fffcf7;
+	font-size: 28rpx;
+}
+.calendar-bottom.data-v-1aa06752{
+	color: #333333;
+	font-size: 28rpx;
+}
+.color-time.data-v-1aa06752{
+	font-size: 26rpx;
+	color: #999999;
+	margin-right: 18rpx;
+}
+.exclusiveItem.data-v-1aa06752{
+	width: 236rpx !important;
+}
+.exclusiveSwiper.data-v-1aa06752{
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.uni-exclusive.data-v-1aa06752{
+	padding: 20rpx 30rpx;
+}
+.uni-exclusive>.exclusiveSwiper.data-v-1aa06752{
+	height: 320rpx;
+}
+.uni-exclusive .songList.data-v-1aa06752{
+	padding: 0;
+}
+.icon-chevron-copy.data-v-1aa06752{
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #343434;
 }
 

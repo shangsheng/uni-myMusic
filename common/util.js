@@ -63,6 +63,26 @@ var dateUtils = {
 	parse: function (str) { //将"yyyy-mm-dd HH:MM:ss"格式的字符串，转化为一个Date对象
 		var a = str.split(/[^0-9]/);
 		return new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
+	},
+	noticeTime:function(timeStamp){ // 显示今天、明天、后天、日期，月份、年
+		var diff = timeStamp - new Date().getTime();
+		console.log(diff)
+		var _format = function (number) {
+			return (number < 10 ? ('0' + number) : number);
+		};
+		if(diff < this.UNITS['天']){
+			return '今天';
+		}else if(diff/this.UNITS['天']<3){
+			return '明天';
+		}else if(diff/this.UNITS['天']<4){
+			return '后天';
+		}else if(diff<this.UNITS['月']){
+			return _format(timeStamp.getDate());
+		}else if(diff<this.UNITS['年']){
+			return  _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate());
+		}else{
+			return timeStamp.getFullYear() + '-' + _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate())
+		}
 	}
 };
 function playCount(number){

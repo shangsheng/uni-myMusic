@@ -6,7 +6,7 @@
 	border: none !important;
 }
 .uni-card-section{
-	background-color: #FFFFFF;
+	/* background-color: #FFFFFF; */
 	padding-bottom: 50px;
 }
 .icon{
@@ -23,6 +23,13 @@
 .icon-width-18{
 	width: 36rpx;
 	height: 36rpx;
+}
+.uni-card-modular{
+	background-color: #FFFFFF; 
+}
+.icon-width-84{
+	width: 84rpx;
+	height: 84rpx;
 }
 /*#ifdef MP*/
 	.uni-searchbar.data-v-64ee3838{
