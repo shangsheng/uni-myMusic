@@ -93,11 +93,68 @@ function playCount(number){
 	}else{
 		return number;
 	}
-} 
+}; 
+ // 将相同字段title的值放到同一数组中
+function mergeObject(data,type,bucket,iv,url) {
+    var arrayFilted = [];
+    data.forEach(function(value, key) {
+        if(arrayFilted.length == 0) {
+            arrayFilted.push({
+                title: value[type],
+                bucket: [value[bucket]],
+                iv: [value[iv]],
+				url:value[url]
+            });
+        } else {
+            arrayFilted.forEach(function(item, index) {
+                if(item.title && item.title !== value[type]) {
+                    arrayFilted.push({
+                        title: value[type],
+                        bucket: [value[bucket]],
+                        iv: [value[iv]],
+						url:value[url]
+                    });
+                } else if(item.title && item.title === value[type]) {
+                    item.bucket.push(value[bucket])
+                    item.iv.push(value[iv])
+                }
+            });
+        }
+    });
+    return arrayFilted;
+};
 
+ //去重
+function Es5duplicate(arr, type) {
+    var newArr = [];
+    var tArr = [];
+    if(arr.length == 0) {
+        return arr;
+    } else {
+        if(type) {
+            for(var i = 0; i < arr.length; i++) {
+                if(!tArr[arr[i][type]]) {
+                    newArr.push(arr[i]);
+                    tArr[arr[i][type]] = true;
+                }
+            }
+            return newArr;
+        } else {
+            for(var i = 0; i < arr.length; i++) {
+                if(!tArr[arr[i]]) {
+                    newArr.push(arr[i]);
+                    tArr[arr[i]] = true;
+                }
+            }
+            return newArr;
+        }
+    }
+};
 module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
 	dateUtils: dateUtils,
-	playCount:playCount
+	playCount:playCount,
+	mergeObject:mergeObject,
+	Es5duplicate:Es5duplicate
 }

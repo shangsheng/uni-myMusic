@@ -45,7 +45,7 @@
 <style>
 	@import './common/iocnfont.css';
 	@import './common/uni-change.css';
-	
+	@import './common/animate.css';
 	
     /* #ifndef APP-PLUS-NVUE */
     /* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */

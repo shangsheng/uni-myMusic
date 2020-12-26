@@ -120,7 +120,7 @@ const _mv = '/api/mv';
 // 播放 mv
 const _mvUrl = '/api/mv/url';
 //排行榜
-const _topList = '/api/top/list';
+const _topList = '/api/topList';
 //所有榜单
 const _toplistAll = '/api/toplist';
 //所有榜单内容摘要
@@ -536,7 +536,7 @@ const _mv = '/mv';
 // 播放 mv
 const _mvUrl = '/mv/url';
 //排行榜
-const _topList = '/top/list';
+const _topList = '/topList';
 //所有榜单
 const _toplistAll = '/toplist';
 //所有榜单内容摘要

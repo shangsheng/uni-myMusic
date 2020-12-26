@@ -1,4 +1,7 @@
 
+.section-srcoll-y.data-v-3d3a40f7{
+	height: 100vh;
+}
 .uni-card-header.data-v-3d3a40f7{
 	background-color: #f3ebe8;
 }
@@ -79,5 +82,48 @@
 	font-size: 1rem;
 	margin-top: -0.8rem;
 	margin-left: -0.9rem;
+}
+.refresh.data-v-3d3a40f7{
+	background-color: #FFFFFF;
+	padding-bottom: 150rpx;
+	font-size: 32rpx;
+	color: #999999;
+	text-align: center;
+	padding-top: 46rpx;
+}
+.refresh-title.data-v-3d3a40f7{
+	color: #999999;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+}
+.uni-dianji.data-v-3d3a40f7{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	color: #4e7cae;
+}
+.icon-shuaxin.data-v-3d3a40f7{
+	font-size: 32rpx;
+}
+.uni-dianji .color.data-v-3d3a40f7{
+	margin: 0 16rpx;
+}
+.zdypb.data-v-3d3a40f7{
+	display: inline-block;
+	border: 4rpx solid #d9d9d9;
+	padding: 20rpx 40rpx;
+	-webkit-border-radius: 40rpx;
+	        border-radius: 40rpx;
+	color: #666666;
+	font-size: 38rpx;
+	margin-top: 60rpx;
 }
 

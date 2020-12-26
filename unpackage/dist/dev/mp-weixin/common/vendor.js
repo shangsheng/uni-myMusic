@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7331,7 +7331,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7352,14 +7352,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7445,7 +7445,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"uni-myMusic","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7882,9 +7882,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/pages.json ***!
-  \************************************************************/
+/*!***********************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/pages.json ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8025,9 +8025,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 11 */
-/*!****************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/store/index.js ***!
-  \****************************************************************/
+/*!***************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/store/index.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10009,9 +10009,9 @@ var index = {
 
 /***/ }),
 /* 16 */
-/*!**********************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/plugInUnit.js ***!
-  \**********************************************************************/
+/*!*********************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/plugInUnit.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10110,9 +10110,9 @@ function _default(Vue) {
 
 /***/ }),
 /* 17 */
-/*!*******************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/index.js ***!
-  \*******************************************************************************************/
+/*!******************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/index.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10122,9 +10122,9 @@ _Request.default;exports.default = _default;
 
 /***/ }),
 /* 18 */
-/*!**************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/Request.js ***!
-  \**************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/Request.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10331,9 +10331,9 @@ Request = /*#__PURE__*/function () {
 
 /***/ }),
 /* 19 */
-/*!**********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/dispatchRequest.js ***!
-  \**********************************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/dispatchRequest.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10347,9 +10347,9 @@ function _default(config) {
 
 /***/ }),
 /* 20 */
-/*!****************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/adapters/index.js ***!
-  \****************************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/adapters/index.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10446,9 +10446,9 @@ function _default(config) {
 
 /***/ }),
 /* 21 */
-/*!******************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/buildURL.js ***!
-  \******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/buildURL.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10525,9 +10525,9 @@ function buildURL(url, params) {
 
 /***/ }),
 /* 22 */
-/*!*******************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/utils.js ***!
-  \*******************************************************************************************/
+/*!******************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/utils.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10666,9 +10666,9 @@ function deepMerge() /* obj1, obj2, obj3, ... */{
 
 /***/ }),
 /* 23 */
-/*!********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/buildFullPath.js ***!
-  \********************************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/buildFullPath.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10696,9 +10696,9 @@ function buildFullPath(baseURL, requestedURL) {
 
 /***/ }),
 /* 24 */
-/*!***********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/isAbsoluteURL.js ***!
-  \***********************************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/isAbsoluteURL.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10720,9 +10720,9 @@ function isAbsoluteURL(url) {
 
 /***/ }),
 /* 25 */
-/*!*********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/combineURLs.js ***!
-  \*********************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/combineURLs.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10744,9 +10744,9 @@ function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 /* 26 */
-/*!*************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/settle.js ***!
-  \*************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/settle.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10770,9 +10770,9 @@ function settle(resolve, reject, response) {
 
 /***/ }),
 /* 27 */
-/*!*************************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/InterceptorManager.js ***!
-  \*************************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/InterceptorManager.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10831,9 +10831,9 @@ InterceptorManager;exports.default = _default;
 
 /***/ }),
 /* 28 */
-/*!******************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/mergeConfig.js ***!
-  \******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/mergeConfig.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10930,9 +10930,9 @@ function _default(globalsConfig) {var config2 = arguments.length > 1 && argument
 
 /***/ }),
 /* 29 */
-/*!***************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/defaults.js ***!
-  \***************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/defaults.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10969,9 +10969,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 /* 30 */
-/*!***************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/api.js ***!
-  \***************************************************************/
+/*!**************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/api.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11514,7 +11514,7 @@ var _mv = '/mv';
 // 播放 mv
 var _mvUrl = '/mv/url';
 //排行榜
-var _topList = '/top/list';
+var _topList = '/topList';
 //所有榜单
 var _toplistAll = '/toplist';
 //所有榜单内容摘要
@@ -12023,7 +12023,174 @@ function _default(Vue) {
 /* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */,
+/* 37 */
+/*!***************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/util.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function formatTime(time) {
+  if (typeof time !== 'number' || time < 0) {
+    return time;
+  }
+
+  var hour = parseInt(time / 3600);
+  time = time % 3600;
+  var minute = parseInt(time / 60);
+  time = time % 60;
+  var second = time;
+
+  return [hour, minute, second].map(function (n) {
+    n = n.toString();
+    return n[1] ? n : '0' + n;
+  }).join(':');
+}
+
+function formatLocation(longitude, latitude) {
+  if (typeof longitude === 'string' && typeof latitude === 'string') {
+    longitude = parseFloat(longitude);
+    latitude = parseFloat(latitude);
+  }
+
+  longitude = longitude.toFixed(2);
+  latitude = latitude.toFixed(2);
+
+  return {
+    longitude: longitude.toString().split('.'),
+    latitude: latitude.toString().split('.') };
+
+}
+var dateUtils = {
+  UNITS: {
+    '年': 31557600000,
+    '月': 2629800000,
+    '天': 86400000,
+    '小时': 3600000,
+    '分钟': 60000,
+    '秒': 1000 },
+
+  humanize: function humanize(milliseconds) {
+    var humanize = '';
+    for (var key in this.UNITS) {
+      if (milliseconds >= this.UNITS[key]) {
+        humanize = Math.floor(milliseconds / this.UNITS[key]) + key + '前';
+        break;
+      }
+    }
+    return humanize || '刚刚';
+  },
+  format: function format(dateStr) {
+    var date = this.parse(dateStr);
+    var diff = Date.now() - date.getTime();
+    if (diff < this.UNITS['天']) {
+      return this.humanize(diff);
+    }
+    var _format = function _format(number) {
+      return number < 10 ? '0' + number : number;
+    };
+    return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDate()) + '-' +
+    _format(date.getHours()) + ':' + _format(date.getMinutes());
+  },
+  parse: function parse(str) {//将"yyyy-mm-dd HH:MM:ss"格式的字符串，转化为一个Date对象
+    var a = str.split(/[^0-9]/);
+    return new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
+  },
+  noticeTime: function noticeTime(timeStamp) {// 显示今天、明天、后天、日期，月份、年
+    var diff = timeStamp - new Date().getTime();
+    console.log(diff);
+    var _format = function _format(number) {
+      return number < 10 ? '0' + number : number;
+    };
+    if (diff < this.UNITS['天']) {
+      return '今天';
+    } else if (diff / this.UNITS['天'] < 3) {
+      return '明天';
+    } else if (diff / this.UNITS['天'] < 4) {
+      return '后天';
+    } else if (diff < this.UNITS['月']) {
+      return _format(timeStamp.getDate());
+    } else if (diff < this.UNITS['年']) {
+      return _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate());
+    } else {
+      return timeStamp.getFullYear() + '-' + _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate());
+    }
+  } };
+
+function playCount(number) {
+  if (number >= 100000000) {
+    return Number.parseFloat(number / 100000000).toFixed(2) + '亿';
+  } else if (number >= 100000) {
+    return Number.parseFloat(number / 100000).toFixed(2) + '万';
+  } else {
+    return number;
+  }
+};
+// 将相同字段title的值放到同一数组中
+function mergeObject(data, type, bucket, iv, url) {
+  var arrayFilted = [];
+  data.forEach(function (value, key) {
+    if (arrayFilted.length == 0) {
+      arrayFilted.push({
+        title: value[type],
+        bucket: [value[bucket]],
+        iv: [value[iv]],
+        url: value[url] });
+
+    } else {
+      arrayFilted.forEach(function (item, index) {
+        if (item.title && item.title !== value[type]) {
+          arrayFilted.push({
+            title: value[type],
+            bucket: [value[bucket]],
+            iv: [value[iv]],
+            url: value[url] });
+
+        } else if (item.title && item.title === value[type]) {
+          item.bucket.push(value[bucket]);
+          item.iv.push(value[iv]);
+        }
+      });
+    }
+  });
+  return arrayFilted;
+};
+
+//去重
+function Es5duplicate(arr, type) {
+  var newArr = [];
+  var tArr = [];
+  if (arr.length == 0) {
+    return arr;
+  } else {
+    if (type) {
+      for (var i = 0; i < arr.length; i++) {
+        if (!tArr[arr[i][type]]) {
+          newArr.push(arr[i]);
+          tArr[arr[i][type]] = true;
+        }
+      }
+      return newArr;
+    } else {
+      for (var i = 0; i < arr.length; i++) {
+        if (!tArr[arr[i]]) {
+          newArr.push(arr[i]);
+          tArr[arr[i]] = true;
+        }
+      }
+      return newArr;
+    }
+  }
+};
+module.exports = {
+  formatTime: formatTime,
+  formatLocation: formatLocation,
+  dateUtils: dateUtils,
+  playCount: playCount,
+  mergeObject: mergeObject,
+  Es5duplicate: Es5duplicate };
+
+/***/ }),
 /* 38 */,
 /* 39 */,
 /* 40 */,
@@ -12054,10 +12221,11 @@ function _default(Vue) {
 /* 65 */,
 /* 66 */,
 /* 67 */,
-/* 68 */
-/*!*******************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/components/uni-icons/icons.js ***!
-  \*******************************************************************************/
+/* 68 */,
+/* 69 */
+/*!******************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/components/uni-icons/icons.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12193,145 +12361,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "cloud-download-filled": "\uE8E9",
   "headphones": "\uE8BF",
   "shop": "\uE609" };exports.default = _default;
-
-/***/ }),
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */
-/*!****************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/util.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function formatTime(time) {
-  if (typeof time !== 'number' || time < 0) {
-    return time;
-  }
-
-  var hour = parseInt(time / 3600);
-  time = time % 3600;
-  var minute = parseInt(time / 60);
-  time = time % 60;
-  var second = time;
-
-  return [hour, minute, second].map(function (n) {
-    n = n.toString();
-    return n[1] ? n : '0' + n;
-  }).join(':');
-}
-
-function formatLocation(longitude, latitude) {
-  if (typeof longitude === 'string' && typeof latitude === 'string') {
-    longitude = parseFloat(longitude);
-    latitude = parseFloat(latitude);
-  }
-
-  longitude = longitude.toFixed(2);
-  latitude = latitude.toFixed(2);
-
-  return {
-    longitude: longitude.toString().split('.'),
-    latitude: latitude.toString().split('.') };
-
-}
-var dateUtils = {
-  UNITS: {
-    '年': 31557600000,
-    '月': 2629800000,
-    '天': 86400000,
-    '小时': 3600000,
-    '分钟': 60000,
-    '秒': 1000 },
-
-  humanize: function humanize(milliseconds) {
-    var humanize = '';
-    for (var key in this.UNITS) {
-      if (milliseconds >= this.UNITS[key]) {
-        humanize = Math.floor(milliseconds / this.UNITS[key]) + key + '前';
-        break;
-      }
-    }
-    return humanize || '刚刚';
-  },
-  format: function format(dateStr) {
-    var date = this.parse(dateStr);
-    var diff = Date.now() - date.getTime();
-    if (diff < this.UNITS['天']) {
-      return this.humanize(diff);
-    }
-    var _format = function _format(number) {
-      return number < 10 ? '0' + number : number;
-    };
-    return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDate()) + '-' +
-    _format(date.getHours()) + ':' + _format(date.getMinutes());
-  },
-  parse: function parse(str) {//将"yyyy-mm-dd HH:MM:ss"格式的字符串，转化为一个Date对象
-    var a = str.split(/[^0-9]/);
-    return new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
-  },
-  noticeTime: function noticeTime(timeStamp) {// 显示今天、明天、后天、日期，月份、年
-    var diff = timeStamp - new Date().getTime();
-    console.log(diff);
-    var _format = function _format(number) {
-      return number < 10 ? '0' + number : number;
-    };
-    if (diff < this.UNITS['天']) {
-      return '今天';
-    } else if (diff / this.UNITS['天'] < 3) {
-      return '明天';
-    } else if (diff / this.UNITS['天'] < 4) {
-      return '后天';
-    } else if (diff < this.UNITS['月']) {
-      return _format(timeStamp.getDate());
-    } else if (diff < this.UNITS['年']) {
-      return _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate());
-    } else {
-      return timeStamp.getFullYear() + '-' + _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate());
-    }
-  } };
-
-function playCount(number) {
-  if (number >= 100000000) {
-    return Number.parseFloat(number / 100000000).toFixed(2) + '亿';
-  } else if (number >= 100000) {
-    return Number.parseFloat(number / 100000).toFixed(2) + '万';
-  } else {
-    return number;
-  }
-}
-
-module.exports = {
-  formatTime: formatTime,
-  formatLocation: formatLocation,
-  dateUtils: dateUtils,
-  playCount: playCount };
 
 /***/ })
 ]]);

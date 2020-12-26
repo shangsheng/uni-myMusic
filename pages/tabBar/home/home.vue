@@ -8,34 +8,51 @@
 		</view>
 		<drawerMenu ref="drawMenu"></drawerMenu>
 		<view class="uni-card-section">
-			<view class="uni-padding">
-				<uni-swiper-dot :info="SwiperInfo" :current="swiperDot.current"  :mode="swiperDot.mode" :dotsStyles="swiperDot.dotsStyles">
-					<swiper class="swiper-box" autoplay="true"  @change="bannerChange">
-					    <swiper-item v-for="(item ,index) in SwiperInfo" :key="index" >
-					        <view class="swiper-item">
-					                <image :src="item.pic" class="imgs"></image>
-									<view class="uni-span" :style="{'background-color':item.titleColor}">{{item.typeTitle}}</view>
-					        </view>
-					    </swiper-item>
-					</swiper>
-				</uni-swiper-dot>
-			</view>
-			<view class="ball uni-card-modular">
-				<scroll-view class="" scroll-x  :show-scrollbar="showScrollbar">
-					<view class="uni-flex">
-						<view class="uni-li" v-for="item in dragonBall" :key="item.id" :data-id="item.id" :data-url="item.url">
-							<view class="homePage">
-								<image :src="item.iconUrl" class="dragonImg"></image>
-								<text class="time" v-if="item.id === -1">{{dateTime}}</text>
+			<scroll-view class="section-srcoll-y" scroll-y="true" :style="{height:scrollviewHigh+'px'}" :show-scrollbar="showScrollbar" >
+				<view class="srcoll-y">
+					<view class="uni-padding">
+						<uni-swiper-dot :info="SwiperInfo" :current="swiperDot.current"  :mode="swiperDot.mode" :dotsStyles="swiperDot.dotsStyles">
+							<swiper class="swiper-box" autoplay="true"  @change="bannerChange">
+							    <swiper-item v-for="(item ,index) in SwiperInfo" :key="index" >
+							        <view class="swiper-item">
+							                <image :src="item.pic" class="imgs"></image>
+											<view class="uni-span" :style="{'background-color':item.titleColor}">{{item.typeTitle}}</view>
+							        </view>
+							    </swiper-item>
+							</swiper>
+						</uni-swiper-dot>
+					</view>
+					<view class="ball uni-card-modular">
+						<scroll-view class="" scroll-x  :show-scrollbar="showScrollbar">
+							<view class="uni-flex">
+								<view class="uni-li" v-for="item in dragonBall" :key="item.id" :data-id="item.id" :data-url="item.url">
+									<view class="homePage">
+										<image :src="item.iconUrl" class="dragonImg"></image>
+										<text class="time" v-if="item.id === -1">{{dateTime}}</text>
+									</view>
+									<text class="text">{{item.name}}</text>
+								</view>
 							</view>
-							<text class="text">{{item.name}}</text>
+						</scroll-view>
+					</view>
+					<view class="Blockpage">
+						<homePage :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData"></homePage>
+						<!-- 刷新 -->
+						<view class="refresh">
+							<view class="refresh-title">
+								<view class="uni-dianji" >
+									<view class="iocn iconfont icon-width-40 icon-shuaxin " :class="{'rotate':refreshRotate}" @click="refresh"></view>
+									<text class="color" @click="refresh">点击刷新</text>
+								</view>
+								<text>换一批内容</text>
+							</view>
+							<view class="zdypb">
+								<text>自定义排序</text>
+							</view>
 						</view>
 					</view>
-				</scroll-view>
-			</view>
-			<view class="Blockpage">
-				<homePage :blockData="Blockpage" :personalizedData="personalizedData"></homePage>
-			</view>
+				</view>
+			</scroll-view>
 		</view>
 	</view>
 </template>
@@ -44,6 +61,7 @@
 	import drawerMenu from '../../template/drawerMenu.vue';
 	import homePage from '../../template/homeBlock.vue';
 	
+	import { mergeObject, Es5duplicate } from '@/common/util.js'
 	export default {
 	    components: {drawerMenu,homePage},
 		data(){
@@ -76,8 +94,29 @@
 				Blockpage:[],
 				blockType:['banners','songList','personalTailor','musicCalendar','exclusive','songsDiscsalbums','scallop','podcast','yuncunKTV','podcastCollection','videoCollection'],
 				pageConfig:{},
-				personalizedData:[]
+				personalizedData:[],
+				broadcastData:{},
+				scrollviewHigh:600,
+				refreshRotate:false
 			}
+		},
+		onReady() {
+		        // 计算屏幕剩余高度  填补剩余高度
+		        let _this = this;
+		        uni.getSystemInfo({
+		            success(res) {
+		                _this.phoneHeight = res.windowHeight;
+		                console.log(res.windowHeight);
+		                // 计算组件的高度
+		                let view = uni.createSelectorQuery().select('.uni-card-header');
+		                view.boundingClientRect(data => {
+		                    _this.navHeight = data.height;
+		                    console.log(_this.navHeight);
+		                    _this.scrollviewHigh = _this.phoneHeight - _this.navHeight;
+		                }).exec();
+		            }
+		        });
+		        console.log('w' + this.scrollviewHigh);
 		},
 		created() {
 			console.log(uni.getSystemInfoSync().platform)
@@ -118,30 +157,64 @@
 					console.log(res)
 					this.dragonBall = res.data;
 				})
-				this.$http.get(this.$_homepageBlockpage).then(res=>{
+				this.homePage();
+			},
+			//homepageBlockpage
+			homePage(){
+				this.$http.get(this.$_homepageBlockpage,{params:{refresh:true}}).then(res=>{
 					
 					res.data.blocks.forEach((item,index)=>{
 						item.type = this.blockType[index];
+						if( this.blockType[index] === 'songsDiscsalbums'){
+							let creatives = item.creatives;
+							creatives.forEach((el,num)=>{
+								el.title = el.uiElement.mainTitle.title;
+								el.url = el.uiElement.button;
+							})
+							let getData = mergeObject(creatives,'title','resources','uiElement','url');
+							item.songsDiscsalbums = Es5duplicate(getData,'title');
+						}
 					})
 					console.log(res)
 					this.Blockpage =res.data.blocks;
 					this.pageConfig = res.data.pageConfig;
+					this.refreshRotate = false;
 				})
 				//推荐歌单
 				this.$http.get(this.$_personalized,{params:{limit:6}}).then(res=>{
 					console.log(res)
 					this.personalizedData = res.result
 				})
+				//排行榜
+				this.$http.get(this.$_topList).then(res=>{
+					console.log(res)
+				})
+				//24小时节目榜
+				this.$http.get(this.$_djProgramtoplistHours,{params:{limit:6}}).then(res=>{
+					console.log(res)
+					this.broadcastData = res.data
+				})
 			},
 			 bannerChange(e) {
 			    this.swiperDot.current = e.detail.current;
 			},
-			
+			//刷新
+			refresh(){
+				this.refreshRotate = true;
+				console.log(this.refreshRotate)
+				let time = setTimeout(()=>{
+					this.homePage();
+				},1000)
+				
+			}
 		}
 	}
 </script>
 
 <style scoped="scoped">
+	.section-srcoll-y{
+		height: 100vh;
+	}
 	.uni-card-header{
 		background-color: #f3ebe8;
 	}
@@ -211,5 +284,38 @@
 		font-size: 1rem;
 		margin-top: -0.8rem;
 		margin-left: -0.9rem;
+	}
+	.refresh{
+		background-color: #FFFFFF;
+		padding-bottom: 150rpx;
+		font-size: 32rpx;
+		color: #999999;
+		text-align: center;
+		padding-top: 46rpx;
+	}
+	.refresh-title{
+		color: #999999;
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+	}
+	.uni-dianji{
+		display: flex;
+		color: #4e7cae;
+	}
+	.icon-shuaxin{
+		font-size: 32rpx;
+	}
+	.uni-dianji .color{
+		margin: 0 16rpx;
+	}
+	.zdypb{
+		display: inline-block;
+		border: 4rpx solid #d9d9d9;
+		padding: 20rpx 40rpx;
+		border-radius: 40rpx;
+		color: #666666;
+		font-size: 38rpx;
+		margin-top: 60rpx;
 	}
 </style>
