@@ -36,7 +36,7 @@
 						</scroll-view>
 					</view>
 					<view class="Blockpage">
-						<homePage :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData"></homePage>
+						<homePage ref="homePage" :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData"></homePage>
 						<!-- 刷新 -->
 						<view class="refresh">
 							<view class="refresh-title">
@@ -62,6 +62,7 @@
 	import homePage from '../../template/homeBlock.vue';
 	
 	import { mergeObject, Es5duplicate } from '@/common/util.js'
+	import { uniAudio, audioPlay } from '@/common/player.js';
 	export default {
 	    components: {drawerMenu,homePage},
 		data(){
@@ -97,7 +98,8 @@
 				personalizedData:[],
 				broadcastData:{},
 				scrollviewHigh:600,
-				refreshRotate:false
+				refreshRotate:false,
+				
 			}
 		},
 		onReady() {
@@ -117,6 +119,7 @@
 		            }
 		        });
 		        console.log('w' + this.scrollviewHigh);
+				
 		},
 		created() {
 			console.log(uni.getSystemInfoSync().platform)
@@ -137,7 +140,53 @@
 			}
 			this.getRequest();
 		},
+		onLoad(){
+			uni.getSystemInfo({
+				success:(res)=>{
+					console.log(res.windowWidth)
+					this.$refs.homePage.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
+				}
+			})
+			 console.log('App onload')
+			// uni.$on('timeCanvasPlay',(res)=>{
+			// 	this.timeCanvas(res)
+			// })
+		},
+		onShow(){
+			let _this = this;
+			console.log(this)
+			console.log(uni)
+			console.log(uniAudio.paused)
+			if(!uniAudio.paused&&this.$refs.homePage){
+				this.$refs.homePage.$refs.songsPlayer.onCanplay();
+				this.$refs.homePage.$refs.songsPlayer.onTimeUpdate();
+				this.$refs.homePage.$refs.songsPlayer.onWaiting();
+				this.$refs.homePage.$refs.songsPlayer.onEnded();
+			}else if(this.$refs.homePage){
+				this.$refs.homePage.$refs.songsPlayer.play=false;
+				let audioDuration;
+				uni.getStorage({
+				    key: 'audioDuration',
+				    success: function (res) {
+						console.log(res)
+				       audioDuration=res.data;
+					   let currentTime = 0;
+					   uni.getStorage({
+					       key: 'currentTime',
+					       success: function (res) {
+					   		console.log(res)
+					        currentTime=res.data;
+					   	   let timeNum = audioDuration? currentTime/audioDuration*2:0;
+					   	   console.log(timeNum)
+					   	   _this.$refs.homePage.$refs.songsPlayer.dynamic(timeNum);
+					       }
+					   });
+				    }
+				});
+			}
+		},
 		methods:{
+			
 			onopen(){
 				console.log(1)
 				console.log(this)

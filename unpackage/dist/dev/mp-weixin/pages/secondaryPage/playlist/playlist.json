@@ -1,0 +1,12 @@
+{
+  "navigationBarBackgroundColor": "#000000",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "歌单",
+  "transparentTitle": "always",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
+    "uni-icons": "/components/uni-icons/uni-icons",
+    "song-splayer": "/pages/template/player"
+  }
+}

@@ -1,4 +1,5 @@
 <script>
+	import { uniAudio, audioPlay } from '@/common/player.js';
     export default {
         onLaunch: function() {
             console.log('App Launch');
@@ -32,12 +33,25 @@
         },
         onShow: function() {
             console.log('App Show')
+			if(!uniAudio.paused){
+				// this.onCanplay();
+				// this.onTimeUpdate();
+				// this.onWaiting();
+				// this.onEnded();
+			}
         },
         onHide: function() {
             console.log('App Hide')
         },
+		onReady:function(){
+			console.log("App Ready")
+			
+		},
+		//公共的属性
 		globalData: {
-			test: ''
+			test: '',
+			play:false,
+			audioDuration:0
 		}
     }
 </script>

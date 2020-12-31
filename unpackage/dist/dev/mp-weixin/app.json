@@ -4,7 +4,8 @@
     "pages/tabBar/Blog/blog",
     "pages/tabBar/my/my",
     "pages/tabBar/Karaoke/Karaoke",
-    "pages/tabBar/yuncun/yuncun"
+    "pages/tabBar/yuncun/yuncun",
+    "pages/secondaryPage/playlist/playlist"
   ],
   "subPackages": [],
   "window": {
@@ -20,7 +21,7 @@
     "color": "#b3b3b3",
     "selectedColor": "#fe3a3b",
     "borderStyle": "black",
-    "backgroundColor": "#F8F8F8",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/tabBar/home/home",
@@ -60,5 +61,5 @@
     }
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap92.json"
+  "sitemapLocation": "sitemap68.json"
 }

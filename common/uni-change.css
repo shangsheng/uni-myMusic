@@ -5,6 +5,9 @@
 	background-color: #fdfdfd !important;
 	border: none !important;
 }
+.uni-navbar--border[data-v-4afea59e]{
+	border: none !important;
+}
 .uni-card-section{
 	/* background-color: #FFFFFF; */
 	padding-bottom: 50px;
@@ -34,6 +37,16 @@
 .icon-width-40{
 	width: 40rpx;
 	height: 40rpx;
+}
+.icon-width-56{
+	width: 56rpx;
+	height: 56rpx;
+}
+.playerSongs{
+	position: fixed;
+	z-index: 999;
+	bottom: 90rpx;
+	width: 100%;
 }
 html {
   overflow-y: scroll;
@@ -66,5 +79,11 @@ body {
 		height: 25.2rpx !important;
 		line-height: 25.2rpx !important;
 		margin-right: 10.8rpx !important;
+	}
+	.playerSongs{
+		bottom:0;
+	}
+	.uni-navbar--border.data-v-4afea59e{
+		border: none !important;
 	}
 /*#endif*/

@@ -40,6 +40,16 @@
 				"navigationBarTextStyle":"black",
 				"navigationBarTitleText":"云村"
 			}
+		},
+		{
+			"path":"pages/secondaryPage/playlist/playlist",
+			"style":{
+				"navigationBarBackgroundColor":"#000000",
+				"navigationBarTextStyle":"white",
+				"navigationBarTitleText":"歌单",
+				"transparentTitle":"always",
+				"navigationStyle":"custom"
+			}
 		}
 	],
 	
@@ -59,7 +69,7 @@
 		"color": "#b3b3b3",
 		"selectedColor": "#fe3a3b",
 		"borderStyle": "black",
-		"backgroundColor": "#F8F8F8",
+		"backgroundColor": "#ffffff",
 		"list": [{
 				"pagePath": "pages/tabBar/home/home",
 				"iconPath": "static/faxian.png",

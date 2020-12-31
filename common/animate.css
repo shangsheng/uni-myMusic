@@ -72,12 +72,16 @@
 .rotate{
 	animation: shuaxinRotate 1s 1;
 }
-
+.play-rotate{
+	animation: shuaxinRotate 3s infinite linear;
+}
 @keyframes shuaxinRotate{
 	from{
 		transform: rotate(0);
+		transform-origin: center center;
 	}
 	to{
 		transform: rotate(360deg);
+		transform-origin: center center;
 	}
 }

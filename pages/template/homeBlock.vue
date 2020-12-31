@@ -36,7 +36,7 @@
 				
 				<view class="uni-songList" v-if="pageItem.type === 'songList'">
 					<view class="songList" v-for="item in pageItem.creatives" :key="item.creativeId">
-						<navigator :url="'/playlist?id='+item.creativeId">
+						<navigator :url="'/pages/secondaryPage/playlist/playlist?id='+item.creativeId">
 							<view class="recommendList">
 								<image :src="item.uiElement.image.imageUrl" class="songImg"></image>
 								<view class="recommend-playData">
@@ -266,15 +266,18 @@
 				</view>
 			</view>
 		</view>
-		
+		<view class="playerSongs">
+			<songSplayer ref="songsPlayer" :songsData="songsData"></songSplayer>
+		</view>
 	</view>
 </template>
 
 <script>
+	import songSplayer from './player.vue';
 	// import carousel from '@/components/vear-carousel/vear-carousel'
-	import { playCount, dateUtils } from '@/common/util.js'
+	import { playCount, dateUtils } from '@/common/util.js';
 	export default{
-		// components:{carousel},
+		components:{songSplayer},
 		data(){
 			return{
 				previousMargin:"30rpx",
@@ -283,7 +286,8 @@
 				autoplay:false,
 				songsAlbumsIndex:0,
 				podcastTitleIndex:0,
-				animateNum:5
+				animateNum:5,
+				songsData:{}
 			}
 		},
 		props:{
@@ -315,7 +319,7 @@
 			podcastTab($event){
 				this.podcastTitleIndex = Number($event.currentTarget.dataset.index);
 				console.log(this.broadcastData)
-			}
+			},
 		}
 	}
 </script>

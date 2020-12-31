@@ -31,6 +31,42 @@
 .icon-icon_play:before {
   content: "\e60f";
 }
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2286010_ibh7owiokh.eot?t=1609206840218'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_2286010_ibh7owiokh.eot?t=1609206840218#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAWUAAsAAAAACvgAAAVGAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCEAgqHaIZPATYCJAMkCxQABCAFhG0HgQ8bggnIHpKkMwIFfgfAAQmRIvHwtN+3c2fm+a4DTbWR8WYeSeqRTzJrJChdG6HRyB7qyg/9qS8qf6QSDEqlUDq4MgYqycTMJ5/Wo7W294paHKyZWTyd25e1Ny8JqJQiFrKHDP9zv1d/Ho/CvPbsA3217KRP4/GABlSRwhtIgthEpiGdTScVfvBGH02gt4IJ1H6/gwtSpRArBeKqgJqkqmBSOgih1dYNWxbxBnDa9BR9G8Br//HxH6xCjqTKxJpHz286ZOUXSP/k8u1yCdYC9YdzYLwdGduAQrxrdL0ATExtg9EvC7HOIaYkHcOv5YlSupQtdZPWSv8sLlZ4aINQxU584CkpUDS356zlc//jETWhGgP+ZrrlF2iEwi8iQsMvGkLwiy6iqtkwqKF2g0GGuhYGCeo/aFGBzm4xAywDsRIgPoLQ7b8EVcjWWhJSLvw6sZJBRZDlanQ8iUQhY4q41/la6M8QYeKkx5/Niwe868sLPfeHmPP4MVck4kskfG7kz+jveOLnZxbt4tw94/U84Tx+kjr7jN8t4ooe0658EvJuG7vL6VyO2VtPE5PPZPZVpIqlPMknvugj9/GHvUrBCYL8fGJpAtI7yJRIGKi9Jpp6yrsZe07CzWMXxdxmeORZb0WfouJXMRMlFvNYAvVDxIWjbNrTn3L0oVpFX1MPDJxpOqccS4fvJzX2olCTfcGoO0+hcZ6FHVhQVHy+hMI9WsQXSYAdvYkybnBxX8az2GwRhfvwyL7JMPOEyKQ/vZvRi0ruY/bRS3r6acXd3ckJ9M8jr8Iq0++2PYS+smwt24ciapcbVnZV/w0P+H/BiPRssrt81YrsEdn+p4PmT+k0avur3WXU8a+1W7tIrXVRQejvR54t3a7R2TQyWrReM1pfNlyz4jFWWLBtdRBSOR44lmDqxkiIK1zShP2wuMvu1ZQXaXfc8fnF9vsxu3ZTKG/8+o1DGCT4vH794oUPYQHPef+BQvIlwGL2XSyVir0r+QOBkWV1yM+lC1hQQLgAIMN9fJ+mn3fc8mErhWsPocIF4WNN9glhoNhD4/E1z0EK0U/4W+JLJd0uKPtISPSjDqA8+derlEPuloWjSSDQwgb1lMO8ui45asadP4VMUoT3bgOEGEc+majIOhVvI7Brgs2cP6UePYmup/hT66mTWnPTa6hNewCHaeP79nbhxE559WKFgXGN8sI9OxDCM+6BvD1Few5B31OsOzan5jLHqtO2J0Uy03G6rwjwcATA4vl8AePJmVP5CMYjtBtLxTQG0mP0/sH6/fkzJgcIeSf6P1h8QelUAyAfQD/5e3+OuGTSk0x0+S2nWMBP0oqDlx0u3UqQxX/mngIs/ijUiVSYu7IYXy8p0Lmniq/coJdT+BP7Zrw6rGYpmUBolmaQNJZD1lqHLvhtUBnsgFprF/S28t9+MKuUV5QOW9QwCFPWIJnwDbIpd9AF/xIqy/yA2lRgoHc6qHscbAiBgncpmkl0IG0PCNKlcJU1WROqz5CmmBnPSz3jCuOJcBQszSzK2W0UGD/EOsKddKyszIWsUsnBjx0PGZNQXCojaCeHcsqSas7cPKvpkYbSizipsU8cMiUhB0iTAwRskuDa6ZNqKu9/BlEpjCneMXTJfQXFJYRnDyyZsSCgt1WCNPRSGoXSqDFlPOECWeNKiQN+3IGYTEmguHmxCGRLGpKzQ0KZY84nZVFVQ6fX8Pd6BvTEwbpIkaNEFXU00UYXvfICfr+gMCdlZsPCm1OU7E/PwXRcisH0IpUz+VX5AkEdU+uDe6FIZsrqQxTpipk5f3QOAgAA') format('woff2'),
+  url('//at.alicdn.com/t/font_2286010_ibh7owiokh.woff?t=1609206840218') format('woff'),
+  url('//at.alicdn.com/t/font_2286010_ibh7owiokh.ttf?t=1609206840218') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_2286010_ibh7owiokh.svg?t=1609206840218#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-icon:before {
+  content: "\e614";
+}
+.icon-shuaxin:before {
+  content: "\e686";
+}
+.icon-hot:before {
+  content: "\e63e";
+}
+.icon-chevron-copy:before {
+  content: "\e600";
+}
+.icon-lingdang:before {
+  content: "\e6f6";
+}
+.icon-zanting:before {
+  content: "\e619";
+}
+.icon-icon_play:before {
+  content: "\e60f";
+}
 .icon-icon-bofang:before {
   content: "\e615";
 }
@@ -39,6 +75,9 @@
 }
 .uni-searchbar__box[data-v-64ee3838]{
 	background-color: #fdfdfd !important;
+	border: none !important;
+}
+.uni-navbar--border[data-v-4afea59e]{
 	border: none !important;
 }
 .uni-card-section{
@@ -71,6 +110,16 @@
 	width: 40rpx;
 	height: 40rpx;
 }
+.icon-width-56{
+	width: 56rpx;
+	height: 56rpx;
+}
+.playerSongs{
+	position: fixed;
+	z-index: 999;
+	bottom: 90rpx;
+	width: 100%;
+}
 page {
   overflow-y: scroll;
 }
@@ -97,6 +146,12 @@ page {
 		height: 25.2rpx !important;
 		line-height: 25.2rpx !important;
 		margin-right: 10.8rpx !important;
+}
+.playerSongs{
+		bottom:0;
+}
+.uni-navbar--border.data-v-4afea59e{
+		border: none !important;
 }
 .yinyuepinpu{
             height: 40rpx;
@@ -214,24 +269,36 @@ page {
 	-webkit-animation: shuaxinRotate 1s 1;
 	        animation: shuaxinRotate 1s 1;
 }
+.play-rotate{
+	-webkit-animation: shuaxinRotate 3s infinite linear;
+	        animation: shuaxinRotate 3s infinite linear;
+}
 @-webkit-keyframes shuaxinRotate{
 from{
 		-webkit-transform: rotate(0);
 		        transform: rotate(0);
+		-webkit-transform-origin: center center;
+		        transform-origin: center center;
 }
 to{
 		-webkit-transform: rotate(360deg);
 		        transform: rotate(360deg);
+		-webkit-transform-origin: center center;
+		        transform-origin: center center;
 }
 }
 @keyframes shuaxinRotate{
 from{
 		-webkit-transform: rotate(0);
 		        transform: rotate(0);
+		-webkit-transform-origin: center center;
+		        transform-origin: center center;
 }
 to{
 		-webkit-transform: rotate(360deg);
 		        transform: rotate(360deg);
+		-webkit-transform-origin: center center;
+		        transform-origin: center center;
 }
 }
 
