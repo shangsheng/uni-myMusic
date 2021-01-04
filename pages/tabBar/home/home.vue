@@ -141,11 +141,13 @@
 			this.getRequest();
 		},
 		onLoad(){
-			uni.getSystemInfo({
-				success:(res)=>{
-					console.log(res.windowWidth)
-					this.$refs.homePage.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
-				}
+			this.$nextTick(()=>{
+				uni.getSystemInfo({
+					success:(res)=>{
+						console.log(res.windowWidth)
+						this.$refs.homePage.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
+					}
+				})
 			})
 			 console.log('App onload')
 			// uni.$on('timeCanvasPlay',(res)=>{

@@ -95,6 +95,7 @@
 		methods:{
 			
 			onPlay(){
+				console.log(this.play)
 				if(this.play){
 					//暂停
 					uniAudio.pause();
@@ -109,6 +110,7 @@
 					uni.getStorage({
 						key:'currentTime',
 						success:(res)=>{
+							console.log(res)
 							if(!res.data || res.data === 0){
 								//第一次打开页面时没有播放器
 								if(!uniAudio.src  ){
@@ -138,6 +140,10 @@
 							this.onTimeUpdate();
 							this.onWaiting();
 							this.onEnded();
+						},
+						fail:(res)=>{
+							//第一次打开软件
+							this.onGetSongs();
 						}
 					})
 					

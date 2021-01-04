@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
 
 var _toString = Object.prototype.toString;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -363,112 +363,7 @@ var baseApi = /*#__PURE__*/Object.freeze({
   upx2px: upx2px,
   addInterceptor: addInterceptor,
   removeInterceptor: removeInterceptor,
-  interceptors: interceptors });var
-
-
-EventChannel = /*#__PURE__*/function () {
-  function EventChannel(id, events) {var _this = this;_classCallCheck(this, EventChannel);
-    this.id = id;
-    this.listener = {};
-    this.emitCache = {};
-    if (events) {
-      Object.keys(events).forEach(function (name) {
-        _this.on(name, events[name]);
-      });
-    }
-  }_createClass(EventChannel, [{ key: "emit", value: function emit(
-
-    eventName) {for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {args[_key3 - 1] = arguments[_key3];}
-      var fns = this.listener[eventName];
-      if (!fns) {
-        return (this.emitCache[eventName] || (this.emitCache[eventName] = [])).push(args);
-      }
-      fns.forEach(function (opt) {
-        opt.fn.apply(opt.fn, args);
-      });
-      this.listener[eventName] = fns.filter(function (opt) {return opt.type !== 'once';});
-    } }, { key: "on", value: function on(
-
-    eventName, fn) {
-      this._addListener(eventName, 'on', fn);
-      this._clearCache(eventName);
-    } }, { key: "once", value: function once(
-
-    eventName, fn) {
-      this._addListener(eventName, 'once', fn);
-      this._clearCache(eventName);
-    } }, { key: "off", value: function off(
-
-    eventName, fn) {
-      var fns = this.listener[eventName];
-      if (!fns) {
-        return;
-      }
-      if (fn) {
-        for (var i = 0; i < fns.length;) {
-          if (fns[i].fn === fn) {
-            fns.splice(i, 1);
-            i--;
-          }
-          i++;
-        }
-      } else {
-        delete this.listener[eventName];
-      }
-    } }, { key: "_clearCache", value: function _clearCache(
-
-    eventName) {
-      var cacheArgs = this.emitCache[eventName];
-      if (cacheArgs) {
-        for (; cacheArgs.length > 0;) {
-          this.emit.apply(this, [eventName].concat(cacheArgs.shift()));
-        }
-      }
-    } }, { key: "_addListener", value: function _addListener(
-
-    eventName, type, fn) {
-      (this.listener[eventName] || (this.listener[eventName] = [])).push({
-        fn: fn,
-        type: type });
-
-    } }]);return EventChannel;}();
-
-
-var eventChannels = {};
-
-var eventChannelStack = [];
-
-var id = 0;
-
-function initEventChannel(events) {var cache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  id++;
-  var eventChannel = new EventChannel(id, events);
-  if (cache) {
-    eventChannels[id] = eventChannel;
-    eventChannelStack.push(eventChannel);
-  }
-  return eventChannel;
-}
-
-function getEventChannel(id) {
-  if (id) {
-    var eventChannel = eventChannels[id];
-    delete eventChannels[id];
-    return eventChannel;
-  }
-  return eventChannelStack.shift();
-}
-
-var navigateTo = {
-  args: function args(fromArgs, toArgs) {
-    var id = initEventChannel(fromArgs.events).id;
-    if (fromArgs.url) {
-      fromArgs.url = fromArgs.url + (fromArgs.url.indexOf('?') === -1 ? '?' : '&') + '__id__=' + id;
-    }
-  },
-  returnValue: function returnValue(fromRes, toRes) {
-    fromRes.eventChannel = getEventChannel();
-  } };
+  interceptors: interceptors });
 
 
 function findExistsPageIndex(url) {
@@ -537,6 +432,8 @@ var previewImage = {
   } };
 
 
+// import navigateTo from 'uni-helpers/navigate-to'
+
 function addSafeAreaInsets(result) {
   if (result.safeArea) {
     var safeArea = result.safeArea;
@@ -550,7 +447,7 @@ function addSafeAreaInsets(result) {
 }
 var protocols = {
   redirectTo: redirectTo,
-  navigateTo: navigateTo,
+  // navigateTo,  // 由于在微信开发者工具的页面参数，会显示__id__参数，因此暂时关闭mp-weixin对于navigateTo的AOP
   previewImage: previewImage,
   getSystemInfo: {
     returnValue: addSafeAreaInsets },
@@ -771,7 +668,7 @@ function initTriggerEvent(mpInstance) {
     }
   }
   var oldTriggerEvent = mpInstance.triggerEvent;
-  mpInstance.triggerEvent = function (event) {for (var _len4 = arguments.length, args = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {args[_key4 - 1] = arguments[_key4];}
+  mpInstance.triggerEvent = function (event) {for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {args[_key3 - 1] = arguments[_key3];}
     return oldTriggerEvent.apply(mpInstance, [customize(event)].concat(args));
   };
 }
@@ -784,7 +681,7 @@ function initHook(name, options) {
     };
   } else {
     options[name] = function () {
-      initTriggerEvent(this);for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {args[_key5] = arguments[_key5];}
+      initTriggerEvent(this);for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {args[_key4] = arguments[_key4];}
       return oldHook.apply(this, args);
     };
   }
@@ -1252,7 +1149,7 @@ function getContextVm(vm) {
   return $parent && $parent.$parent;
 }
 
-function handleEvent(event) {var _this2 = this;
+function handleEvent(event) {var _this = this;
   event = wrapper$1(event);
 
   // [['tap',[['handle',[1,2,a]],['handle1',[1,2,a]]]]]
@@ -1283,14 +1180,14 @@ function handleEvent(event) {var _this2 = this;
       eventsArray.forEach(function (eventArray) {
         var methodName = eventArray[0];
         if (methodName) {
-          var handlerCtx = _this2.$vm;
+          var handlerCtx = _this.$vm;
           if (handlerCtx.$options.generic) {// mp-weixin,mp-toutiao 抽象节点模拟 scoped slots
             handlerCtx = getContextVm(handlerCtx) || handlerCtx;
           }
           if (methodName === '$emit') {
             handlerCtx.$emit.apply(handlerCtx,
             processEventArgs(
-            _this2.$vm,
+            _this.$vm,
             event,
             eventArray[1],
             eventArray[2],
@@ -1310,7 +1207,7 @@ function handleEvent(event) {var _this2 = this;
             handler.once = true;
           }
           var params = processEventArgs(
-          _this2.$vm,
+          _this.$vm,
           event,
           eventArray[1],
           eventArray[2],
@@ -1454,16 +1351,28 @@ function initRelation(detail) {
   this.triggerEvent('__l', detail);
 }
 
+function selectAllComponents(mpInstance, selector, $refs) {
+  var components = mpInstance.selectAllComponents(selector);
+  components.forEach(function (component) {
+    var ref = component.dataset.ref;
+    $refs[ref] = component.$vm || component;
+    {
+      if (component.dataset.vueGeneric === 'scoped') {
+        component.selectAllComponents('.scoped-ref').forEach(function (scopedComponent) {
+          selectAllComponents(scopedComponent, selector, $refs);
+        });
+      }
+    }
+  });
+}
+
 function initRefs(vm) {
   var mpInstance = vm.$scope;
   Object.defineProperty(vm, '$refs', {
     get: function get() {
       var $refs = {};
-      var components = mpInstance.selectAllComponents('.vue-ref');
-      components.forEach(function (component) {
-        var ref = component.dataset.ref;
-        $refs[ref] = component.$vm || component;
-      });
+      selectAllComponents(mpInstance, '.vue-ref', $refs);
+      // TODO 暂不考虑 for 中的 scoped
       var forComponents = mpInstance.selectAllComponents('.vue-ref-in-for');
       forComponents.forEach(function (component) {
         var ref = component.dataset.ref;
@@ -1503,12 +1412,25 @@ function parseApp(vm) {
 
 }
 
+var eventChannels = {};
+
+var eventChannelStack = [];
+
+function getEventChannel(id) {
+  if (id) {
+    var eventChannel = eventChannels[id];
+    delete eventChannels[id];
+    return eventChannel;
+  }
+  return eventChannelStack.shift();
+}
+
 function createApp(vm) {
   _vue.default.prototype.getOpenerEventChannel = function () {
-    if (!this.__eventChannel__) {
-      this.__eventChannel__ = new EventChannel();
+    // 微信小程序使用自身getOpenerEventChannel
+    {
+      return this.$scope.getOpenerEventChannel();
     }
-    return this.__eventChannel__;
   };
   var callHook = _vue.default.prototype.__call_hook;
   _vue.default.prototype.__call_hook = function (hook, args) {
@@ -7882,9 +7804,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!***********************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/pages.json ***!
-  \***********************************************/
+/*!************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/pages.json ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7895,9 +7817,9 @@ module.exports = g;
 /* 6 */,
 /* 7 */,
 /* 8 */
-/*!*****************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/common/player.js ***!
-  \*****************************************************/
+/*!******************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/player.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8042,9 +7964,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 12 */
-/*!***************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/store/index.js ***!
-  \***************************************************/
+/*!****************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/store/index.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10026,9 +9948,9 @@ var index = {
 
 /***/ }),
 /* 17 */
-/*!*********************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/common/plugInUnit.js ***!
-  \*********************************************************/
+/*!**********************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/plugInUnit.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10127,9 +10049,9 @@ function _default(Vue) {
 
 /***/ }),
 /* 18 */
-/*!******************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/index.js ***!
-  \******************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/index.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10139,9 +10061,9 @@ _Request.default;exports.default = _default;
 
 /***/ }),
 /* 19 */
-/*!*************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/Request.js ***!
-  \*************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/Request.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10348,9 +10270,9 @@ Request = /*#__PURE__*/function () {
 
 /***/ }),
 /* 20 */
-/*!*********************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/dispatchRequest.js ***!
-  \*********************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/dispatchRequest.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10364,9 +10286,9 @@ function _default(config) {
 
 /***/ }),
 /* 21 */
-/*!***************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/adapters/index.js ***!
-  \***************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/adapters/index.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10463,9 +10385,9 @@ function _default(config) {
 
 /***/ }),
 /* 22 */
-/*!*****************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/buildURL.js ***!
-  \*****************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/buildURL.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10542,9 +10464,9 @@ function buildURL(url, params) {
 
 /***/ }),
 /* 23 */
-/*!******************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/utils.js ***!
-  \******************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/utils.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10683,9 +10605,9 @@ function deepMerge() /* obj1, obj2, obj3, ... */{
 
 /***/ }),
 /* 24 */
-/*!*******************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/buildFullPath.js ***!
-  \*******************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/buildFullPath.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10713,9 +10635,9 @@ function buildFullPath(baseURL, requestedURL) {
 
 /***/ }),
 /* 25 */
-/*!**********************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/isAbsoluteURL.js ***!
-  \**********************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/isAbsoluteURL.js ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10737,9 +10659,9 @@ function isAbsoluteURL(url) {
 
 /***/ }),
 /* 26 */
-/*!********************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/combineURLs.js ***!
-  \********************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/combineURLs.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10761,9 +10683,9 @@ function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 /* 27 */
-/*!************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/settle.js ***!
-  \************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/settle.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10787,9 +10709,9 @@ function settle(resolve, reject, response) {
 
 /***/ }),
 /* 28 */
-/*!************************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/InterceptorManager.js ***!
-  \************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/InterceptorManager.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10848,9 +10770,9 @@ InterceptorManager;exports.default = _default;
 
 /***/ }),
 /* 29 */
-/*!*****************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/mergeConfig.js ***!
-  \*****************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/mergeConfig.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10947,9 +10869,9 @@ function _default(globalsConfig) {var config2 = arguments.length > 1 && argument
 
 /***/ }),
 /* 30 */
-/*!**************************************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/defaults.js ***!
-  \**************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/defaults.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10986,9 +10908,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 /* 31 */
-/*!**************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/common/api.js ***!
-  \**************************************************/
+/*!***************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/api.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12041,9 +11963,9 @@ function _default(Vue) {
 /* 36 */,
 /* 37 */,
 /* 38 */
-/*!***************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/common/util.js ***!
-  \***************************************************/
+/*!****************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/util.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -12116,6 +12038,7 @@ var dateUtils = {
   noticeTime: function noticeTime(timeStamp) {// 显示今天、明天、后天、日期，月份、年
     var diff = timeStamp - new Date().getTime();
     console.log(diff);
+    var timeStart = new Date(timeStamp);
     var _format = function _format(number) {
       return number < 10 ? '0' + number : number;
     };
@@ -12126,11 +12049,11 @@ var dateUtils = {
     } else if (diff / this.UNITS['天'] < 4) {
       return '后天';
     } else if (diff < this.UNITS['月']) {
-      return _format(timeStamp.getDate());
+      return _format(timeStart.getDate()) + '日';
     } else if (diff < this.UNITS['年']) {
-      return _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate());
+      return _format(timeStart.getMonth() + 1) + '-' + _format(timeStart.getDate());
     } else {
-      return timeStamp.getFullYear() + '-' + _format(timeStamp.getMonth() + 1) + '-' + _format(timeStamp.getDate());
+      return timeStart.getFullYear() + '-' + _format(timeStart.getMonth() + 1) + '-' + _format(timeStart.getDate());
     }
   } };
 
@@ -12248,9 +12171,9 @@ module.exports = {
 /* 76 */,
 /* 77 */,
 /* 78 */
-/*!******************************************************************!*\
-  !*** E:/bodhi/uni-app/uni-myMusic/components/uni-icons/icons.js ***!
-  \******************************************************************/
+/*!*******************************************************************************!*\
+  !*** D:/Documents/HBuilderProjects/uni-myMusic/components/uni-icons/icons.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

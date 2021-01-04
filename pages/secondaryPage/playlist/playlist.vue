@@ -70,11 +70,13 @@
 		onLoad(option) {
 			console.log(option)
 			this.getPlaylist(option.id);
-			uni.getSystemInfo({
-				success:(res)=>{
-					console.log(res.windowWidth)
-					this.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
-				}
+			this.$nextTick(()=>{
+				uni.getSystemInfo({
+					success:(res)=>{
+						console.log(res.windowWidth)
+						this.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
+					}
+				})
 			})
 		},
 		onShow(){

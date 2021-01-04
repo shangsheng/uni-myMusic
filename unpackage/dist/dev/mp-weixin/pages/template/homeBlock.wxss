@@ -1,7 +1,6 @@
 
 view.data-v-1aa06752{
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .block.data-v-1aa06752{
 	width: 100%;
@@ -10,14 +9,11 @@ view.data-v-1aa06752{
 	width: 100%;
 	padding: 40rpx 0;
 	margin-bottom: 30rpx;
-	-webkit-border-radius: 15rpx;
-	        border-radius: 15rpx;
+	border-radius: 15rpx;
 }
 .homePage.data-v-1aa06752:first-of-type{
-	-webkit-border-top-left-radius: 0;
-	        border-top-left-radius: 0;
-	-webkit-border-top-right-radius: 0;
-	        border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 .recommended.data-v-1aa06752{
 	width: 100%;
@@ -41,8 +37,7 @@ view.data-v-1aa06752{
 .text-gd.data-v-1aa06752{
 	padding: 9rpx 22rpx;
 	border: 1px solid #e8e8e8;
-	-webkit-border-radius: 32rpx;
-	        border-radius: 32rpx;
+	border-radius: 32rpx;
 	color: #424242;
 	font-size:24rpx;
 	display: block;
@@ -64,21 +59,18 @@ view.data-v-1aa06752{
 }
 .songList.data-v-1aa06752{
 	width: 194rpx;
-	-webkit-border-radius: 36rpx;
-	        border-radius: 36rpx;
+	border-radius: 36rpx;
 	padding: 20px 0;
 }
 .recommendList.data-v-1aa06752{
 	width: 194rpx;
-	-webkit-border-radius: 36rpx;
-	        border-radius: 36rpx;
+	border-radius: 36rpx;
 	position: relative;
 }
 .songImg.data-v-1aa06752{
 	width: 194rpx;
 	height: 194rpx;
-	-webkit-border-radius: 36rpx;
-	        border-radius: 36rpx;
+	border-radius: 36rpx;
 }
 .recommend-playData.data-v-1aa06752{
 	position: absolute;
@@ -94,8 +86,7 @@ view.data-v-1aa06752{
 	font-size: 26rpx;
 	background-color: rgba(0,0,0,0.3);
 	padding:3.6rpx 7rpx;
-	-webkit-border-radius: 36rpx;
-	        border-radius: 36rpx;
+	border-radius: 36rpx;
 }
 .titleSong.data-v-1aa06752{
 	font-size: 28rpx;
@@ -124,8 +115,7 @@ view.data-v-1aa06752{
 	margin-right: 7.2rpx;
 }
 .plays.data-v-1aa06752::after{
-	-webkit-border-radius: 144rpx;
-	        border-radius: 144rpx;
+	border-radius: 144rpx;
 }
 .uni-mainTitle.data-v-1aa06752{
 	padding-left: 30rpx;
@@ -142,15 +132,13 @@ view.data-v-1aa06752{
 .private-left.data-v-1aa06752{
 	width: 144rpx;
 	height: 144rpx;
-	-webkit-border-radius: 18rpx;
-	        border-radius: 18rpx;
+	border-radius: 18rpx;
 	position: relative;
 }
 .private-img.data-v-1aa06752{
 	width: 144rpx;
 	height: 144rpx;
-	-webkit-border-radius:18rpx;
-	        border-radius:18rpx;
+	border-radius:18rpx;
 }
 .bofang-color.data-v-1aa06752{
 	position: absolute;
@@ -224,8 +212,7 @@ view.data-v-1aa06752{
 .calendar-item.data-v-1aa06752{
 	width: 100%;
 	padding: 0 32rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .calendar-resources.data-v-1aa06752{
 	-webkit-box-pack: justify;
@@ -401,15 +388,13 @@ view.data-v-1aa06752{
 .podcast-img.data-v-1aa06752{
 	width: 220rpx;
 	height: 220rpx;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 	position: relative;
 }
 .podcastImg.data-v-1aa06752{
 	width: 220rpx;
 	height: 220rpx;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .podcastPlay.data-v-1aa06752{
 	width: 100%;
@@ -427,8 +412,7 @@ view.data-v-1aa06752{
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	        align-items: center;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .podcast-title.data-v-1aa06752{
 	width: 100%;
@@ -449,14 +433,12 @@ view.data-v-1aa06752{
 	width: 220rpx;
 	position: relative;
 	height: 100%;
-	-webkit-border-radius: 28rpx;
-	        border-radius: 28rpx;
+	border-radius: 28rpx;
 }
 .swiper-yuncunKtv .podcastImg.data-v-1aa06752{
 	width: 220rpx;
 	height: 100%;
-	-webkit-border-radius: 28rpx;
-	        border-radius: 28rpx;
+	border-radius: 28rpx;
 }
 .yuncunKTV-bgc.data-v-1aa06752{
 	position: absolute;
@@ -475,11 +457,9 @@ view.data-v-1aa06752{
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
-	-webkit-border-radius: 28rpx;
-	        border-radius: 28rpx;
+	border-radius: 28rpx;
 	padding: 15rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .yuncunKTV-bgc .recommend-playData.data-v-1aa06752{
 	-webkit-box-align: end;
@@ -510,29 +490,25 @@ view.data-v-1aa06752{
 	margin-left: -15rpx;
 	width: 54rpx;
 	height: 45rpx;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .avatar-img.data-v-1aa06752{
 	width: 54rpx;
 	height: 54rpx;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .avatar-border.data-v-1aa06752::after{
 	content: '';
 	width: 54rpx;
 	height: 54rpx;
 	display: block;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	border: 3rpx solid rgba(255,255,255,0.3);
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 5;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .avatar-border.data-v-1aa06752:first-of-type{
 	margin: 0;

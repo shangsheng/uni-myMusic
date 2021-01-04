@@ -14,8 +14,7 @@
 	border-top: 2rpx solid #e6e6e6;
 	width: 100%;
 	background-color: #FFFFFF;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .player-img.data-v-188680a6{
 	width: 127rpx;
@@ -42,13 +41,11 @@
 .img-w.data-v-188680a6{
 	width: 84rpx;
 	height: 84rpx;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .playSuspend.data-v-188680a6{
 	border: 4rpx solid #e6e6e6;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 	width: 76rpx;
 	height: 76rpx;
 	display: -webkit-box;
