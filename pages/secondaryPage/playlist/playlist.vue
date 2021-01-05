@@ -6,38 +6,112 @@
 			          <!-- 这里是状态栏 -->
 			<!-- </view> -->
 			<uni-nav-bar class="padding-top" @clickLeft="goBack" @clickRight="clickSearch" left-icon="back" :leftText="text"  :title="title"  :statusBar="statusBar" :rightIcon="rightIcon" :color="color" :backgroundColor="backgroundColor"></uni-nav-bar>
-			<view class="m-info">
-				<view class="m-coverImg">
-					<image :src="playlistData.coverImgUrl" class="coverImg"></image>
-					<view class="recommend-playData">
-						<view class="icon icon-icon-bofang iconfont icon-width-12"></view>
-						<text class="count">{{playlistData.playCount | countNumber}}</text>
-					</view>
-				</view>
-				<view class="m-cnt">
-					<view class="m-cnt-name">
-						<text class="des-name">{{playlistData.name}}</text>
-					</view>
-					<view class="m-cnt-creator">
-						<view class="creator-img">
-							<image :src="playlistData.creator.avatarUrl" class="avatar-img"></image>
-						</view>
-						<view class="creator-name"><text>{{playlistData.creator.nickname}}</text></view>
-						<view class="creator-gz" @click="clickTag">
-							<uni-icons type="plusempty" size="30" color="#c9c9c9"></uni-icons>
+		</view>
+		<scroll-view scroll-y :style="{'height': scrollHeigh+'px'}" >
+			<view v-if="playlistData" :style="{'background-image':'url('+headerBackground+')'}">
+				<view class="m-info">
+					<view class="m-coverImg">
+						<image :src="playlistData.coverImgUrl" class="coverImg"></image>
+						<view class="recommend-playData">
+							<view class="icon icon-icon-bofang iconfont icon-width-12"></view>
+							<text class="count">{{playlistData.playCount | countNumber}}</text>
 						</view>
 					</view>
-					<view class="m-cnt-description">
-						<text class="des-title" selectable="true">{{playlistData.description}}</text>
-						<uni-icons type="arrowright" size="18" color="#8e8f8a"></uni-icons>
+					<view class="m-cnt">
+						<view class="m-cnt-name">
+							<text class="des-name">{{playlistData.name}}</text>
+						</view>
+						<view class="m-cnt-creator">
+							<view class="creator-img">
+								<image :src="playlistData.creator.avatarUrl" class="avatar-img"></image>
+							</view>
+							<view class="creator-name"><text>{{playlistData.creator.nickname}}</text></view>
+							<view class="creator-gz" @click="clickTag">
+								<uni-icons type="plusempty" size="30" color="#c9c9c9"></uni-icons>
+							</view>
+						</view>
+						<view class="m-cnt-description">
+							<text class="des-title" selectable="true">{{playlistData.description}}</text>
+							<uni-icons type="arrowright" size="18" color="#8e8f8a"></uni-icons>
+						</view>
 					</view>
 				</view>
 			</view>
-		</view>
-		<view class="uni-container">
-			<view class="uni-fexiang"></view>
-			<view class="uni-section"></view>
-		</view>
+			<view class="uni-container">
+				<view class="uni-fexiang " :class="{'uni-fexiang-color':!playlistData}">
+					<view class="uni-li">
+						<view class="icon iconfont icon-width-56 icon-wenjianjia"></view>
+						<text>收藏</text>
+					</view>
+					<view class="uni-line"></view>
+					<view class="uni-li">
+						<view class="icon iconfont icon-width-56 icon-xinxi"></view>
+						<text>评论</text>
+					</view>
+					<view class="uni-line"></view>
+					<view class="uni-li">
+						<view class="icon iconfont icon-width-56 icon-fenxiang"></view>
+						<text>分享</text>
+					</view>
+				</view>
+				<view class="uni-section" v-if="playlistData">
+					<view class="uni-VIP-song">
+						<view class="VIP-number">
+							<image src="@/static/images/vip-logo_03.png" class="vipLogo"></image>
+							<text class="main-color">含8首VIP专享歌曲</text>
+						</view>
+						<view class="VIP-kt">
+							<text class="color">开通VIP仅5元</text>
+							<view class="icon iconfont icon-width-40 icon-chevron-copy"></view>
+						</view>
+					</view>
+					<view class="uni-play">
+						<view class="play-song">
+							<view class="icon iconfont icon-icon_play icon-width-40"></view>
+							<text class="main-color">播放全部</text>
+							<text class="uni-listNumber">({{playlistData.tracks.length}})</text>
+						</view>
+						<view class="uni-down-xz">
+							<view class="icon iconfont icon-Download_icon icon-width-40"></view>
+							<view class="icon iconfont icon-iconset0126 icon-width-40"></view>
+						</view>
+					</view>
+					<view class="uni-song-list">
+						<scroll-view scroll-y :style="{'height': songsHeigh+'px'}">
+							
+							<view class="uniSong">
+								<view class="songlist" v-for="(item,index) in playlistData.tracks" :key="index" :data-id="item.id">
+									<view class="songNumber">
+										<text>{{index+1}}</text>
+									</view>
+									<view class="nameAr">
+										<view class="name"><text class="main-color">{{item.name}}</text></view>
+										<view class="ar">
+											<view class="dujia">独家</view>
+											<view class="SQ">SQ</view>
+											<view class="ar-al">
+												<text v-for="(arItem,arIndex) in item.ar" :key="arIndex">{{arIndex===0?arItem.name:'/'+arItem.name}}</text>
+												<text v-if="item.al">-{{item.al.name}}</text>
+											</view>
+										</view>
+									</view>
+									<view class="vm-xq">
+										<view class="vmVideo">
+											<view class="icon iconfont icon-icon_play icon-width-53"></view>
+										</view>
+										<view class="moreDetails">
+											<view class="icon iconfont icon-ziyuan icon-width-10"></view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+			</view>
+			
+		</scroll-view>
+		
 		<view class="playerSongs">
 			<songSplayer ref="songsPlayer" :songsData="songsData"></songSplayer>
 		</view>
@@ -65,19 +139,17 @@
 				privileges:null,
 				headerBackground:null,
 				songsData:{},
+				scrollHeigh:500,
+				songsHeigh:400
 			}
 		},
 		onLoad(option) {
 			console.log(option)
 			this.getPlaylist(option.id);
-			this.$nextTick(()=>{
-				uni.getSystemInfo({
-					success:(res)=>{
-						console.log(res.windowWidth)
-						this.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
-					}
-				})
-			})
+			
+		},
+		onReady(){
+			this.getInof();
 		},
 		onShow(){
 			let _this = this;
@@ -132,6 +204,42 @@
 			},
 			//点击关注
 			clickTag(){
+			},
+			//顶部距离
+			scrolltoupper(e){
+				console.log(e)
+			},
+			//获取高度
+			getInof(){
+				const _this = this;
+				this.$nextTick(()=>{
+					uni.getSystemInfo({
+						success(res){
+							console.log(res.windowWidth)
+							_this.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
+							_this.scrollHeigh = res.windowHeight;
+							let phoneHeight = 0;
+							console.log(res.windowHeight);
+							// 计算组件的高度
+							let view = uni.createSelectorQuery().in(_this).select('.m-info');
+							console.log(view)
+							view.boundingClientRect(data => {
+								console.log(data)
+							    phoneHeight =data.height;
+							}).exec();
+							// let uniFexiang = uni.createSelectorQuery().select('.uni-fexiang');
+							// uniFexiang.boundingClientRect(data => {
+							//     phoneHeight =phoneHeight+data.height;
+							// }).exec();
+							// let uniVIPsong = uni.createSelectorQuery().select('.uni-VIP-song');
+							// uniVIPsong.boundingClientRect(data => {
+							//    phoneHeight =phoneHeight+data.height;
+							//    this.songsHeigh = res.windowHeight-phoneHeight;
+							// }).exec();
+						}
+					})
+					
+				})
 			}
 		},
 		filters:{
@@ -241,6 +349,9 @@
 		color: #999997;
 		margin-left: 30rpx;
 		margin-right: 10rpx;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.m-cnt-name{
 		width: 100%;
@@ -312,5 +423,154 @@
 		top: -44rpx;
 		left: 50%;
 		margin-left: -260rpx;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		color: #333333;
+		font-size: 32rpx;
 	}
+	.uni-line{
+		background-color: #e4e4e4;
+		width: 3rpx;
+		height: 40rpx;
+	}
+	.uni-fexiang .icon-width-56{
+		font-size: 32rpx;
+		text-align: center;
+	}
+	.uni-VIP-song{
+		font-size: 27rpx;
+		display: flex;
+		justify-content: space-between;
+		padding: 30rpx 20rpx;
+		border: 2rpx solid #e9e9e9;
+		border-radius: 20rpx;
+	}
+	.vipLogo{
+		width: 39rpx;
+		height: 30rpx;
+		vertical-align: middle;
+		margin-right: 23rpx;
+	}
+	.VIP-kt .color{
+		color: #999999;
+	}
+	.VIP-kt .icon-chevron-copy{
+		font-size: 30rpx;
+		color: #999999;
+		text-align: center;
+	}
+	.uni-song-list{
+		width: 100%;
+		
+	}
+	.uni-play{
+		margin:39rpx 0;
+		display: flex;
+		justify-content: space-between;
+	}
+	.play-song{
+		font-size: 25rpx;
+		display: flex;
+		flex-wrap: wrap;
+		font-weight: bold;
+	}
+	.play-song .icon-icon_play{
+		background-color: #ff4a3d;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #FFFFFF;
+		border-radius: 50%;
+		margin-right: 27rpx;
+	}
+	.uni-down-xz{
+		display: flex;
+		flex-wrap: wrap;
+		color: #323232;
+	}
+	.uni-down-xz .icon{
+		font-size: 25rpx;
+		color: #333333;
+		font-weight: bold;
+	}
+	.uni-listNumber{
+		color: #999999;
+		margin-left: 20rpx;
+	}
+	.uni-fexiang-color{
+		    background: #f7f7f7 !important;
+		    color: #cbced2;
+		    cursor: not-allowed;
+	}
+	.uniSong{
+		width: 100%;
+		padding-bottom: 100rpx;
+	}
+	.songlist{
+		width: 100%;
+		padding: 30rpx 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.nameAr{
+		width: 100%;
+		flex-shrink:1;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.nameAr .name{
+		font-size: 25rpx;
+		margin-bottom: 20rpx;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.vm-xq{
+		width: 100rpx;
+		display: flex;
+		align-items: center;
+		flex-shrink:0;
+	}
+	.songNumber{
+		width: 53rpx;
+		flex-shrink:0;
+	}
+	.ar{
+		display: flex;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.ar .dujia{
+		padding: 2rpx 4rpx;
+		border: 3rpx solid #ddabaa;
+		color: #db494a;
+		font-size:13rpx;
+		margin-right: 6rpx;
+		border-radius: 4rpx;
+		display: inline-block;
+	}
+	.ar .SQ{
+		padding: 2rpx 4rpx;
+		border: 3rpx solid #e2bdad;
+		color: #f66933;
+		font-size:13rpx;
+		margin-right: 6rpx;
+		border-radius: 4rpx;
+		display: inline-block;
+	}
+	.ar .ar-al{
+		font-size: 18rpx;
+		color: #808080;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.uni-song-list{
+		position: relative;
+	}
+	
 </style>

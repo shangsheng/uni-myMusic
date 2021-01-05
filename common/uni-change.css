@@ -48,6 +48,17 @@
 	bottom: 90rpx;
 	width: 100%;
 }
+.main-color{
+	color: #333333;
+}
+.icon-width-53{
+	width:35rpx;
+	height:31rpx;
+}
+.icon-width-10{
+	width:7rpx;
+	height: 31rpx;
+}
 html {
   overflow-y: scroll;
 }
