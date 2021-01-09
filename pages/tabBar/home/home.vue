@@ -36,7 +36,7 @@
 						</scroll-view>
 					</view>
 					<view class="Blockpage">
-						<homePage ref="homePage" :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData"></homePage>
+						<homePage ref="homePage" :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData" :playListId="playListId" :playIndex="playIndex"></homePage>
 						<!-- 刷新 -->
 						<view class="refresh">
 							<view class="refresh-title">
@@ -93,13 +93,18 @@
 				dragonBall:[],
 				dateTime:new Date().getDate(),
 				Blockpage:[],
-				blockType:['banners','songList','personalTailor','musicCalendar','exclusive','songsDiscsalbums','scallop','podcast','yuncunKTV','podcastCollection','videoCollection'],
+				blockType:[{type:'banners',title:'banners',blockCode:'HOMEPAGE_BANNER'},{type:'songList',title:'推荐歌单',blockCode:'HOMEPAGE_BLOCK_PLAYLIST_RCMD'},
+				{type:'personalTailor',title:'私人定制',blockCode:'HOMEPAGE_BLOCK_STYLE_RCMD'},{type:'musicCalendar',title:'音乐日历',blockCode:'HOMEPAGE_MUSIC_CALENDAR'},
+				{type:'exclusive',title:'专属场景歌单',blockCode:'HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST'},{type:'songsDiscsalbums',title:'',blockCode:'HOMEPAGE_BLOCK_NEW_ALBUM_NEW_SONG'},
+				{type:'scallop',title:'推荐以下新歌 赚双倍云贝',blockCode:'HOMEPAGE_YUNBEI_NEW_SONG'},{type:'podcast',title:'24播客合辑',blockCode:'HOMEPAGE_VOICELIST_RCMD'},
+				{type:'videoCollection',title:'视频合辑',blockCode:'HOMEPAGE_BLOCK_VIDEO_PLAYLIST'},{type:'podcast24',title:'24小时播客',blockCode:'HOMEPAGE_PODCAST24'}],//'yuncunKTV',podcastCollection
 				pageConfig:{},
 				personalizedData:[],
 				broadcastData:{},
 				scrollviewHigh:600,
 				refreshRotate:false,
-				
+				playListId:0,
+				playIndex:0
 			}
 		},
 		onReady() {
@@ -153,6 +158,19 @@
 			// uni.$on('timeCanvasPlay',(res)=>{
 			// 	this.timeCanvas(res)
 			// })
+			
+			uni.getStorage({
+				key:'playlistId',
+				success:(res)=>{
+					this.playListId = Number(res.data)
+				}
+			})
+			uni.getStorage({
+				key:'playIndex',
+				success:(res)=>{
+					this.playIndex = Number(res.data)
+				}
+			})
 		},
 		onShow(){
 			let _this = this;
@@ -186,6 +204,18 @@
 				    }
 				});
 			}
+			uni.getStorage({
+				key:'playlistId',
+				success:(res)=>{
+					this.playListId = Number(res.data)
+				}
+			})
+			uni.getStorage({
+				key:'playIndex',
+				success:(res)=>{
+					this.playIndex = Number(res.data)
+				}
+			})
 		},
 		methods:{
 			
@@ -215,16 +245,21 @@
 				this.$http.get(this.$_homepageBlockpage,{params:{refresh:true}}).then(res=>{
 					
 					res.data.blocks.forEach((item,index)=>{
-						item.type = this.blockType[index];
-						if( this.blockType[index] === 'songsDiscsalbums'){
-							let creatives = item.creatives;
-							creatives.forEach((el,num)=>{
-								el.title = el.uiElement.mainTitle.title;
-								el.url = el.uiElement.button;
-							})
-							let getData = mergeObject(creatives,'title','resources','uiElement','url');
-							item.songsDiscsalbums = Es5duplicate(getData,'title');
-						}
+						
+						this.blockType.forEach((key,nums)=>{
+							if(key.blockCode == item.blockCode){
+								item.type = key.type;
+							}
+							if( item.type === 'songsDiscsalbums'){
+								let creatives = item.creatives;
+								creatives.forEach((el,num)=>{
+									el.title = el.uiElement.mainTitle.title;
+									el.url = el.uiElement.button;
+								})
+								let getData = mergeObject(creatives,'title','resources','uiElement','url');
+								item.songsDiscsalbums = Es5duplicate(getData,'title');
+							}
+						})
 					})
 					console.log(res)
 					this.Blockpage =res.data.blocks;

@@ -7804,9 +7804,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/pages.json ***!
-  \************************************************************/
+/*!***********************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/pages.json ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7817,9 +7817,9 @@ module.exports = g;
 /* 6 */,
 /* 7 */,
 /* 8 */
-/*!******************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/player.js ***!
-  \******************************************************************/
+/*!*****************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/player.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7964,9 +7964,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 12 */
-/*!****************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/store/index.js ***!
-  \****************************************************************/
+/*!***************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/store/index.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9948,9 +9948,9 @@ var index = {
 
 /***/ }),
 /* 17 */
-/*!**********************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/plugInUnit.js ***!
-  \**********************************************************************/
+/*!*********************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/plugInUnit.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10049,9 +10049,9 @@ function _default(Vue) {
 
 /***/ }),
 /* 18 */
-/*!*******************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/index.js ***!
-  \*******************************************************************************************/
+/*!******************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/index.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10061,9 +10061,9 @@ _Request.default;exports.default = _default;
 
 /***/ }),
 /* 19 */
-/*!**************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/Request.js ***!
-  \**************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/Request.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10270,9 +10270,9 @@ Request = /*#__PURE__*/function () {
 
 /***/ }),
 /* 20 */
-/*!**********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/dispatchRequest.js ***!
-  \**********************************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/dispatchRequest.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10286,9 +10286,9 @@ function _default(config) {
 
 /***/ }),
 /* 21 */
-/*!****************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/adapters/index.js ***!
-  \****************************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/adapters/index.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10385,9 +10385,9 @@ function _default(config) {
 
 /***/ }),
 /* 22 */
-/*!******************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/buildURL.js ***!
-  \******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/buildURL.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10464,9 +10464,9 @@ function buildURL(url, params) {
 
 /***/ }),
 /* 23 */
-/*!*******************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/utils.js ***!
-  \*******************************************************************************************/
+/*!******************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/utils.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10605,9 +10605,9 @@ function deepMerge() /* obj1, obj2, obj3, ... */{
 
 /***/ }),
 /* 24 */
-/*!********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/buildFullPath.js ***!
-  \********************************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/buildFullPath.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10635,9 +10635,9 @@ function buildFullPath(baseURL, requestedURL) {
 
 /***/ }),
 /* 25 */
-/*!***********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/isAbsoluteURL.js ***!
-  \***********************************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/isAbsoluteURL.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10659,9 +10659,9 @@ function isAbsoluteURL(url) {
 
 /***/ }),
 /* 26 */
-/*!*********************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/helpers/combineURLs.js ***!
-  \*********************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/helpers/combineURLs.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10683,9 +10683,9 @@ function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 /* 27 */
-/*!*************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/settle.js ***!
-  \*************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/settle.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10709,9 +10709,9 @@ function settle(resolve, reject, response) {
 
 /***/ }),
 /* 28 */
-/*!*************************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/InterceptorManager.js ***!
-  \*************************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/InterceptorManager.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10770,9 +10770,9 @@ InterceptorManager;exports.default = _default;
 
 /***/ }),
 /* 29 */
-/*!******************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/mergeConfig.js ***!
-  \******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/mergeConfig.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10869,9 +10869,9 @@ function _default(globalsConfig) {var config2 = arguments.length > 1 && argument
 
 /***/ }),
 /* 30 */
-/*!***************************************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/js_sdk/luch-request/luch-request/core/defaults.js ***!
-  \***************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/js_sdk/luch-request/luch-request/core/defaults.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10908,9 +10908,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 /* 31 */
-/*!***************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/api.js ***!
-  \***************************************************************/
+/*!**************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/api.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11956,16 +11956,26 @@ function _default(Vue) {
 }
 
 /***/ }),
-/* 32 */,
+/* 32 */
+/*!***********************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/rgbaster.min.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function (n, t) { true ? module.exports = t() : undefined;}(this, function () {"use strict";var t = function t(n, o) {var u = new Image(),t = n.src || n;"data:" !== t.substring(0, 5) && (u.crossOrigin = "Anonymous"), u.onload = function () {var n,t,e,r = (n = u.width, t = u.height, (e = document.createElement("canvas")).setAttribute("width", n), e.setAttribute("height", t), e.getContext("2d"));r.drawImage(u, 0, 0);var i = r.getImageData(0, 0, u.width, u.height);o && o(i.data);}, u.src = t;},s = function s(n) {return ["rgb(", n, ")"].join("");},f = function f(n, t) {return { name: s(n), count: t };},n = {};return n.colors = function (n, u) {var a = (u = u || {}).exclude || [],c = u.paletteSize || 10;t(n, function (n) {for (var t = {}, e = "", r = [], i = 0; i < n.length; i += 4) {r[0] = n[i], r[1] = n[i + 1], r[2] = n[i + 2], e = r.join(","), -1 === r.indexOf(void 0) && 0 !== n[i + 3] && -1 === a.indexOf(s(e)) && (t[e] = e in t ? t[e] + 1 : 1);}if (u.success) {var o = function (n, t) {if (n.length > t) return n.slice(0, t);for (var e = n.length - 1; e < t - 1; e++) {n.push(f("0,0,0", 0));}return n;}(function (n) {var t = [];for (var e in n) {t.push(f(e, n[e]));}return t.sort(function (n, t) {return t.count - n.count;}), t;}(t), c + 1);u.success({ dominant: o[0].name, secondary: o[1].name, palette: o.map(function (n) {return n.name;}).slice(1) });}});}, n;});
+
+/***/ }),
 /* 33 */,
 /* 34 */,
 /* 35 */,
 /* 36 */,
 /* 37 */,
-/* 38 */
-/*!****************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/common/util.js ***!
-  \****************************************************************/
+/* 38 */,
+/* 39 */
+/*!***************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/common/util.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -12122,16 +12132,76 @@ function Es5duplicate(arr, type) {
     }
   }
 };
+//rgb(255,255,255),
+var rgbObj = {
+  rgbColor: function rgbColor(arr) {
+    var thisValue = this;
+    var colorArr = arr.map(function (item, index, arrs) {
+      return thisValue.strArr(thisValue.strReg(item, 'rgb'));
+    }, thisValue);
+    return 'rgb(' + this.arrPlus(colorArr) + ')';
+  },
+  strArr: function strArr(str) {
+    return str.split(',');
+  },
+  strReg: function strReg(str, del) {
+    var reg = new RegExp(del, "g");
+    var str_l = str.replace(reg, "");
+    var str_r = str_l.substring(1, str_l.length);
+    return str_r.substring(0, str_r.length - 1);
+  },
+  arrPlus: function arrPlus(arr) {
+    var thisValue = this;
+    var arrOne = new Array();
+    var arrTwo = new Array();
+    var arrThree = new Array();
+    arr.map(function (item, index, arrs) {
+      var oneColor = item.map(function (el, num) {
+        if (num === 0) {
+          arrOne.push(el);
+        } else if (num === 1) {
+          arrTwo.push(el);
+        } else {
+          arrThree.push(el);
+        }
+      });
+    }, thisValue);
+
+    return this.rgbBgk(this.arrAnd(arrOne), arrOne.length) + ',' + this.rgbBgk(this.arrAnd(arrTwo), arrTwo.length) + ',' + this.rgbBgk(this.arrAnd(arrThree), arrThree.length);
+  },
+  arrAnd: function arrAnd(arr) {
+    return arr.reduce(function (prev, curr, idx, arr) {
+      return Number(prev) + Number(curr);
+    });
+  },
+  rgbBgk: function rgbBgk(number, length) {
+    return Number.parseFloat(number / length);
+  } };
+
+//时间转化为分秒
+function TimeTransformation(time) {
+  var _format = function _format(number) {
+    return number < 10 ? '0' + number : number;
+  };
+  if (time == 0) {
+    return '00:00';
+  } else {
+    var m = Math.floor(time / 1000 / 60);
+    var s = time / 1000 % 60;
+    return _format(m) + ':' + _format(s);
+  }
+}
 module.exports = {
   formatTime: formatTime,
   formatLocation: formatLocation,
   dateUtils: dateUtils,
   playCount: playCount,
   mergeObject: mergeObject,
-  Es5duplicate: Es5duplicate };
+  Es5duplicate: Es5duplicate,
+  rgbObj: rgbObj,
+  TimeTransformation: TimeTransformation };
 
 /***/ }),
-/* 39 */,
 /* 40 */,
 /* 41 */,
 /* 42 */,
@@ -12170,10 +12240,19 @@ module.exports = {
 /* 75 */,
 /* 76 */,
 /* 77 */,
-/* 78 */
-/*!*******************************************************************************!*\
-  !*** D:/Documents/HBuilderProjects/uni-myMusic/components/uni-icons/icons.js ***!
-  \*******************************************************************************/
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */
+/*!******************************************************************!*\
+  !*** E:/bodhi/uni-app/uni-myMusic/components/uni-icons/icons.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

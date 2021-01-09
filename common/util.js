@@ -151,11 +151,72 @@ function Es5duplicate(arr, type) {
         }
     }
 };
+//rgb(255,255,255),
+var rgbObj = {
+ rgbColor: function (arr){
+	 let thisValue = this;
+	let colorArr =	arr.map(function(item,index,arrs){
+			return thisValue.strArr(thisValue.strReg(item,'rgb'));
+		},thisValue)
+		return 'rgb('+this.arrPlus(colorArr)+')';
+	},
+	strArr:function(str){
+		return str.split(',')
+	},
+	strReg:function(str,del){
+		var reg = new RegExp(del,"g");
+		var str_l = str.replace(reg,"");
+		var str_r = str_l.substring(1,str_l.length);
+		return str_r.substring(0,str_r.length-1);
+	},
+	arrPlus:function(arr){
+		let thisValue = this;
+		let arrOne = new Array();
+		let arrTwo = new Array();
+		let arrThree = new Array();
+		  arr.map(function(item,index,arrs){
+			let oneColor = item.map((el,num)=>{
+				if(num === 0){
+					arrOne.push(el);
+				}else if(num === 1){
+					arrTwo.push(el);
+				}else {
+					arrThree.push(el);
+				}
+			})
+		},thisValue)
+		
+		return this.rgbBgk(this.arrAnd(arrOne),arrOne.length)+','+this.rgbBgk(this.arrAnd(arrTwo),arrTwo.length)+','+this.rgbBgk(this.arrAnd(arrThree),arrThree.length);
+	},
+	arrAnd:function(arr){
+		 return arr.reduce(function(prev, curr, idx, arr){
+		        return Number(prev) + Number(curr);
+		 });
+	},
+	rgbBgk:function(number,length){
+		return Number.parseFloat(number/length);
+	}
+}
+//时间转化为分秒
+function TimeTransformation(time){
+	var _format = function (number) {
+		return (number < 10 ? ('0' + number) : number);
+	};
+	if(time == 0){
+		return '00:00';
+	}else {
+		let m = Math.floor(time/1000/60);
+		let s = time/1000%60;
+		return _format(m) + ':' + _format(s);
+	}
+}
 module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
 	dateUtils: dateUtils,
 	playCount:playCount,
 	mergeObject:mergeObject,
-	Es5duplicate:Es5duplicate
+	Es5duplicate:Es5duplicate,
+	rgbObj:rgbObj,
+	TimeTransformation:TimeTransformation
 }

@@ -309,7 +309,7 @@ view.data-v-1aa06752{
 	margin-top: -26rpx;
 }
 .songsAlums-h3.data-v-1aa06752{
-	width: 100%;
+	width: 80%;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;

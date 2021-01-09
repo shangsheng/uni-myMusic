@@ -8,6 +8,9 @@
 .uni-navbar--border[data-v-4afea59e]{
 	border: none !important;
 }
+.songsDetails .uni-navbar__content[data-v-4afea59e]{
+	overflow: inherit !important;
+}
 .uni-card-section{
 	/* background-color: #FFFFFF; */
 	padding-bottom: 50px;
@@ -59,6 +62,14 @@
 	width:7rpx;
 	height: 31rpx;
 }
+.icon-width-47{
+	width: 47rpx;
+	height: 47rpx;
+}
+.icon-width-80{
+	width: 53rpx;
+	height: 53rpx;
+}
 html {
   overflow-y: scroll;
 }
@@ -75,6 +86,11 @@ html {
 body {
   width: 100vw;
   overflow: hidden;
+}
+@media screen and (max-width: 360px) {
+    .broadcastName{
+		width: 260rpx !important;
+	}
 }
 
 /*#ifdef MP*/
@@ -97,4 +113,9 @@ body {
 	.uni-navbar--border.data-v-4afea59e{
 		border: none !important;
 	}
+	.songsDetails .uni-navbar__content.data-v-4afea59e{
+		overflow:inherit !important;
+	}
 /*#endif*/
+
+

@@ -50,6 +50,16 @@
 				"transparentTitle":"always",
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path":"pages/secondaryPage/songDetails/songDetails",
+			"style":{
+				"navigationBarBackgroundColor":"#000000",
+				"navigationBarTextStyle":"white",
+				"navigationBarTitleText":"歌曲详情",
+				"transparentTitle":"always",
+				"navigationStyle":"custom"
+			}
 		}
 	],
 	

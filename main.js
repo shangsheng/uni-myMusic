@@ -5,12 +5,14 @@ import store from './store'
 
 import pluginUnit from './common/plugInUnit.js'
 import API from './common/api.js'
+import rgbaster from './common/rgbaster.min.js'
 
 Vue.use(pluginUnit)
 Vue.use(API)
 
 Vue.config.productionTip = false
 
+Vue.prototype.$rgbaster = rgbaster
 Vue.prototype.$store = store
 Vue.prototype.$backgroundAudioData = {
 	playing: false,

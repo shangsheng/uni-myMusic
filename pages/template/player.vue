@@ -1,11 +1,11 @@
 <template>
-	<view class="player-audio">
-		<view class="player">
+	<view class="player-audio" v-if="playListId !== 0">
+		<view class="player" v-if="songsData">
 			<view class="player-img">
-				<image src="http://p3.music.126.net/kzy3zDkwFURRU-l-x8_7VQ==/109951165073726074.jpg?param=84y84" class="img-w" :class="{'play-rotate':play}"></image>
+				<image :src="songsData[this.playIndex].al.picUrl+'?param=84y84'" class="img-w" :class="{'play-rotate':play}"></image>
 			</view>
 			<view class="player-title">
-				<text class="title">丢了你（女版）</text>
+				<text class="title">{{songsData[this.playIndex].name}}</text>
 			</view>
 			<view class="playSuspend" >
 				<image src="@/static/zanting.png" class="iocnSuspendPlay" v-if="play"></image>
@@ -20,7 +20,7 @@
 
 <script>
 	import { uniAudio, audioPlay } from '@/common/player.js';
-	
+	import app from "@/App.vue";
 	var _self;
 	var canvaColumn=null;
 	var canplayTime = null;
@@ -34,16 +34,25 @@
 				prevIndex:0,//上一首
 				audioDuration:0,
 				cxt:null,
-				audioArc:23
+				audioArc:23,
+				playlistData:null,
+				songsData:null,
+				songsId:0,
 			}
 		},
 		props:{
-			songsData:{
-				type:Object,
-				default:{}
+			playListId:{
+				type:Number,
+				default:0
+			},
+			playIndex:{
+				type:Number,
+				default:0
 			}
 		},
 		created() {
+			console.log(this.playListId)
+			console.log(this.playIndex)
 			let _this = this;
 			uni.getSystemInfo({
 				success:(res)=>{
@@ -52,7 +61,8 @@
 				}
 			})
 			this.cxt = uni.createCanvasContext('firstCanvas',this);
-			if(!uniAudio.paused){
+			this.getPlaylist(this.playListId)
+			/*if(!uniAudio.paused){
 				this.onCanplay();
 				this.onTimeUpdate();
 				this.onWaiting();
@@ -81,7 +91,7 @@
 				
 				
 				console.log('暂停之后的时间')
-			}
+			}*/
 			
 			 // this.timeCanvas(0);
 		},
@@ -114,7 +124,7 @@
 							if(!res.data || res.data === 0){
 								//第一次打开页面时没有播放器
 								if(!uniAudio.src  ){
-									this.onGetSongs();
+									this.onGetSongs(this.songsId);
 									return false;
 								}else{
 									uniAudio.onError((res) => {
@@ -127,7 +137,7 @@
 									});
 								}
 							}else{
-								this.onGetSongs();
+								this.onGetSongs(this.songsId);
 								uniAudio.seek(res.data);
 							}
 							
@@ -143,14 +153,14 @@
 						},
 						fail:(res)=>{
 							//第一次打开软件
-							this.onGetSongs();
+							this.onGetSongs(this.songsId);
 						}
 					})
 					
 				}
 			},
-			onGetSongs(){
-				this.$http.get(this.$_musicUrl,{params:{id:1445990830}}).then(res=>{
+			onGetSongs(id){
+				this.$http.get(this.$_musicUrl,{params:{id:id}}).then(res=>{
 					clearTimeout(canplayTime);
 					audioPlay(res.data[0].url,(play)=>{
 						console.log(play)
@@ -244,6 +254,30 @@
 			},
 			
 			//清除监听
+			
+			//获取歌曲详情
+			getsongDetail(ids){
+				this.$http.get(this.$_songDetail,{params:{ids:ids}}).then(res=>{
+					console.log(res)
+					this.songsData = res.songs;
+					this.songsId =  res.songs[this.playIndex].id;
+				})
+			},
+			//请求歌单
+			getPlaylist(id){
+				this.$http.get(this.$_playlistDetail,{params:{id:id}}).then(res=>{
+					console.log(res)
+					this.songsData
+					this.getsongDetail(this.songIds(res.privileges));
+				})
+			},
+			songIds(arr){
+				let ids = '';
+				arr.map((item,index)=>{
+					ids = index <arr.length-1? ids + item.id + ',':ids + item.id;
+				})
+				return ids;
+			},
 		}
 	}
 </script>

@@ -85,3 +85,18 @@
 		transform-origin: center center;
 	}
 }
+
+.play-Yidong{
+	animation: playYidong 1s  linear;
+	animation-fill-mode:forwards;
+}
+@keyframes playYidong{
+	from{
+		transform: rotate(-30deg);
+		transform-origin:27.027% 27.027%;
+	}
+	to{
+		transform: rotate(0deg);
+		transform-origin:27.027% 27.027%;
+	}
+}

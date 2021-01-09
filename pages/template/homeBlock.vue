@@ -158,8 +158,9 @@
 								<view class="private-middle">
 									<view class="uni-p">
 										<text class="p-color">{{privateItem.uiElement.mainTitle.title}}</text>
-										
-									<text class="ellipsis" v-for="(artistsItem,scallopArtistsIndex) in privateItem.resourceExtInfo.artists" :key="scallopArtistsIndex">{{scallopArtistsIndex===0?' - '+artistsItem.name:'/'+artistsItem.name}}</text>
+										<view class="icon" v-if="privateItem.resourceExtInfo">
+											<text class="ellipsis" v-for="(artistsItem,scallopArtistsIndex) in privateItem.resourceExtInfo.artists" :key="scallopArtistsIndex">{{scallopArtistsIndex===0?' - '+artistsItem.name:'/'+artistsItem.name}}</text>
+										</view>
 									</view>
 									<view class="uni-span" v-if="privateItem.uiElement.subTitle">
 										<uni-tag type="error" size="12px" text="SQ" inverted="true" v-if="privateItem.uiElement.subTitle.titleType === 'songRcmdFromComment'"></uni-tag>
@@ -204,6 +205,24 @@
 							</swiper-item>
 						</swiper>
 					</view>
+				</view>
+				<view class="podcast" v-if="pageItem.type === 'podcast24' ">
+					<view class="podcast-tab podcast-active">
+						<swiper class="swiper-podcast" :previousMargin="previousMargin" :nextMargin="nextMargin" :circular="circular" :autoplay="autoplay" :display-multiple-items="3">
+							<swiper-item class="podcast-item" v-for="(item,podcastIndex) in pageItem.creatives" :key="podcastIndex" :data-action="item.action">
+								<view class="podcast-img">
+									<image :src="item.uiElement.image.imageUrl" class="podcastImg"></image>
+									<view class=" podcastPlay">
+										<view class="icon icon-icon_play iconfont icon-width-18 bofang-color"></view>
+									</view>
+								</view>
+								<view class="podcast-title">
+									<text class="ellipsis podcast-text">{{item.uiElement.mainTitle.title}}</text>
+								</view>
+							</swiper-item>
+						</swiper>
+					</view>
+					
 				</view>
 				<view class="yuncunKTV" v-if="pageItem.type === 'yuncunKTV' ">
 					<swiper class="swiper-yuncunKtv" :previousMargin="previousMargin" :nextMargin="nextMargin" :circular="circular" :autoplay="autoplay" :display-multiple-items="3">
@@ -267,7 +286,7 @@
 			</view>
 		</view>
 		<view class="playerSongs">
-			<songSplayer ref="songsPlayer" :songsData="songsData"></songSplayer>
+			<songSplayer ref="songsPlayer" :playListId="playListId" :playIndex="playIndex"></songSplayer>
 		</view>
 	</view>
 </template>
@@ -302,6 +321,14 @@
 			broadcastData:{
 				type:Object,
 				default:{}
+			},
+			playListId:{
+				type:Number,
+				default:0
+			},
+			playIndex:{
+				type:Number,
+				default:0
 			}
 		},
 		filters:{
@@ -599,7 +626,7 @@
 		margin-top: -26rpx;
 	}
 	.songsAlums-h3{
-		width: 100%;
+		width: 80%;
 		display: flex;
 		align-items: center;
 		position: relative;

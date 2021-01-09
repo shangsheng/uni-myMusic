@@ -33,12 +33,7 @@
         },
         onShow: function() {
             console.log('App Show')
-			if(!uniAudio.paused){
-				// this.onCanplay();
-				// this.onTimeUpdate();
-				// this.onWaiting();
-				// this.onEnded();
-			}
+			
         },
         onHide: function() {
             console.log('App Hide')
@@ -51,7 +46,9 @@
 		globalData: {
 			test: '',
 			play:false,
-			audioDuration:0
+			audioDuration:0,
+			playlistId:null,
+			playIndex:0
 		}
     }
 </script>

@@ -1,14 +1,14 @@
 <template>
 	<view class="playlist" >
-		<view class="uni-header" v-if="playlistData" :style="{'background-image':'url('+headerBackground+')'}">
-			<view class="backgroundFilter" :style="{'background-image':'url('+headerBackground+')'}"></view>
+		<view class="uni-header" v-if="playlistData" :style="{'background':headerBackground?headerBackground:'url('+jianjieBackgrund+')',}">
+			<!-- <view class="backgroundFilter" :style="{'background':'url('+jianjieBackgrund+') '+headerBackground +''}"></view> -->
 			<!-- <view class="status_bar"> -->
 			          <!-- 这里是状态栏 -->
 			<!-- </view> -->
 			<uni-nav-bar class="padding-top" @clickLeft="goBack" @clickRight="clickSearch" left-icon="back" :leftText="text"  :title="title"  :statusBar="statusBar" :rightIcon="rightIcon" :color="color" :backgroundColor="backgroundColor"></uni-nav-bar>
 		</view>
 		<scroll-view scroll-y :style="{'height': scrollHeigh+'px'}" >
-			<view v-if="playlistData" :style="{'background-image':'url('+headerBackground+')'}">
+			<view v-if="playlistData" :style="{'background':headerBackground?headerBackground:'url('+jianjieBackgrund+')',}">
 				<view class="m-info">
 					<view class="m-coverImg">
 						<image :src="playlistData.coverImgUrl" class="coverImg"></image>
@@ -66,7 +66,7 @@
 						</view>
 					</view>
 					<view class="uni-play">
-						<view class="play-song">
+						<view class="play-song" @click="allPlay" :data-id="playlistData.id">
 							<view class="icon iconfont icon-icon_play icon-width-40"></view>
 							<text class="main-color">播放全部</text>
 							<text class="uni-listNumber">({{playlistData.tracks.length}})</text>
@@ -80,7 +80,7 @@
 						<scroll-view scroll-y :style="{'height': songsHeigh+'px'}">
 							
 							<view class="uniSong">
-								<view class="songlist" v-for="(item,index) in playlistData.tracks" :key="index" :data-id="item.id">
+								<view class="songlist" v-for="(item,index) in playlistData.tracks" :key="index" :data-id="item.id" @click="allPlay">
 									<view class="songNumber">
 										<text>{{index+1}}</text>
 									</view>
@@ -113,7 +113,7 @@
 		</scroll-view>
 		
 		<view class="playerSongs">
-			<songSplayer ref="songsPlayer" :songsData="songsData"></songSplayer>
+			<songSplayer ref="songsPlayer" :playListId="playListId" :playIndex="playIndex"></songSplayer>
 		</view>
 	</view>
 </template>
@@ -121,7 +121,7 @@
 <script>
 	import songSplayer from '../../template/player.vue';
 	
-	import { playCount, dateUtils } from '@/common/util.js';
+	import { playCount, dateUtils,rgbObj } from '@/common/util.js';
 	import { uniAudio, audioPlay } from '@/common/player.js';
 	export default{
 		components:{songSplayer},
@@ -138,15 +138,28 @@
 				playlistData:null,
 				privileges:null,
 				headerBackground:null,
-				songsData:{},
+				jianjieBackgrund:null,
+				playListId:0,
 				scrollHeigh:500,
-				songsHeigh:400
+				songsHeigh:400,
+				playIndex:0,//播放第几条歌曲
 			}
 		},
 		onLoad(option) {
 			console.log(option)
 			this.getPlaylist(option.id);
-			
+			uni.getStorage({
+				key:'playlistId',
+				success:(res)=>{
+					this.playListId = Number(res.data)
+				}
+			})
+			uni.getStorage({
+				key:'playIndex',
+				success:(res)=>{
+					this.playIndex = Number(res.data)
+				}
+			})
 		},
 		onReady(){
 			this.getInof();
@@ -183,6 +196,18 @@
 				});
 				
 			}
+			uni.getStorage({
+				key:'playlistId',
+				success:(res)=>{
+					this.playListId = Number(res.data)
+				}
+			})
+			uni.getStorage({
+				key:'playIndex',
+				success:(res)=>{
+					this.playIndex = Number(res.data)
+				}
+			})
 		},
 		methods:{
 			getPlaylist(id){
@@ -190,7 +215,22 @@
 					console.log(res)
 					this.playlistData = res.playlist;
 					this.privileges = res.privileges;
-					this.headerBackground = res.playlist.backgroundCoverUrl?res.playlist.backgroundCoverUrl:res.playlist.coverImgUrl;
+					this.playListId = res.playlist.id;
+					this.jianjieBackgrund = res.playlist.backgroundCoverUrl?res.playlist.backgroundCoverUrl + '?imageView&blur=40x20' :res.playlist.coverImgUrl + '?imageView&blur=40x20';
+					// #ifdef H5
+					this.$rgbaster.colors(this.jianjieBackgrund,{
+						success:(respayload)=>{
+							// console.log(respayload.dominant)
+							// this.headerBackground = respayload.dominant;
+							// console.log(respayload.secondary)
+							// console.log(respayload.palette);//计算所有的颜色值得平均值
+							this.headerBackground = rgbObj.rgbColor(respayload.palette)
+						},
+						fail:(err)=>{
+							console.log(err)
+						}
+					})
+					// #endif
 				})
 			},
 			goBack(){
@@ -221,24 +261,46 @@
 							let phoneHeight = 0;
 							console.log(res.windowHeight);
 							// 计算组件的高度
-							let view = uni.createSelectorQuery().in(_this).select('.m-info');
-							console.log(view)
-							view.boundingClientRect(data => {
-								console.log(data)
-							    phoneHeight =data.height;
-							}).exec();
-							// let uniFexiang = uni.createSelectorQuery().select('.uni-fexiang');
-							// uniFexiang.boundingClientRect(data => {
-							//     phoneHeight =phoneHeight+data.height;
-							// }).exec();
-							// let uniVIPsong = uni.createSelectorQuery().select('.uni-VIP-song');
-							// uniVIPsong.boundingClientRect(data => {
-							//    phoneHeight =phoneHeight+data.height;
-							//    this.songsHeigh = res.windowHeight-phoneHeight;
-							// }).exec();
+							setTimeout(()=>{
+								let view = uni.createSelectorQuery().in(_this).select('.uni-play');
+								console.log(view)
+								view.boundingClientRect(data => {
+									console.log(data)
+								    phoneHeight =data.height;
+									let uniVIPsong = uni.createSelectorQuery().in(_this).select('.uni-VIP-song');
+									uniVIPsong.boundingClientRect(data => {
+										console.log(data)
+									   phoneHeight =phoneHeight+data.height;
+									   _this.songsHeigh = res.windowHeight-phoneHeight;
+									}).exec();
+								}).exec();
+							},1000)
 						}
 					})
 					
+				})
+			},
+			//点击全部播放
+			allPlay(event){
+				console.log(event)
+				uni.navigateTo({
+					url:'../songDetails/songDetails?id='+event.currentTarget.dataset.id+'&songPlayIndex='+this.playIndex,
+					// #ifdef APP-PLUS
+					animationType:'slide-in-bottom',
+					// #endif
+					events:{
+						songPlayIndex:(data)=>{
+							console.log(data)
+							this.playIndex = data.songPlayIndex;
+						}
+					},
+					success:(res)=>{
+						console.log(res)
+						res.eventChannel.emit('privilegesIdprivileges', { data: this.privileges })
+					},
+					fail:(res)=>{
+						console.log(res)
+					}
 				})
 			}
 		},
@@ -273,10 +335,10 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		background:url('http://cms-bucket.ws.126.net/2020/1230/98d8ce59p00qm57ao0000c0001o001oc.png') no-repeat 0/cover fixed;
+		/* background:url('http://cms-bucket.ws.126.net/2020/1230/98d8ce59p00qm57ao0000c0001o001oc.png') no-repeat 0/cover fixed; */
 		width:100%; 
 		height:100%;
-		filter:blur(20rpx);
+		/* filter:blur(20rpx); */
 		z-index: 0;
 	}
 	.m-info{
@@ -405,7 +467,7 @@
 		left: 0;
 		width: 100%;
 		height: 90rpx;
-		background-image: url(../../../static/hx.png);
+		background-image: url(data:image/png;base64,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);
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 100% auto;
@@ -505,7 +567,7 @@
 	}
 	.uniSong{
 		width: 100%;
-		padding-bottom: 100rpx;
+		padding-bottom: 300rpx;
 	}
 	.songlist{
 		width: 100%;
@@ -571,6 +633,7 @@
 	}
 	.uni-song-list{
 		position: relative;
+		box-sizing: border-box;
 	}
 	
 </style>
