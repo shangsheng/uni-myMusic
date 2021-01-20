@@ -1,11 +1,11 @@
 <template>
 	<view class="player-audio" v-if="playListId !== 0">
 		<view class="player" v-if="songsData">
-			<view class="player-img">
-				<image :src="songsData[this.playIndex].al.picUrl+'?param=84y84'" class="img-w" :class="{'play-rotate':play}"></image>
+			<view class="player-img" @click="onNavigateTo" :data-id="playListId">
+				<image :src="songsData[playIndex].al.picUrl+'?param=84y84'" class="img-w" :class="{'play-rotate':play}"></image>
 			</view>
-			<view class="player-title">
-				<text class="title">{{songsData[this.playIndex].name}}</text>
+			<view class="player-title" @click="onNavigateTo" :data-id="playListId">
+				<text class="title">{{songsData[playIndex].name}}</text>
 			</view>
 			<view class="playSuspend" >
 				<image src="@/static/zanting.png" class="iocnSuspendPlay" v-if="play"></image>
@@ -38,6 +38,9 @@
 				playlistData:null,
 				songsData:null,
 				songsId:0,
+				lsrBoolen:0,
+				playIndex:0,
+				privileges:null
 			}
 		},
 		props:{
@@ -45,13 +48,15 @@
 				type:Number,
 				default:0
 			},
-			playIndex:{
+			playerIndex:{
 				type:Number,
 				default:0
 			}
 		},
 		created() {
 			console.log(this.playListId)
+			
+			this.playIndex = this.playerIndex;
 			console.log(this.playIndex)
 			let _this = this;
 			uni.getSystemInfo({
@@ -61,12 +66,16 @@
 				}
 			})
 			this.cxt = uni.createCanvasContext('firstCanvas',this);
-			this.getPlaylist(this.playListId)
-			/*if(!uniAudio.paused){
+			uni.getStorage({
+				key:'lsrBoolen',
+				success:(res)=>{
+					console.log(res)
+					this.lsrBoolen = res.data;
+				}
+			})
+			if(!uniAudio.paused){
 				this.onCanplay();
 				this.onTimeUpdate();
-				this.onWaiting();
-				this.onEnded();
 			}else{
 				this.play=false;
 				let audioDuration; 
@@ -91,9 +100,17 @@
 				
 				
 				console.log('暂停之后的时间')
-			}*/
-			
+			}
+			this.onWaiting();
+			this.onEnded();
 			 // this.timeCanvas(0);
+		},
+		beforeMount() {
+			
+		},
+		mounted() {
+			this.getPlaylist(this.playListId);
+			
 		},
 		beforeUpdate() {
 			
@@ -101,7 +118,13 @@
 		updated() {
 			
 		},
-		
+		beforeDestroy(){
+			this.uniAudioContext();
+			
+		},
+		destroyed() {
+			
+		},
 		methods:{
 			
 			onPlay(){
@@ -148,8 +171,7 @@
 							})
 							this.onCanplay();
 							this.onTimeUpdate();
-							this.onWaiting();
-							this.onEnded();
+							
 						},
 						fail:(res)=>{
 							//第一次打开软件
@@ -158,6 +180,7 @@
 					})
 					
 				}
+				this.playerNum();
 			},
 			onGetSongs(id){
 				this.$http.get(this.$_musicUrl,{params:{id:id}}).then(res=>{
@@ -167,9 +190,11 @@
 						this.play = play;
 						uniAudio.play();
 					})
-					this.onWaiting();
-					this.onEnded();
 					
+					uni.setStorage({
+						key:'playIndex',
+						data:this.playIndex
+					})
 				})
 			},
 			//音频自然播放结束事件
@@ -180,6 +205,11 @@
 						key:'currentTime',
 						data:0
 					})
+					if(!this.waitFlag){
+						this.loopSinglerandom(this.lsrBoolen);
+						this.playerNum();
+					}
+					
 				})
 			},
 			//音频播放进度更新事件
@@ -187,9 +217,16 @@
 				console.log('音频播放进度更新事件')
 				uniAudio.onTimeUpdate(()=>{
 					let timeNum = uniAudio.currentTime/this.audioDuration*2;
+					// console.log(timeNum)
 					this.dynamic(timeNum);
 					this.play = true;
+					uni.setStorage({
+						key:'currentTime',
+						data:uniAudio.currentTime
+					})
+					
 				})
+				this.playerNum();
 			},
 			
 			//绘制时间进度
@@ -199,6 +236,7 @@
 			},
 			//绘画
 			timeCanvas(num){ 
+				
 				if(this.cxt) {
 					this.cxt.setLineWidth(2);
 					this.cxt.setStrokeStyle("#333333");
@@ -207,8 +245,8 @@
 					this.cxt.draw();
 				};
 				
-				console.log(this.cxt)
-				console.log(num)
+				// console.log(this.cxt)
+				// console.log(num)
 			},
 			canvasIdErrorCallback: function (e) {
 			    console.error(e.detail.errMsg)
@@ -267,7 +305,8 @@
 			getPlaylist(id){
 				this.$http.get(this.$_playlistDetail,{params:{id:id}}).then(res=>{
 					console.log(res)
-					this.songsData
+					// this.songsData
+					this.privileges =  res.privileges;
 					this.getsongDetail(this.songIds(res.privileges));
 				})
 			},
@@ -278,7 +317,75 @@
 				})
 				return ids;
 			},
-		}
+			//循环播放、单曲播放、随机播放
+			loopSinglerandom(lsrNum){
+				
+				switch (lsrNum){
+					case 0:
+					//循环播放
+						uniAudio.loop = false;
+						if(this.playIndex < this.songsData.length-1){
+							this.playIndex++;
+						}else{
+							this.playIndex = 0;
+						}
+						
+						this.onGetSongs(this.songsData[this.playIndex].id)
+						break;
+					case 1:
+					//单曲播放
+						uniAudio.loop = true;
+						break;
+					case 2:
+						uniAudio.loop = false;
+						this.playIndex = Math.floor(Math.random()*this.songsData.length);
+						this.onGetSongs(this.songsData[this.playIndex].id)
+						break;
+				}
+			},
+			//跳转到歌曲详情页面
+			onNavigateTo(event){
+				console.log(this.playIndex)
+				uni.navigateTo({
+					url:'/pages/secondaryPage/songDetails/songDetails?id='+event.currentTarget.dataset.id+'&songPlayIndex='+this.playIndex,
+					// #ifdef APP-PLUS
+					animationType:'slide-in-bottom',
+					// #endif
+					events:{
+						songPlayIndex:(data)=>{
+							console.log(data)
+							this.playIndex = Number(data.songPlayIndex);
+						}
+					},
+					success:(res)=>{
+						console.log(res)
+						res.eventChannel.emit('privilegesIdprivileges', { data: this.privileges })
+					},
+					fail:(res)=>{
+						console.log(res)
+					}
+				})
+			},
+			//返回父级
+			playerNum(){
+				
+				uni.$emit('playsongNum',{playIndex:this.playIndex,play:this.play,playListId:this.playListId})
+			},
+			uniAudioContext(){
+				console.log('销毁前')
+				uniAudio.offCanplay();
+				uniAudio.offPlay();
+				uniAudio.offPause();
+				uniAudio.offStop();
+				uniAudio.offEnded();
+				uniAudio.offTimeUpdate();
+				uniAudio.offError();
+				uniAudio.offWaiting();
+				uniAudio.offSeeking();
+				uniAudio.offSeeked();
+			}
+		},
+		
 	}
 </script>
 

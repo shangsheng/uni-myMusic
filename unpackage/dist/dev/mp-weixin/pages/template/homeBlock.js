@@ -566,7 +566,8 @@ var _util = __webpack_require__(/*! @/common/util.js */ 39);var songSplayer = fu
       songsAlbumsIndex: 0,
       podcastTitleIndex: 0,
       animateNum: 5,
-      songsData: {} };
+      songsData: {},
+      playerShow: false };
 
   },
   props: {
@@ -591,6 +592,11 @@ var _util = __webpack_require__(/*! @/common/util.js */ 39);var songSplayer = fu
       default: 0 } },
 
 
+  created: function created() {
+    console.log(this.playListId);
+    console.log(this.playIndex);
+    this.playerShow = true;
+  },
   filters: {
     countNumber: function countNumber(num) {
       return (0, _util.playCount)(num);
@@ -606,6 +612,15 @@ var _util = __webpack_require__(/*! @/common/util.js */ 39);var songSplayer = fu
     podcastTab: function podcastTab($event) {
       this.podcastTitleIndex = Number($event.currentTarget.dataset.index);
       console.log(this.broadcastData);
+    } },
+
+  watch: {
+    playIndex: function playIndex(newIndex) {var _this = this;
+      console.log(newIndex);
+      this.playerShow = false;
+      this.$nextTick(function () {
+        _this.playerShow = true;
+      });
     } } };exports.default = _default;
 
 /***/ }),

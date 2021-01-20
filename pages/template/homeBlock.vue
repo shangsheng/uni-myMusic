@@ -283,10 +283,28 @@
 						</swiper-item>
 					</swiper>
 				</view>
+				<view class="videoCollection" v-if="pageItem.type === 'videoShuffle' ">
+					<swiper class="swiper-videoCollection" :previousMargin="previousMargin" :nextMargin="nextMargin" :circular="circular" :autoplay="autoplay" :display-multiple-items="3">
+						<swiper-item class="podcastCollection-item videoCollection-item" v-for="(item,videoShuffleIndex) in pageItem.extInfo" :key="videoShuffleIndex" >
+							<view class="songList">
+								<navigator :url="item.resource.shareUrl"  >
+									<view class="recommendList">
+										<image :src="item.resource.mlogExtVO.song.coverUrl" class="songImg"></image>
+										<view class="recommend-playData">
+											<view class="icon icon-icon-bofang iconfont icon-width-12"></view>
+											<text class="count">{{item.resource.mlogExtVO.playCount | countNumber}}</text>
+										</view>
+									</view>
+									<text class="titleSong">{{item.resource.mlogExtVO.song.name}}</text>
+								</navigator>
+							</view>
+						</swiper-item>
+					</swiper>
+				</view>
 			</view>
 		</view>
 		<view class="playerSongs">
-			<songSplayer ref="songsPlayer" :playListId="playListId" :playIndex="playIndex"></songSplayer>
+			<songSplayer ref="songsPlayer" :playListId="playListId" :playerIndex="playIndex" v-if="playerShow"></songSplayer>
 		</view>
 	</view>
 </template>
@@ -306,7 +324,8 @@
 				songsAlbumsIndex:0,
 				podcastTitleIndex:0,
 				animateNum:5,
-				songsData:{}
+				songsData:{},
+				playerShow:false
 			}
 		},
 		props:{
@@ -331,6 +350,11 @@
 				default:0
 			}
 		},
+		created() {
+			console.log(this.playListId)
+			console.log(this.playIndex)
+			this.playerShow = true;
+		},
 		filters:{
 			countNumber(num){
 				return playCount(num)
@@ -347,6 +371,15 @@
 				this.podcastTitleIndex = Number($event.currentTarget.dataset.index);
 				console.log(this.broadcastData)
 			},
+		},
+		watch:{
+			playIndex(newIndex){
+				console.log(newIndex)
+				 this.playerShow = false;
+				this.$nextTick(() => {
+				       this.playerShow = true;
+				  })
+			}
 		}
 	}
 </script>

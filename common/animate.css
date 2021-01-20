@@ -100,3 +100,11 @@
 		transform-origin:27.027% 27.027%;
 	}
 }
+@keyframes barWidth{
+	from{
+		width: 0;
+	}
+	to{
+		width: 100%;
+	}
+}

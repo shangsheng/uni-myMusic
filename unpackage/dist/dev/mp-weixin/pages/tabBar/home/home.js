@@ -307,11 +307,13 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = 
     this.getRequest();
   },
   onLoad: function onLoad() {var _this2 = this;
+    var _this = this;
     this.$nextTick(function () {
       uni.getSystemInfo({
         success: function success(res) {
           console.log(res.windowWidth);
-          _this2.$refs.homePage.$refs.songsPlayer.audioArc = res.windowWidth / 750 * 84 / 2;
+
+          if (_this.$refs.homePage.$refs.songsPlayer) _this.$refs.homePage.$refs.songsPlayer.audioArc = res.windowWidth / 750 * 84 / 2;
         } });
 
     });
@@ -323,6 +325,7 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = 
     uni.getStorage({
       key: 'playlistId',
       success: function success(res) {
+        console.log(res);
         _this2.playListId = Number(res.data);
       } });
 
@@ -338,6 +341,20 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = 
     console.log(this);
     console.log(uni);
     console.log(_player.uniAudio.paused);
+    uni.getStorage({
+      key: 'playlistId',
+      success: function success(res) {
+        console.log(res);
+        _this3.playListId = Number(res.data);
+      } });
+
+    uni.getStorage({
+      key: 'playIndex',
+      success: function success(res) {
+        console.log(res);
+        _this3.playIndex = Number(res.data);
+      } });
+
     if (!_player.uniAudio.paused && this.$refs.homePage) {
       this.$refs.homePage.$refs.songsPlayer.onCanplay();
       this.$refs.homePage.$refs.songsPlayer.onTimeUpdate();
@@ -359,23 +376,13 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = 
               currentTime = res.data;
               var timeNum = audioDuration ? currentTime / audioDuration * 2 : 0;
               console.log(timeNum);
-              _this.$refs.homePage.$refs.songsPlayer.dynamic(timeNum);
+
+              if (_this.$refs.homePage.$refs.songsPlayer) _this.$refs.homePage.$refs.songsPlayer.dynamic(timeNum);
             } });
 
         } });
 
     }
-    uni.getStorage({
-      key: 'playlistId',
-      success: function success(res) {
-        _this3.playListId = Number(res.data);
-      } });
-
-    uni.getStorage({
-      key: 'playIndex',
-      success: function success(res) {
-        _this3.playIndex = Number(res.data);
-      } });
 
   },
   methods: {

@@ -145,7 +145,28 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     // context.arc(23,23,20,0,1 * Math.PI, true);
     // context.stroke();
     // context.draw();
+    // uni.setStorage({
+    // 	key:'ceshi',
+    // 	data:'小程序缓存',
+    // 	success:function(res){
+    // 		console.log(res)
+    // 	}
+    // })
   },
+  // onShow(){
+  // uni.getStorage({
+  // 	key:'ceshi',
+  // 	success:function(res){
+  // 		console.log(res)
+  // 	}
+  // })
+  // uni.removeStorage({
+  // key: 'ceshi',
+  // success: function (res) {
+  //     console.log('success');
+  // }
+  // })
+  // },
   methods: {
     canvasIdErrorCallback: function canvasIdErrorCallback(e) {
       console.error(e.detail.errMsg);

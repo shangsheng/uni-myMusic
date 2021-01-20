@@ -97,7 +97,7 @@
 									</view>
 									<view class="vm-xq">
 										<view class="vmVideo">
-											<view class="icon iconfont icon-icon_play icon-width-53"></view>
+											<view class="icon iconfont  icon-width-53" :class="[playListIndex === index&&playBoolen?'icon-zanting':'icon-icon_play']"></view>
 										</view>
 										<view class="moreDetails">
 											<view class="icon iconfont icon-ziyuan icon-width-10"></view>
@@ -113,12 +113,13 @@
 		</scroll-view>
 		
 		<view class="playerSongs">
-			<songSplayer ref="songsPlayer" :playListId="playListId" :playIndex="playIndex"></songSplayer>
+			<songSplayer ref="songsPlayer" :playListId="playListIds" :playerIndex="playIndex" v-if="playerShow" ></songSplayer>
 		</view>
 	</view>
 </template>
 
 <script>
+	//歌单详情页 播放的第几条歌曲值与播放器的值是不一致的，当播放器的歌单id与歌单详情页面的id一致是播放的第几条歌曲的值是一致的
 	import songSplayer from '../../template/player.vue';
 	
 	import { playCount, dateUtils,rgbObj } from '@/common/util.js';
@@ -139,10 +140,14 @@
 				privileges:null,
 				headerBackground:null,
 				jianjieBackgrund:null,
-				playListId:0,
+				playListIds:0,
 				scrollHeigh:500,
 				songsHeigh:400,
 				playIndex:0,//播放第几条歌曲
+				playerShow:false,
+				playListIndex:0,
+				nextTickTime:null,
+				playBoolen:false
 			}
 		},
 		onLoad(option) {
@@ -151,7 +156,18 @@
 			uni.getStorage({
 				key:'playlistId',
 				success:(res)=>{
-					this.playListId = Number(res.data)
+					
+					if(this.playListIds === Number(res.data)){
+						uni.getStorage({
+							key:'playIndex',
+							success:(res)=>{
+								this.playListIndex = Number(res.data)
+								this.playBoolen = true;
+							}
+						})
+					}else{
+						this.playListIds = Number(res.data)
+					}
 				}
 			})
 			uni.getStorage({
@@ -160,54 +176,69 @@
 					this.playIndex = Number(res.data)
 				}
 			})
+			this.$nextTick(() => {
+			       this.playerShow = true;
+				   this.getInof();
+			  })
+			  
+		},
+		onUnload(){
+			
 		},
 		onReady(){
-			this.getInof();
+			clearTimeout(this.nextTickTime)
 		},
 		onShow(){
 			let _this = this;
 			console.log(this)
 			console.log(uni)
-			if(!uniAudio.paused&&this.$refs.songsPlayer){
-				this.$refs.songsPlayer.onCanplay();
-				this.$refs.songsPlayer.onTimeUpdate();
-				this.$refs.songsPlayer.onWaiting();
-				this.$refs.songsPlayer.onEnded();
-			}else if(this.$refs.songsPlayer){
-				this.$refs.songsPlayer.play=false;
-				let audioDuration;
-				uni.getStorage({
-				    key: 'audioDuration',
-				    success: function (res) {
-						console.log(res)
-				       audioDuration=res.data;
-					   let currentTime = 0;
+			this.playerShow = false;
+			this.$nextTick(() => {
+			       this.playerShow = true;
+				   console.log(this.$refs.songsPlayer)
+				  
+				   this.nextTickTime = setTimeout(()=>{
+					   if(!uniAudio.paused&&this.$refs.songsPlayer){
+					   	this.$refs.songsPlayer.onCanplay();
+					   	this.$refs.songsPlayer.onTimeUpdate();
+					   	this.$refs.songsPlayer.onWaiting();
+					   	this.$refs.songsPlayer.onEnded();
+					   }else if(this.$refs.songsPlayer){
+					   	this.$refs.songsPlayer.play=false;
+					   	let audioDuration;
+					   	uni.getStorage({
+					   	    key: 'audioDuration',
+					   	    success: function (res) {
+					   			console.log(res)
+					   	       audioDuration=res.data;
+					   		   let currentTime = 0;
+					   		   uni.getStorage({
+					   		       key: 'currentTime',
+					   		       success: function (resc) {
+					   		   		console.log(resc)
+					   		        currentTime=resc.data;
+					   		   	   let timeNum = audioDuration? currentTime/audioDuration*2:0;
+					   		   	   console.log(timeNum)
+					   		   	   _this.$refs.songsPlayer.dynamic(timeNum);
+					   		       }
+					   		   });
+							   
+					   	    }
+					   	});
+					   	
+					   }
 					   uni.getStorage({
-					       key: 'currentTime',
-					       success: function (res) {
-					   		console.log(res)
-					        currentTime=res.data;
-					   	   let timeNum = audioDuration? currentTime/audioDuration*2:0;
-					   	   console.log(timeNum)
-					   	   _this.$refs.songsPlayer.dynamic(timeNum);
-					       }
-					   });
-				    }
-				});
-				
-			}
-			uni.getStorage({
-				key:'playlistId',
-				success:(res)=>{
-					this.playListId = Number(res.data)
-				}
-			})
-			uni.getStorage({
-				key:'playIndex',
-				success:(res)=>{
-					this.playIndex = Number(res.data)
-				}
-			})
+					   		 key:'playIndex',
+					   		success:function(resp){
+					   			console.log(resp)
+								_this.playListIndex = Number(resp.data)
+							}
+					   })
+					   _this.playsongNum(); 
+				   },1000)
+				  
+			  })
+			 
 		},
 		methods:{
 			getPlaylist(id){
@@ -215,8 +246,9 @@
 					console.log(res)
 					this.playlistData = res.playlist;
 					this.privileges = res.privileges;
-					this.playListId = res.playlist.id;
+					
 					this.jianjieBackgrund = res.playlist.backgroundCoverUrl?res.playlist.backgroundCoverUrl + '?imageView&blur=40x20' :res.playlist.coverImgUrl + '?imageView&blur=40x20';
+					
 					// #ifdef H5
 					this.$rgbaster.colors(this.jianjieBackgrund,{
 						success:(respayload)=>{
@@ -283,15 +315,18 @@
 			//点击全部播放
 			allPlay(event){
 				console.log(event)
+			
 				uni.navigateTo({
-					url:'../songDetails/songDetails?id='+event.currentTarget.dataset.id+'&songPlayIndex='+this.playIndex,
+					url:'../songDetails/songDetails?id='+event.currentTarget.dataset.id+'&songPlayIndex='+this.playListIndex,
 					// #ifdef APP-PLUS
 					animationType:'slide-in-bottom',
 					// #endif
 					events:{
 						songPlayIndex:(data)=>{
 							console.log(data)
-							this.playIndex = data.songPlayIndex;
+							this.playIndex = Number(data.songPlayIndex);
+							this.playListIndex = Number(data.songPlayIndex);
+							this.playListIds =  event.currentTarget.dataset.id;
 						}
 					},
 					success:(res)=>{
@@ -301,6 +336,16 @@
 					fail:(res)=>{
 						console.log(res)
 					}
+				})
+			},
+			playsongNum(){
+				uni.$on('playsongNum',(res)=>{
+					console.log(this.playListIds === res.playListId)
+					if(this.playListIds === res.playListId){
+						this.playBoolen = res.play;
+					}
+					
+					this.playListIndex = res.playIndex;
 				})
 			}
 		},
@@ -312,6 +357,7 @@
 				return dateUtils.noticeTime(time)
 			}
 		},
+		
 	}
 </script>
 

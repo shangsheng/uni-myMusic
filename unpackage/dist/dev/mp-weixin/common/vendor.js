@@ -12186,8 +12186,8 @@ function TimeTransformation(time) {
   if (time == 0) {
     return '00:00';
   } else {
-    var m = Math.floor(time / 1000 / 60);
-    var s = time / 1000 % 60;
+    var m = Math.floor(time / 60);
+    var s = Math.round(time % 60);
     return _format(m) + ':' + _format(s);
   }
 }

@@ -131,7 +131,7 @@
 }
 .playerSongs{
 	position: fixed;
-	z-index: 999;
+	z-index: 99;
 	bottom: 90rpx;
 	width: 100%;
 }
@@ -374,6 +374,22 @@ to{
 		        transform: rotate(0deg);
 		-webkit-transform-origin:27.027% 27.027%;
 		        transform-origin:27.027% 27.027%;
+}
+}
+@-webkit-keyframes barWidth{
+from{
+		width: 0;
+}
+to{
+		width: 100%;
+}
+}
+@keyframes barWidth{
+from{
+		width: 0;
+}
+to{
+		width: 100%;
 }
 }
 

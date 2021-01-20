@@ -171,10 +171,13 @@ var _App = _interopRequireDefault(__webpack_require__(/*! @/App.vue */ 5));funct
 //
 var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: function data() {return { play: false, ctx: null, waitFlag: false, nextIndex: 1, //下一首
       prevIndex: 0, //上一首
-      audioDuration: 0, cxt: null, audioArc: 23, playlistData: null, songsData: null, songsId: 0 };}, props: { playListId: { type: Number,
+      audioDuration: 0, cxt: null, audioArc: 23, playlistData: null, songsData: null, songsId: 0, lsrBoolen: 0, playIndex: 0, privileges: null };},
+  props: {
+    playListId: {
+      type: Number,
       default: 0 },
 
-    playIndex: {
+    playerIndex: {
       type: Number,
       default: 0 } },
 
@@ -182,6 +185,7 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
   created: function created() {var _this2 = this;
     console.log(this.playListId);
     console.log(this.playIndex);
+    this.playIndex = this.playerIndex;
     var _this = this;
     uni.getSystemInfo({
       success: function success(res) {
@@ -190,39 +194,51 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
       } });
 
     this.cxt = uni.createCanvasContext('firstCanvas', this);
-    this.getPlaylist(this.playListId);
-    /*if(!uniAudio.paused){
-                                       	this.onCanplay();
-                                       	this.onTimeUpdate();
-                                       	this.onWaiting();
-                                       	this.onEnded();
-                                       }else{
-                                       	this.play=false;
-                                       	let audioDuration; 
-                                       	uni.getStorage({
-                                       	    key: 'audioDuration',
-                                       	    success: function (res) {
-                                       			console.log(res)
-                                       	       audioDuration=res.data;
-                                       		   let currentTime = 0;
-                                       		   uni.getStorage({
-                                       		       key: 'currentTime',
-                                       		       success: function (res) {
-                                       		   		console.log(res)
-                                       		        currentTime=res.data;
-                                       		   	   let timeNum = audioDuration? currentTime/audioDuration*2:0;
-                                       		   	   console.log(timeNum)
-                                       		   	   _this.dynamic(timeNum);
-                                       		       }
-                                       		   });
-                                       	    }
-                                       	});
-                                       	
-                                       	
-                                       	console.log('暂停之后的时间')
-                                       }*/
+    uni.getStorage({
+      key: 'lsrBoolen',
+      success: function success(res) {
+        console.log(res);
+        _this2.lsrBoolen = res.data;
+      } });
+
+    if (!_player.uniAudio.paused) {
+      this.onCanplay();
+      this.onTimeUpdate();
+      this.onWaiting();
+      this.onEnded();
+    } else {
+      this.play = false;
+      var audioDuration;
+      uni.getStorage({
+        key: 'audioDuration',
+        success: function success(res) {
+          console.log(res);
+          audioDuration = res.data;
+          var currentTime = 0;
+          uni.getStorage({
+            key: 'currentTime',
+            success: function success(res) {
+              console.log(res);
+              currentTime = res.data;
+              var timeNum = audioDuration ? currentTime / audioDuration * 2 : 0;
+              console.log(timeNum);
+              _this.dynamic(timeNum);
+            } });
+
+        } });
+
+
+
+      console.log('暂停之后的时间');
+    }
 
     // this.timeCanvas(0);
+  },
+  beforeMount: function beforeMount() {
+
+  },
+  mounted: function mounted() {
+    this.getPlaylist(this.playListId);
   },
   beforeUpdate: function beforeUpdate() {
 
@@ -309,6 +325,7 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
           key: 'currentTime',
           data: 0 });
 
+        _this5.loopSinglerandom(_this5.lsrBoolen);
       });
     },
     //音频播放进度更新事件
@@ -316,8 +333,13 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
       console.log('音频播放进度更新事件');
       _player.uniAudio.onTimeUpdate(function () {
         var timeNum = _player.uniAudio.currentTime / _this6.audioDuration * 2;
+        // console.log(timeNum)
         _this6.dynamic(timeNum);
         _this6.play = true;
+        uni.setStorage({
+          key: 'currentTime',
+          data: _player.uniAudio.currentTime });
+
       });
     },
 
@@ -328,6 +350,7 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
     },
     //绘画
     timeCanvas: function timeCanvas(num) {
+
       if (this.cxt) {
         this.cxt.setLineWidth(2);
         this.cxt.setStrokeStyle("#333333");
@@ -336,8 +359,8 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
         this.cxt.draw();
       };
 
-      console.log(this.cxt);
-      console.log(num);
+      // console.log(this.cxt)
+      // console.log(num)
     },
     canvasIdErrorCallback: function canvasIdErrorCallback(e) {
       console.error(e.detail.errMsg);
@@ -396,7 +419,8 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
     getPlaylist: function getPlaylist(id) {var _this10 = this;
       this.$http.get(this.$_playlistDetail, { params: { id: id } }).then(function (res) {
         console.log(res);
-        _this10.songsData;
+        // this.songsData
+        _this10.privileges = res.privileges;
         _this10.getsongDetail(_this10.songIds(res.privileges));
       });
     },
@@ -406,6 +430,53 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
         ids = index < arr.length - 1 ? ids + item.id + ',' : ids + item.id;
       });
       return ids;
+    },
+    //循环播放、单曲播放、随机播放
+    loopSinglerandom: function loopSinglerandom(lsrNum) {
+      switch (lsrNum) {
+        case 0:
+          //循环播放
+          _player.uniAudio.loop = false;
+          if (this.playIndex < this.songsData.length) {
+            this.playIndex++;
+          } else {
+            this.playIndex = 0;
+          }
+          this.onGetSongs(this.songsData[this.playIndex].id);
+          break;
+        case 1:
+          //单曲播放
+          _player.uniAudio.loop = true;
+          break;
+        case 2:
+          _player.uniAudio.loop = false;
+          this.playIndex = Math.floor(Math.random() * this.songsData.length);
+          this.onGetSongs(this.songsData[this.playIndex].id);
+          break;}
+
+    },
+    //跳转到歌曲详情页面
+    onNavigateTo: function onNavigateTo(event) {var _this11 = this;
+      console.log(this.playIndex);
+      uni.navigateTo({
+        url: '/pages/secondaryPage/songDetails/songDetails?id=' + event.currentTarget.dataset.id + '&songPlayIndex=' + this.playIndex,
+
+
+
+        events: {
+          songPlayIndex: function songPlayIndex(data) {
+            console.log(data);
+            _this11.playIndex = Number(data.songPlayIndex);
+          } },
+
+        success: function success(res) {
+          console.log(res);
+          res.eventChannel.emit('privilegesIdprivileges', { data: _this11.privileges });
+        },
+        fail: function fail(res) {
+          console.log(res);
+        } });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

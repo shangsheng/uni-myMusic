@@ -97,7 +97,8 @@
 				{type:'personalTailor',title:'私人定制',blockCode:'HOMEPAGE_BLOCK_STYLE_RCMD'},{type:'musicCalendar',title:'音乐日历',blockCode:'HOMEPAGE_MUSIC_CALENDAR'},
 				{type:'exclusive',title:'专属场景歌单',blockCode:'HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST'},{type:'songsDiscsalbums',title:'',blockCode:'HOMEPAGE_BLOCK_NEW_ALBUM_NEW_SONG'},
 				{type:'scallop',title:'推荐以下新歌 赚双倍云贝',blockCode:'HOMEPAGE_YUNBEI_NEW_SONG'},{type:'podcast',title:'24播客合辑',blockCode:'HOMEPAGE_VOICELIST_RCMD'},
-				{type:'videoCollection',title:'视频合辑',blockCode:'HOMEPAGE_BLOCK_VIDEO_PLAYLIST'},{type:'podcast24',title:'24小时播客',blockCode:'HOMEPAGE_PODCAST24'}],//'yuncunKTV',podcastCollection
+				{type:'videoCollection',title:'视频合辑',blockCode:'HOMEPAGE_BLOCK_VIDEO_PLAYLIST'},{type:'podcast24',title:'24小时播客',blockCode:'HOMEPAGE_PODCAST24'},
+				{type:'videoShuffle',title:'24精选音乐视频',blockCode:'HOMEPAGE_MUSIC_MLOG'}],//'yuncunKTV',podcastCollection
 				pageConfig:{},
 				personalizedData:[],
 				broadcastData:{},
@@ -146,11 +147,13 @@
 			this.getRequest();
 		},
 		onLoad(){
+			let _this = this;
 			this.$nextTick(()=>{
 				uni.getSystemInfo({
 					success:(res)=>{
 						console.log(res.windowWidth)
-						this.$refs.homePage.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
+						
+					 if(_this.$refs.homePage.$refs.songsPlayer) 	_this.$refs.homePage.$refs.songsPlayer.audioArc= (res.windowWidth/750)*84/2;
 					}
 				})
 			})
@@ -162,6 +165,7 @@
 			uni.getStorage({
 				key:'playlistId',
 				success:(res)=>{
+					console.log(res)
 					this.playListId = Number(res.data)
 				}
 			})
@@ -177,6 +181,20 @@
 			console.log(this)
 			console.log(uni)
 			console.log(uniAudio.paused)
+			uni.getStorage({
+				key:'playlistId',
+				success:(res)=>{
+					console.log(res)
+					this.playListId = Number(res.data)
+				}
+			})
+			uni.getStorage({
+				key:'playIndex',
+				success:(res)=>{
+					console.log(res)
+					this.playIndex = Number(res.data)
+				}
+			})
 			if(!uniAudio.paused&&this.$refs.homePage){
 				this.$refs.homePage.$refs.songsPlayer.onCanplay();
 				this.$refs.homePage.$refs.songsPlayer.onTimeUpdate();
@@ -198,24 +216,14 @@
 					        currentTime=res.data;
 					   	   let timeNum = audioDuration? currentTime/audioDuration*2:0;
 					   	   console.log(timeNum)
-					   	   _this.$refs.homePage.$refs.songsPlayer.dynamic(timeNum);
+						 
+					   	    if(_this.$refs.homePage.$refs.songsPlayer) _this.$refs.homePage.$refs.songsPlayer.dynamic(timeNum);
 					       }
 					   });
 				    }
 				});
 			}
-			uni.getStorage({
-				key:'playlistId',
-				success:(res)=>{
-					this.playListId = Number(res.data)
-				}
-			})
-			uni.getStorage({
-				key:'playIndex',
-				success:(res)=>{
-					this.playIndex = Number(res.data)
-				}
-			})
+			
 		},
 		methods:{
 			

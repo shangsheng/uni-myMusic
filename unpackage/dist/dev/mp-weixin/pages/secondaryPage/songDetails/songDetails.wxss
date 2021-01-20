@@ -131,7 +131,7 @@
 }
 .playerSongs{
 	position: fixed;
-	z-index: 999;
+	z-index: 99;
 	bottom: 90rpx;
 	width: 100%;
 }
@@ -374,6 +374,22 @@ to{
 		        transform: rotate(0deg);
 		-webkit-transform-origin:27.027% 27.027%;
 		        transform-origin:27.027% 27.027%;
+}
+}
+@-webkit-keyframes barWidth{
+from{
+		width: 0;
+}
+to{
+		width: 100%;
+}
+}
+@keyframes barWidth{
+from{
+		width: 0;
+}
+to{
+		width: 100%;
 }
 }
 
@@ -1947,7 +1963,7 @@ page {
 
 
 .uni-background.data-v-ef4fc094{
-	background-size: 100%;
+	background-size: 6000px;
 	background-position: center;
 	background-repeat: no-repeat;
 }
@@ -1968,6 +1984,8 @@ page {
 .songHeadline.data-v-ef4fc094{
 	font-size:32rpx;
 	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .singer.data-v-ef4fc094{
 	font-size: 23rpx;
@@ -2162,6 +2180,8 @@ page {
 	height: 100%;
 	background-color: #6c7594;
 	width: 50%;
+	-webkit-animation: barWidth .25s, 100ms;
+	        animation: barWidth .25s, 100ms;
 }
 .cur.data-v-ef4fc094{
 	position: absolute;
@@ -2170,6 +2190,8 @@ page {
 	height: 100%;
 	background-color: #c70c0c;
 	width: 20%;
+	-webkit-animation: barWidth .25s, 100ms;
+	        animation: barWidth .25s, 100ms;
 }
 .btn.data-v-ef4fc094{
 	position: absolute;

@@ -290,6 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _util = __webpack_require__(/*! @/common/util.js */ 39);
 var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer = function songSplayer() {__webpack_require__.e(/*! require.ensure | pages/template/player */ "pages/template/player").then((function () {return resolve(__webpack_require__(/*! ../../template/player.vue */ 130));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
@@ -311,8 +312,11 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
       playListId: 0,
       scrollHeigh: 500,
       songsHeigh: 400,
-      playIndex: 0 //播放第几条歌曲
-    };
+      playIndex: 0, //播放第几条歌曲
+      playerShow: false,
+      playListIndex: 0,
+      nextTickTime: null };
+
   },
   onLoad: function onLoad(option) {var _this2 = this;
     console.log(option);
@@ -320,7 +324,17 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
     uni.getStorage({
       key: 'playlistId',
       success: function success(res) {
-        _this2.playListId = Number(res.data);
+
+        if (_this2.playListId === Number(res.data)) {
+          uni.getStorage({
+            key: 'playIndex',
+            success: function success(res) {
+              _this2.playListIndex = Number(res.data);
+            } });
+
+        } else {
+          _this2.playListId = Number(res.data);
+        }
       } });
 
     uni.getStorage({
@@ -329,54 +343,63 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
         _this2.playIndex = Number(res.data);
       } });
 
+    this.$nextTick(function () {
+      _this2.playerShow = true;
+      _this2.getInof();
+    });
+  },
+  onUnload: function onUnload() {
+
   },
   onReady: function onReady() {
-    this.getInof();
+    clearTimeout(this.nextTickTime);
   },
   onShow: function onShow() {var _this3 = this;
     var _this = this;
     console.log(this);
     console.log(uni);
-    if (!_player.uniAudio.paused && this.$refs.songsPlayer) {
-      this.$refs.songsPlayer.onCanplay();
-      this.$refs.songsPlayer.onTimeUpdate();
-      this.$refs.songsPlayer.onWaiting();
-      this.$refs.songsPlayer.onEnded();
-    } else if (this.$refs.songsPlayer) {
-      this.$refs.songsPlayer.play = false;
-      var audioDuration;
-      uni.getStorage({
-        key: 'audioDuration',
-        success: function success(res) {
-          console.log(res);
-          audioDuration = res.data;
-          var currentTime = 0;
+    this.playerShow = false;
+    this.$nextTick(function () {
+      _this3.playerShow = true;
+      console.log(_this3.$refs.songsPlayer);
+      _this3.nextTickTime = setTimeout(function () {
+        if (!_player.uniAudio.paused && _this3.$refs.songsPlayer) {
+          _this3.$refs.songsPlayer.onCanplay();
+          _this3.$refs.songsPlayer.onTimeUpdate();
+          _this3.$refs.songsPlayer.onWaiting();
+          _this3.$refs.songsPlayer.onEnded();
+        } else if (_this3.$refs.songsPlayer) {
+          _this3.$refs.songsPlayer.play = false;
+          var audioDuration;
           uni.getStorage({
-            key: 'currentTime',
+            key: 'audioDuration',
             success: function success(res) {
               console.log(res);
-              currentTime = res.data;
-              var timeNum = audioDuration ? currentTime / audioDuration * 2 : 0;
-              console.log(timeNum);
-              _this.$refs.songsPlayer.dynamic(timeNum);
+              audioDuration = res.data;
+              var currentTime = 0;
+              uni.getStorage({
+                key: 'currentTime',
+                success: function success(resc) {
+                  console.log(resc);
+                  currentTime = resc.data;
+                  var timeNum = audioDuration ? currentTime / audioDuration * 2 : 0;
+                  console.log(timeNum);
+                  _this.$refs.songsPlayer.dynamic(timeNum);
+                } });
+
+              uni.getStorage({
+                key: 'playIndex',
+                success: function success(resp) {
+                  _this.playListIndex = Number(resp.data);
+                } });
+
             } });
 
-        } });
 
+        }
+      }, 1000);
 
-    }
-    uni.getStorage({
-      key: 'playlistId',
-      success: function success(res) {
-        _this3.playListId = Number(res.data);
-      } });
-
-    uni.getStorage({
-      key: 'playIndex',
-      success: function success(res) {
-        _this3.playIndex = Number(res.data);
-      } });
-
+    });
   },
   methods: {
     getPlaylist: function getPlaylist(id) {var _this4 = this;
@@ -384,8 +407,9 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
         console.log(res);
         _this4.playlistData = res.playlist;
         _this4.privileges = res.privileges;
-        _this4.playListId = res.playlist.id;
+
         _this4.jianjieBackgrund = res.playlist.backgroundCoverUrl ? res.playlist.backgroundCoverUrl + '?imageView&blur=40x20' : res.playlist.coverImgUrl + '?imageView&blur=40x20';
+
 
 
 
@@ -452,15 +476,18 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
     //点击全部播放
     allPlay: function allPlay(event) {var _this5 = this;
       console.log(event);
+
       uni.navigateTo({
-        url: '../songDetails/songDetails?id=' + event.currentTarget.dataset.id + '&songPlayIndex=' + this.playIndex,
+        url: '../songDetails/songDetails?id=' + event.currentTarget.dataset.id + '&songPlayIndex=' + this.playListIndex,
 
 
 
         events: {
           songPlayIndex: function songPlayIndex(data) {
             console.log(data);
-            _this5.playIndex = data.songPlayIndex;
+            _this5.playIndex = Number(data.songPlayIndex);
+            _this5.playListIndex = Number(data.songPlayIndex);
+            _this5.playListId = event.currentTarget.dataset.id;
           } },
 
         success: function success(res) {

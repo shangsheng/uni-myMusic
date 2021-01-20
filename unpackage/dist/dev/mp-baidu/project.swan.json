@@ -1,0 +1,19 @@
+{
+    "appid": "17767960",
+    "appInfo": {},
+    "appkey": "",
+    "condition": {},
+    "setting": {
+        "urlCheck": true,
+        "es6": true
+    },
+    "libVersion": "",
+    "projectname": "uni-myMusic",
+    "host": "baiduboxapp",
+    "swan": {
+        "baiduboxapp": {
+            "swanJsVersion": "3.250.33",
+            "extensionJsVersion": "1.20.6"
+        }
+    }
+}

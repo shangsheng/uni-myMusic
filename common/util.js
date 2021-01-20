@@ -205,8 +205,8 @@ function TimeTransformation(time){
 	if(time == 0){
 		return '00:00';
 	}else {
-		let m = Math.floor(time/1000/60);
-		let s = time/1000%60;
+		let m = Math.floor(time/60);
+		let s = Math.round(time%60);
 		return _format(m) + ':' + _format(s);
 	}
 }

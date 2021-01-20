@@ -1,5 +1,5 @@
 <template>
-	<view class="songsDetails" v-if="songsData" :style="{'background':headerBackground}">
+	<view class="songsDetails uni-background" v-if="songsData" :style="{'backgroundImage':'url('+ songsData[songPlayIndex].al.picUrl+')'}"> <!-- ?imageView&blur=10x20 -->
 		<view class="uni-header uni-background" >
 			<uni-nav-bar class="padding-top" @clickLeft="goBack" :leftIcon="iconsType" :color="color" :backgroundColor="backgroundColor" :statusBar="statusBar">
 				<view class="songsTitle">
@@ -56,22 +56,22 @@
 							<view class="iconfont icon-width-80 icon-font-size icon-ziyuan"></view>
 						</view>
 						<view class="m-pbar">
-							<view class="time"><text>00:00</text></view>
-							<view class="barbg">
-								<view class="rdy"></view>
-								<view class="cur">
-									<view class="btn f-tdn f-alpha"></view>
+							<view class="time"><text>{{audiocurrentTime|TimeTransformation}}</text></view>
+							<view class="barbg" @click="jumpBar">
+								<view class="rdy" :style="{width:cacheBar+'%'}"></view>
+								<view class="cur" :style="{width:barWidth+'%'}">
+									<view class="btn f-tdn f-alpha" @touchstart="startDragbar($event)" @touchmove="moveDragbar" @touchend="endDragbar"></view>
 								</view>
 							</view>
-							<view class="time"><text>00:00</text></view>
+							<view class="time"><text>{{audioDuration|TimeTransformation}}</text></view>
 						</view>
 						<view class="btns">
-							<view class="iconfont icon-width-80 icon-font-size icon-xunhuan"></view>
-							<view class="iconfont icon-width-80 icon-font-size icon-shangyishoushangyige"></view>
-							<view class="songPlay">
+							<view class="iconfont icon-width-80 icon-font-size " @click="onLoopsingleRandom" :class="[{'icon-xunhuan':lsrBoolen===0},{'icon-hanhan-01-01':lsrBoolen===1},{'icon-suijibofang':lsrBoolen===2}]"></view>
+							<view class="iconfont icon-width-80 icon-font-size icon-shangyishoushangyige" @click="prevPlay"></view>
+							<view class="songPlay" @click="playSong">
 								<view class="iconfont icon-width-80 icon-font-size " :class="[playBoolen?'icon-zanting':'icon-icon_play']" ></view>
 							</view>
-							<view class="iconfont icon-width-80 icon-font-size icon-xiayigexiayishou"></view>
+							<view class="iconfont icon-width-80 icon-font-size icon-xiayigexiayishou" @click="nextPlay"></view>
 							<view class="iconfont icon-width-80 icon-font-size icon-icon"></view>
 						</view>
 					</view>
@@ -116,14 +116,37 @@
 				waitFlag:false,
 				nextIndex:1,//下一首
 				prevIndex:0,//上一首
+				barWidth:0,
+				cacheBar:0,
+				dragBoolen:true,
+				badBoolen:0,
+				eventChannel:null,
+				lsrBoolen:0,
+				playListIs:0
 			}
 		},
 		onLoad(option) {
 			this.getInof();
 			this.formPage(option)
+			uni.getStorage({
+				key:'lsrBoolen',
+				success:(res)=>{
+					console.log(res)
+					this.lsrBoolen = res.data;
+				}
+			})
 		},
+		onUnload() {
+		      this.eventChannel.off('privilegesIdprivileges');
+			  this.uniAudioContext();
+		 },
 		methods:{
 			goBack(){
+				let pages = getCurrentPages();
+				let nowPage = pages[ pages.length - 1];  //当前页页面实例
+				let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
+				prevPage.$vm.songPlayIndex = this.songPlayIndex;   //修改上一页data里面的searchVal参数值为1211
+				prevPage.$vm.playIndex = this.songPlayIndex;   //修改上一页data里面的searchVal参数值为1211
 				uni.navigateBack({                         //uni.navigateTo跳转的返回，默认1为返回上一级
 					    delta: 1
 				});
@@ -141,7 +164,7 @@
 								
 								view.boundingClientRect(data => {
 									
-								    _this.windowHeight = res.windowHeight - data.height +'px';
+								    _this.windowHeight = data? res.windowHeight - data.height +'px':res.windowHeight +'px';
 								}).exec();
 							},1000)
 						}
@@ -153,39 +176,60 @@
 			formPage(options){
 				console.log(options)
 				const _this = this;
-				const eventChannel = this.getOpenerEventChannel();
-				console.log(eventChannel)
-				if(eventChannel.id !== undefined){
-					eventChannel.emit('songPlayIndex', {songPlayIndex: this.songPlayIndex});
-					// 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
-					eventChannel.on('privilegesIdprivileges', function(res) {
-					  console.log(res)
-					 
-					  _this.getsongDetail(_this.songIds(res.data));
-					  app.globalData.play = true;
-					  //存储歌单ID
-					  uni.setStorage({
-						  key:'playlistId',
-						  data:options.id,
-						  success:function(res){
+				this.playListIs = options.id;
+				this.eventChannel = this.getOpenerEventChannel();
+				_this.songPlayIndex = options.songPlayIndex;
+				uni.getStorage({
+					key:'playlistId',
+					success:(r)=>{
+						console.log(Number(r.data) == options.id)
+						console.log(r.data)
+						console.log(options.id)
+						if(Number(r.data) == options.id){
+							//判断当前播放的音乐与所进入的音乐详情是否为同一个音乐
+							this.eventChannel.emit('songPlayIndex', {songPlayIndex: this.songPlayIndex});
+							// 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+							this.eventChannel.on('privilegesIdprivileges', function(res) {
 							  console.log(res)
-						  }
-					  })
-					  uni.setStorage({
-					  		key:'playIndex',
-					  		data:options.songPlayIndex,
-					  		success:function(res){
-								console.log(res)
-					  		}
-					  })
-					})
-				}else{
-					
-					_this.getPlaylist(options.id);
-				}
-				   _this.songPlayIndex = options.songPlayIndex;
-				   app.globalData.playlistId = options.id;
-				   app.globalData.playIndex = options.songPlayIndex;
+							  console.log(uniAudio.paused)
+							  _this.getsongDetail(_this.songIds(res.data));
+							
+							  })
+							
+						}else{
+							
+							console.log(this.eventChannel)
+							if(this.eventChannel.id !== undefined){
+								this.eventChannel.emit('songPlayIndex', {songPlayIndex: this.songPlayIndex});
+								// 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+								this.eventChannel.on('privilegesIdprivileges', function(res) {
+								  console.log(res)
+								 
+								  _this.getsongDetail(_this.songIds(res.data));
+								
+								}) 
+							}else{
+								// #ifdef H5
+								_this.getPlaylist(options.id);
+								// #endif
+								// #ifndef H5
+								this.eventChannel.emit('songPlayIndex', {songPlayIndex: this.songPlayIndex});
+								// 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+								this.eventChannel.on('privilegesIdprivileges', function(res) {
+								  console.log(res)
+								 
+								  _this.getsongDetail(_this.songIds(res.data));
+								 
+								  })
+								  // #endif
+							}
+							
+						  
+						}
+					}
+				})
+			
+				
 			},
 			//获取歌曲详情
 			getsongDetail(ids){
@@ -193,7 +237,14 @@
 					console.log(res)
 					this.songsData = res.songs;
 					this.onGetSongs(res.songs[this.songPlayIndex].id);
-					this.headerBackground = 'url('+ this.songsData[this.songPlayIndex].al.picUrl+'?imageView&blur=20x40)';
+					//存储歌单ID
+					  uni.setStorage({
+						  key:'playlistId',
+						  data:this.playListIs,
+						  success:function(res){
+							  console.log(res)
+						  }
+					  })
 				})
 			},
 			//请求歌单
@@ -201,6 +252,7 @@
 				this.$http.get(this.$_playlistDetail,{params:{id:id}}).then(res=>{
 					console.log(res)
 					this.getsongDetail(this.songIds(res.privileges));
+					
 				})
 			},
 			songIds(arr){
@@ -213,8 +265,13 @@
 			//播放歌曲
 			playSong(){
 				this.playBoolen = !this.playBoolen;
+				console.log(this.playBoolen)
 				app.globalData.play = this.playBoolen;
-				
+				if(this.playBoolen){
+					uniAudio.play();
+				}else{
+					uniAudio.pause();
+				}
 				
 			},
 			//请求歌曲url
@@ -222,10 +279,27 @@
 				this.$http.get(this.$_musicUrl,{params:{id:id}}).then(res=>{
 					console.log(res)
 					clearTimeout(canplayTime);
-					audioPlay(res.data[0].url,(play)=>{
-						console.log(play)
-						this.play = play;
-						uniAudio.play();
+					console.log(uniAudio.paused)
+				
+					if(res.data[0].url){
+						audioPlay(res.data[0].url,(play)=>{
+							console.log(play)
+							this.play = play;
+							uniAudio.play();
+						})
+					}else{
+						//vip播放链接
+						
+					}
+					this.playSong();
+					this.onCanplay();
+					this.onTimeUpdate();
+					uni.setStorage({
+						key:'playIndex',
+						data:this.songPlayIndex,
+						success:function(res){
+							console.log(res)
+						}
 					})
 					this.onWaiting();
 					this.onEnded();
@@ -239,14 +313,22 @@
 						key:'currentTime',
 						data:0
 					})
+					console.log(this.lsrBoolen)
+					this.loopSinglerandom(this.lsrBoolen);
 				})
 			},
 			//音频播放进度更新事件
 			onTimeUpdate(){
 				console.log('音频播放进度更新事件')
 				uniAudio.onTimeUpdate(()=>{
-					let timeNum = uniAudio.currentTime/this.audioDuration*2;
-					this.playBoolen = true;
+					this.cacheBar= uniAudio.buffered/this.audioDuration*100;
+					this.audiocurrentTime = uniAudio.currentTime;
+					let timeNum = uniAudio.currentTime/this.audioDuration;
+					// this.playBoolen = true;
+					if(this.dragBoolen){
+						this.songProgress(timeNum)
+					}
+					
 				})
 			},
 		
@@ -278,6 +360,7 @@
 					if(uniAudio.duration*1>0||uniAudio.buffered*1>0) {
 						// 部分iphone手机audioContext.duration 会为为0，所以判断audioContext.duration是否为0
 							this.audioDuration = uniAudio.duration==0?uniAudio.buffered:uniAudio.duration;
+							this.cacheBar= uniAudio.buffered/this.audioDuration*100;
 							uni.setStorage({
 								key:'audioDuration',
 								data:this.audioDuration,
@@ -285,22 +368,150 @@
 									console.log(res)
 								}
 							})
-			
+							uni.setStorage({
+								key:'playIndex',
+								data:this.songPlayIndex,
+								success:function(res){
+									console.log(res)
+								}
+							})
 						}
 				}, 1000)
 			},
 			//进度条
+			songProgress(num){
+				this. barWidth = num * 100;
+			},
+			//跳转进度
+			jumpBar(event){
+				console.log(event)
+				let barbg =  uni.createSelectorQuery().in(this).select('.barbg');
+				barbg.boundingClientRect(data=>{
+					console.log(data)
+					let widthNum = (event.detail.x - data.left)/data.width;
+					this.seeks(widthNum*this.audioDuration);
+				}).exec()
+			},
+			//跳转指定位置
+			seeks(ds){
+				uniAudio.seek(ds);
+			},
+			//拖拽进度条
+			startDragbar(event){
+				console.log(event)
+				this.dragBoolen = false;
+			},
+			moveDragbar(event){
+				let _this = this;
+				let barbg =  uni.createSelectorQuery().in(this).select('.barbg');
+				barbg.boundingClientRect(data=>{
+					let bad = event.changedTouches[0].clientX - data.left;
+					this.badBoolen = bad/data.width;
+					if(this.badBoolen<=1){
+							_this.songProgress(this.badBoolen)
+					}else{
+							_this.songProgress(1)
+					}
+					
+				}).exec();
+			},
+			endDragbar(event){
+				console.log(event)
+				this.dragBoolen = true;
+				this.seeks(this.badBoolen*this.audioDuration)
+			},
+			//循环播放、单曲播放、随机播放
+			loopSinglerandom(lsrNum){
+				switch (lsrNum){
+					case 0:
+					//循环播放
+						
+						if(this.songPlayIndex < this.songsData.length-1){
+							this.songPlayIndex++;
+						}else{
+							this.songPlayIndex = 0;
+						}
+						console.log(this.songsData)
+						console.log(this.songPlayIndex)
+						console.log(this.songsData[this.songPlayIndex])
+						this.onGetSongs(this.songsData[this.songPlayIndex].id)
+						break;
+					case 1:
+					//单曲播放
+						
+						uniAudio.play();
+						break;
+					case 2:
+						
+						this.songPlayIndex = Math.floor(Math.random()*this.songsData.length);
+						this.onGetSongs(this.songsData[this.songPlayIndex].id)
+						break;
+				}
+			},
+			onLoopsingleRandom(){
+				if(this.lsrBoolen === 0){
+					this.lsrBoolen = 1;
+					uniAudio.loop = true;
+				}else if(this.lsrBoolen === 1){
+					this.lsrBoolen = 2;
+					uniAudio.loop = false;
+				}else if(this.lsrBoolen === 2){
+					this.lsrBoolen = 0;
+					uniAudio.loop = false;
+				}
+				uni.setStorage({
+					key:'lsrBoolen',
+					data:this.lsrBoolen,
+					success: (res) => {
+						console.log(res)
+					}
+				})
+			},
+			nextPlay(){
+				if(this.songPlayIndex<this.songsData.length-1){
+					this.songPlayIndex++
+				}else{
+					this.songPlayIndex = 0;
+				}
+				this.onGetSongs(this.songsData[this.songPlayIndex].id)
+			},
+			prevPlay(){
+				if(this.songPlayIndex>0){
+					this.songPlayIndex--
+				}else{
+					this.songPlayIndex = this.songsData.length-1;
+				}
+				this.onGetSongs(this.songsData[this.songPlayIndex].id)
+			},
+			uniAudioContext(){
+				console.log('销毁前')
+				uniAudio.offCanplay();
+				uniAudio.offPlay();
+				uniAudio.offPause();
+				uniAudio.offStop();
+				uniAudio.offEnded();
+				uniAudio.offTimeUpdate();
+				uniAudio.offError();
+				uniAudio.offWaiting();
+				uniAudio.offSeeking();
+				uniAudio.offSeeked();
+			}
 		},
 		//监听 是否播放和播放时间
 		watch:{
 			
+		},
+		filters:{
+			TimeTransformation(time){
+				return TimeTransformation(time)
+			}
 		}
 	}
 </script>
 
 <style scoped>
 	.uni-background{
-		background-size: 100%;
+		background-size: 6000px;
 		background-position: center;
 		background-repeat: no-repeat;
 	}
@@ -314,6 +525,8 @@
 	.songHeadline{
 		font-size:32rpx;
 		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.singer{
 		font-size: 23rpx;
@@ -457,6 +670,7 @@
 		height: 100%;
 		background-color: #6c7594;
 		width: 50%;
+		animation: barWidth .25s, 100ms;
 	}
 	.cur{
 		position: absolute;
@@ -465,6 +679,7 @@
 		height: 100%;
 		background-color: #c70c0c;
 		width: 20%;
+		animation: barWidth .25s, 100ms;
 	}
 	.btn{
 		position: absolute;

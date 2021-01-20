@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#f2ebe5",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "博客",
+  "component": true,
+  "usingComponents": {
+    "show-canvas": "/pages/template/canvas"
+  }
+}
