@@ -79,6 +79,7 @@
 			</scroll-view>
 			
 		</view>
+		<playingList></playingList>
 	</view>
 </template>
 
@@ -88,10 +89,12 @@
 	//暂停时歌曲播放的时间需要报错到缓存中storage
 	//通过 app.globalData 进行组件数据关联
 	import app from "../../../App.vue";
+	import playingList from '@/pages/template/playing_list.vue';
 	import { uniAudio, audioPlay } from '@/common/player.js';
 	import { TimeTransformation } from "@/common/util.js";
 	var canplayTime = null;
 	export default{
+		components:{playingList},
 		data(){
 			return{
 				text:"",
@@ -225,6 +228,35 @@
 							}
 							
 						  
+						}
+					},
+					fail: (res) => {
+						console.log(res)
+						if(res.data === ''){
+							if(this.eventChannel.id !== undefined){
+								this.eventChannel.emit('songPlayIndex', {songPlayIndex: this.songPlayIndex});
+								// 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+								this.eventChannel.on('privilegesIdprivileges', function(res) {
+								  console.log(res)
+								 
+								  _this.getsongDetail(_this.songIds(res.data));
+								
+								}) 
+							}else{
+								// #ifdef H5
+								_this.getPlaylist(options.id);
+								// #endif
+								// #ifndef H5
+								this.eventChannel.emit('songPlayIndex', {songPlayIndex: this.songPlayIndex});
+								// 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+								this.eventChannel.on('privilegesIdprivileges', function(res) {
+								  console.log(res)
+								 
+								  _this.getsongDetail(_this.songIds(res.data));
+								 
+								  })
+								  // #endif
+							}
 						}
 					}
 				})
@@ -426,7 +458,7 @@
 					case 0:
 					//循环播放
 						
-						if(this.songPlayIndex < this.songsData.length-1){
+						if(this.songsData&&this.songPlayIndex < this.songsData.length-1){
 							this.songPlayIndex++;
 						}else{
 							this.songPlayIndex = 0;

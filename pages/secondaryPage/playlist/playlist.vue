@@ -326,7 +326,7 @@
 							console.log(data)
 							this.playIndex = Number(data.songPlayIndex);
 							this.playListIndex = Number(data.songPlayIndex);
-							this.playListIds =  event.currentTarget.dataset.id;
+							this.playListIds =  Number(event.currentTarget.dataset.id);
 						}
 					},
 					success:(res)=>{
@@ -340,12 +340,12 @@
 			},
 			playsongNum(){
 				uni.$on('playsongNum',(res)=>{
-					console.log(this.playListIds === res.playListId)
+					
 					if(this.playListIds === res.playListId){
 						this.playBoolen = res.play;
 					}
 					
-					this.playListIndex = res.playIndex;
+					this.playListIndex = Number(res.playIndex);
 				})
 			}
 		},

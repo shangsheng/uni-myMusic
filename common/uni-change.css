@@ -70,6 +70,10 @@
 	width: 53rpx;
 	height: 53rpx;
 }
+.font-color{
+	font-size: 24rpx;
+	color: #595959;
+}
 html {
   overflow-y: scroll;
 }
