@@ -72,14 +72,14 @@
 								<view class="iconfont icon-width-80 icon-font-size " :class="[playBoolen?'icon-zanting':'icon-icon_play']" ></view>
 							</view>
 							<view class="iconfont icon-width-80 icon-font-size icon-xiayigexiayishou" @click="nextPlay"></view>
-							<view class="iconfont icon-width-80 icon-font-size icon-icon"></view>
+							<view class="iconfont icon-width-80 icon-font-size icon-icon" @click="onClickPlayList"></view>
 						</view>
 					</view>
 				</view>
 			</scroll-view>
 			
 		</view>
-		<playingList></playingList>
+		<playingList :playListData="songsData" :show="showBoolen" :listIndex="songPlayIndex" :playMode="lsrBoolen" :titles="title"></playingList>
 	</view>
 </template>
 
@@ -98,13 +98,15 @@
 		data(){
 			return{
 				text:"",
-				title:'歌曲',
+				title:'歌曲详情',
 				color:"#ffffff",
 				backgroundColor:"transparent",
 				statusBar:true,
+				// #ifndef MP-WEIXIN
 				liveColor:'#bfb0c3',
 				liveBackground:'#603966',
 				liveSrc:'http://p2.music.126.net/q6-BCELWuALT42bCUJEl8w==/18602637232548268.jpg',
+				// #endif
 				headerBackground:'#000',
 				iconsType:"arrowleft",
 				// #ifdef APP-PLUS
@@ -125,18 +127,30 @@
 				badBoolen:0,
 				eventChannel:null,
 				lsrBoolen:0,
-				playListIs:0
+				playListIs:0,
+				showBoolen:false,
+				titlePlay:'歌曲详情'
 			}
 		},
 		onLoad(option) {
+			console.log(option)
 			this.getInof();
 			this.formPage(option)
 			uni.getStorage({
 				key:'lsrBoolen',
 				success:(res)=>{
 					console.log(res)
-					this.lsrBoolen = res.data;
+					this.lsrBoolen = Number(res.data);
 				}
+			})
+		},
+		onShow(){
+			let _this = this;
+			uni.$on('clickshow',function(data){
+				_this.showBoolen = data;
+			})
+			uni.$on('titleBack',function(data){
+				_this.titlePlay = data
 			})
 		},
 		onUnload() {
@@ -177,11 +191,11 @@
 			},
 			//获取传送数据
 			formPage(options){
-				console.log(options)
+				
 				const _this = this;
 				this.playListIs = options.id;
 				this.eventChannel = this.getOpenerEventChannel();
-				_this.songPlayIndex = options.songPlayIndex;
+				_this.songPlayIndex = Number(options.songPlayIndex);
 				uni.getStorage({
 					key:'playlistId',
 					success:(r)=>{
@@ -198,7 +212,9 @@
 							  _this.getsongDetail(_this.songIds(res.data));
 							
 							  })
-							
+							// #ifdef H5
+							_this.getPlaylist(options.id);
+							// #endif
 						}else{
 							
 							console.log(this.eventChannel)
@@ -407,6 +423,9 @@
 									console.log(res)
 								}
 							})
+							uni.setNavigationBarTitle({
+								title:this.songsData[this.songPlayIndex].name
+							})
 						}
 				}, 1000)
 			},
@@ -527,7 +546,12 @@
 				uniAudio.offWaiting();
 				uniAudio.offSeeking();
 				uniAudio.offSeeked();
-			}
+			},
+			//点击显示播放列表
+			onClickPlayList(){
+				this.showBoolen = true;
+			},
+			
 		},
 		//监听 是否播放和播放时间
 		watch:{
@@ -537,7 +561,8 @@
 			TimeTransformation(time){
 				return TimeTransformation(time)
 			}
-		}
+		},
+		
 	}
 </script>
 

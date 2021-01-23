@@ -11,6 +11,22 @@
 .songsDetails .uni-navbar__content[data-v-4afea59e]{
 	overflow: inherit !important;
 }
+.uni-navbar__header-btns-left[data-v-4afea59e]{
+	flex-shrink: 0;
+}
+.uni-navbar__header-btns-right[data-v-4afea59e]{
+	flex-shrink: 0;
+}
+.uni-nav-bar-text[data-v-4afea59e]{
+	    width: 400rpx;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    display: inline-block;
+	    overflow: hidden;
+		text-align: center;
+		flex-shrink: 0 !important;
+		display: inline-block;
+}
 .uni-card-section{
 	/* background-color: #FFFFFF; */
 	padding-bottom: 50px;
@@ -120,6 +136,7 @@ body {
 	.songsDetails .uni-navbar__content.data-v-4afea59e{
 		overflow:inherit !important;
 	}
+	
 /*#endif*/
 
 

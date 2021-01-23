@@ -258,7 +258,8 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = 
       { type: 'personalTailor', title: '私人定制', blockCode: 'HOMEPAGE_BLOCK_STYLE_RCMD' }, { type: 'musicCalendar', title: '音乐日历', blockCode: 'HOMEPAGE_MUSIC_CALENDAR' },
       { type: 'exclusive', title: '专属场景歌单', blockCode: 'HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST' }, { type: 'songsDiscsalbums', title: '', blockCode: 'HOMEPAGE_BLOCK_NEW_ALBUM_NEW_SONG' },
       { type: 'scallop', title: '推荐以下新歌 赚双倍云贝', blockCode: 'HOMEPAGE_YUNBEI_NEW_SONG' }, { type: 'podcast', title: '24播客合辑', blockCode: 'HOMEPAGE_VOICELIST_RCMD' },
-      { type: 'videoCollection', title: '视频合辑', blockCode: 'HOMEPAGE_BLOCK_VIDEO_PLAYLIST' }, { type: 'podcast24', title: '24小时播客', blockCode: 'HOMEPAGE_PODCAST24' }], //'yuncunKTV',podcastCollection
+      { type: 'videoCollection', title: '视频合辑', blockCode: 'HOMEPAGE_BLOCK_VIDEO_PLAYLIST' }, { type: 'podcast24', title: '24小时播客', blockCode: 'HOMEPAGE_PODCAST24' },
+      { type: 'videoShuffle', title: '24精选音乐视频', blockCode: 'HOMEPAGE_MUSIC_MLOG' }], //'yuncunKTV',podcastCollection
       pageConfig: {},
       personalizedData: [],
       broadcastData: {},

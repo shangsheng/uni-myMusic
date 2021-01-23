@@ -391,9 +391,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _App = _interopRequireDefault(__webpack_require__(/*! ../../../App.vue */ 5));
+
 var _player = __webpack_require__(/*! @/common/player.js */ 8);
 var _util = __webpack_require__(/*! @/common/util.js */ 39);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
 //
 //
 //
@@ -481,9 +484,9 @@ var _util = __webpack_require__(/*! @/common/util.js */ 39);function _interopReq
 //需要从这个页面当前播放的歌曲id和歌单列表数据传递到其他页面，以及组件,
 //暂停时歌曲播放的时间需要报错到缓存中storage
 //通过 app.globalData 进行组件数据关联
-var canplayTime = null;var _default = { data: function data() {return { text: "", title: '歌曲', color: "#ffffff", backgroundColor: "transparent", statusBar: true, liveColor: '#bfb0c3', liveBackground: '#603966', liveSrc: 'http://p2.music.126.net/q6-BCELWuALT42bCUJEl8w==/18602637232548268.jpg', headerBackground: '#000', iconsType: "arrowleft", playBoolen: false, windowHeight: 520, songPlayIndex: 0, songsData: null, audioDuration: 0, audiocurrentTime: 0, waitFlag: false, nextIndex: 1, //下一首
+var playingList = function playingList() {__webpack_require__.e(/*! require.ensure | pages/template/playing_list */ "pages/template/playing_list").then((function () {return resolve(__webpack_require__(/*! @/pages/template/playing_list.vue */ 137));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var canplayTime = null;var _default = { components: { playingList: playingList }, data: function data() {return { text: "", title: '歌曲', color: "#ffffff", backgroundColor: "transparent", statusBar: true, headerBackground: '#000', iconsType: "arrowleft", playBoolen: false, windowHeight: 520, songPlayIndex: 0, songsData: null, audioDuration: 0, audiocurrentTime: 0, waitFlag: false, nextIndex: 1, //下一首
       prevIndex: 0, //上一首
-      barWidth: 0, cacheBar: 0, dragBoolen: true, badBoolen: 0, eventChannel: null, lsrBoolen: 0, playListIs: 0 };}, onLoad: function onLoad(option) {var _this2 = this;this.getInof();this.formPage(option);uni.getStorage({ key: 'lsrBoolen', success: function success(res) {console.log(res);_this2.lsrBoolen = res.data;} });}, onUnload: function onUnload() {this.eventChannel.off('privilegesIdprivileges');}, methods: { goBack: function goBack() {var pages = getCurrentPages();var nowPage = pages[pages.length - 1]; //当前页页面实例
+      barWidth: 0, cacheBar: 0, dragBoolen: true, badBoolen: 0, eventChannel: null, lsrBoolen: 0, playListIs: 0, showBoolen: false };}, onLoad: function onLoad(option) {var _this2 = this;this.getInof();this.formPage(option);uni.getStorage({ key: 'lsrBoolen', success: function success(res) {console.log(res);_this2.lsrBoolen = Number(res.data);} });}, onShow: function onShow() {var _this = this;uni.$on('clickshow', function (data) {_this.showBoolen = data;});}, onUnload: function onUnload() {this.eventChannel.off('privilegesIdprivileges');this.uniAudioContext();}, methods: { goBack: function goBack() {var pages = getCurrentPages();var nowPage = pages[pages.length - 1]; //当前页页面实例
       var prevPage = pages[pages.length - 2]; //上一页页面实例
       prevPage.$vm.songPlayIndex = this.songPlayIndex; //修改上一页data里面的searchVal参数值为1211
       prevPage.$vm.playIndex = this.songPlayIndex; //修改上一页data里面的searchVal参数值为1211
@@ -491,9 +494,19 @@ var canplayTime = null;var _default = { data: function data() {return { text: ""
         delta: 1 });}, //获取高度
     getInof: function getInof() {var _this = this;this.$nextTick(function () {uni.getSystemInfo({ success: function success(res) {// 计算组件的高度
             setTimeout(function () {var view = uni.createSelectorQuery().in(_this).select('.uni-header');view.boundingClientRect(function (data) {_this.windowHeight = data ? res.windowHeight - data.height + 'px' : res.windowHeight + 'px';}).exec();}, 1000);} });});}, //获取传送数据
-    formPage: function formPage(options) {var _this3 = this;console.log(options);var _this = this;this.playListIs = options.id;this.eventChannel = this.getOpenerEventChannel();_this.songPlayIndex = options.songPlayIndex;uni.getStorage({ key: 'playlistId', success: function success(r) {console.log(Number(r.data) == options.id);console.log(r.data);console.log(options.id);if (Number(r.data) == options.id) {//判断当前播放的音乐与所进入的音乐详情是否为同一个音乐
-            _this3.eventChannel.emit('songPlayIndex', { songPlayIndex: _this3.songPlayIndex }); // 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
-            _this3.eventChannel.on('privilegesIdprivileges', function (res) {console.log(res);
+    formPage: function formPage(options) {var _this3 = this;console.log(options);var _this = this;this.playListIs = options.id;this.eventChannel = this.getOpenerEventChannel();_this.songPlayIndex = options.songPlayIndex;
+      uni.getStorage({
+        key: 'playlistId',
+        success: function success(r) {
+          console.log(Number(r.data) == options.id);
+          console.log(r.data);
+          console.log(options.id);
+          if (Number(r.data) == options.id) {
+            //判断当前播放的音乐与所进入的音乐详情是否为同一个音乐
+            _this3.eventChannel.emit('songPlayIndex', { songPlayIndex: _this3.songPlayIndex });
+            // 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+            _this3.eventChannel.on('privilegesIdprivileges', function (res) {
+              console.log(res);
               console.log(_player.uniAudio.paused);
               _this.getsongDetail(_this.songIds(res.data));
 
@@ -528,6 +541,35 @@ var canplayTime = null;var _default = { data: function data() {return { text: ""
             }
 
 
+          }
+        },
+        fail: function fail(res) {
+          console.log(res);
+          if (res.data === '') {
+            if (_this3.eventChannel.id !== undefined) {
+              _this3.eventChannel.emit('songPlayIndex', { songPlayIndex: _this3.songPlayIndex });
+              // 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+              _this3.eventChannel.on('privilegesIdprivileges', function (res) {
+                console.log(res);
+
+                _this.getsongDetail(_this.songIds(res.data));
+
+              });
+            } else {
+
+
+
+
+              _this3.eventChannel.emit('songPlayIndex', { songPlayIndex: _this3.songPlayIndex });
+              // 监听privilegesIdprivileges事件，获取上一页面通过eventChannel传送到当前页面的数据
+              _this3.eventChannel.on('privilegesIdprivileges', function (res) {
+                console.log(res);
+
+                _this.getsongDetail(_this.songIds(res.data));
+
+              });
+
+            }
           }
         } });
 
@@ -729,7 +771,7 @@ var canplayTime = null;var _default = { data: function data() {return { text: ""
         case 0:
           //循环播放
 
-          if (this.songPlayIndex < this.songsData.length - 1) {
+          if (this.songsData && this.songPlayIndex < this.songsData.length - 1) {
             this.songPlayIndex++;
           } else {
             this.songPlayIndex = 0;
@@ -785,7 +827,26 @@ var canplayTime = null;var _default = { data: function data() {return { text: ""
         this.songPlayIndex = this.songsData.length - 1;
       }
       this.onGetSongs(this.songsData[this.songPlayIndex].id);
+    },
+    uniAudioContext: function uniAudioContext() {
+      console.log('销毁前');
+      _player.uniAudio.offCanplay();
+      _player.uniAudio.offPlay();
+      _player.uniAudio.offPause();
+      _player.uniAudio.offStop();
+      _player.uniAudio.offEnded();
+      _player.uniAudio.offTimeUpdate();
+      _player.uniAudio.offError();
+      _player.uniAudio.offWaiting();
+      _player.uniAudio.offSeeking();
+      _player.uniAudio.offSeeked();
+    },
+    //点击显示播放列表
+    onClickPlayList: function onClickPlayList() {
+      console.log('显示播放列表');
+      this.showBoolen = true;
     } },
+
 
   //监听 是否播放和播放时间
   watch: {},

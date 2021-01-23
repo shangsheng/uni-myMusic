@@ -36,7 +36,7 @@
 						</scroll-view>
 					</view>
 					<view class="Blockpage">
-						<homePage ref="homePage" :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData" :playListId="playListId" :playIndex="playIndex"></homePage>
+						<homePage ref="homePage" :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData" :playListId="playListId" :playIndex="playIndex" :titles="titlePage"></homePage>
 						<!-- 刷新 -->
 						<view class="refresh">
 							<view class="refresh-title">
@@ -67,13 +67,14 @@
 	    components: {drawerMenu,homePage},
 		data(){
 			return{
+				titlePage:'my-music',
 				search:{
 					placeholder:"请输入搜索内容",
 					radius:"42",
 					clearButton:"none",
 					cancelButton:"none",
 					bgColor:"fdfdfd",
-					maxlength:120
+					maxlength:120,
 				},
 				swiperDot:{
 					dotsStyles:{

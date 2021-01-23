@@ -184,8 +184,9 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
 
   created: function created() {var _this2 = this;
     console.log(this.playListId);
-    console.log(this.playIndex);
+
     this.playIndex = this.playerIndex;
+    console.log(this.playIndex);
     var _this = this;
     uni.getSystemInfo({
       success: function success(res) {
@@ -204,8 +205,6 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
     if (!_player.uniAudio.paused) {
       this.onCanplay();
       this.onTimeUpdate();
-      this.onWaiting();
-      this.onEnded();
     } else {
       this.play = false;
       var audioDuration;
@@ -231,7 +230,8 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
 
       console.log('暂停之后的时间');
     }
-
+    this.onWaiting();
+    this.onEnded();
     // this.timeCanvas(0);
   },
   beforeMount: function beforeMount() {
@@ -239,6 +239,7 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
   },
   mounted: function mounted() {
     this.getPlaylist(this.playListId);
+
   },
   beforeUpdate: function beforeUpdate() {
 
@@ -246,7 +247,13 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
   updated: function updated() {
 
   },
+  beforeDestroy: function beforeDestroy() {
+    this.uniAudioContext();
 
+  },
+  destroyed: function destroyed() {
+
+  },
   methods: {
 
     onPlay: function onPlay() {var _this3 = this;
@@ -293,8 +300,7 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
             });
             _this3.onCanplay();
             _this3.onTimeUpdate();
-            _this3.onWaiting();
-            _this3.onEnded();
+
           },
           fail: function fail(res) {
             //第一次打开软件
@@ -303,6 +309,7 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
 
 
       }
+      this.playerNum();
     },
     onGetSongs: function onGetSongs(id) {var _this4 = this;
       this.$http.get(this.$_musicUrl, { params: { id: id } }).then(function (res) {
@@ -312,8 +319,10 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
           _this4.play = play;
           _player.uniAudio.play();
         });
-        _this4.onWaiting();
-        _this4.onEnded();
+
+        uni.setStorage({
+          key: 'playIndex',
+          data: _this4.playIndex });
 
       });
     },
@@ -325,7 +334,11 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
           key: 'currentTime',
           data: 0 });
 
-        _this5.loopSinglerandom(_this5.lsrBoolen);
+        if (!_this5.waitFlag) {
+          _this5.loopSinglerandom(_this5.lsrBoolen);
+          _this5.playerNum();
+        }
+
       });
     },
     //音频播放进度更新事件
@@ -340,7 +353,9 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
           key: 'currentTime',
           data: _player.uniAudio.currentTime });
 
+
       });
+      this.playerNum();
     },
 
     //绘制时间进度
@@ -433,15 +448,17 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
     },
     //循环播放、单曲播放、随机播放
     loopSinglerandom: function loopSinglerandom(lsrNum) {
+
       switch (lsrNum) {
         case 0:
           //循环播放
           _player.uniAudio.loop = false;
-          if (this.playIndex < this.songsData.length) {
+          if (this.playIndex < this.songsData.length - 1) {
             this.playIndex++;
           } else {
             this.playIndex = 0;
           }
+
           this.onGetSongs(this.songsData[this.playIndex].id);
           break;
         case 1:
@@ -477,6 +494,24 @@ var _self;var canvaColumn = null;var canplayTime = null;var _default = { data: f
           console.log(res);
         } });
 
+    },
+    //返回父级
+    playerNum: function playerNum() {
+
+      uni.$emit('playsongNum', { playIndex: this.playIndex, play: this.play, playListId: this.playListId });
+    },
+    uniAudioContext: function uniAudioContext() {
+      console.log('销毁前');
+      _player.uniAudio.offCanplay();
+      _player.uniAudio.offPlay();
+      _player.uniAudio.offPause();
+      _player.uniAudio.offStop();
+      _player.uniAudio.offEnded();
+      _player.uniAudio.offTimeUpdate();
+      _player.uniAudio.offError();
+      _player.uniAudio.offWaiting();
+      _player.uniAudio.offSeeking();
+      _player.uniAudio.offSeeked();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

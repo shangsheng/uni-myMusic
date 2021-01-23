@@ -113,7 +113,7 @@
 		</scroll-view>
 		
 		<view class="playerSongs">
-			<songSplayer ref="songsPlayer" :playListId="playListIds" :playerIndex="playIndex" v-if="playerShow" ></songSplayer>
+			<songSplayer ref="songsPlayer" :playListId="playListIds" :playerIndex="playListIndex" v-if="playerShow" :titles="titlePlay"></songSplayer>
 		</view>
 	</view>
 </template>
@@ -129,7 +129,7 @@
 		data(){
 			return{
 				text:"歌单",
-				title:'菜单',
+				title:'歌单列表',
 				color:"#ffffff",
 				backgroundColor:"transparent",
 				//#ifndef MP-WEIXIN
@@ -147,7 +147,8 @@
 				playerShow:false,
 				playListIndex:0,
 				nextTickTime:null,
-				playBoolen:false
+				playBoolen:false,
+				titlePlay:'歌单列表'
 			}
 		},
 		onLoad(option) {
@@ -196,7 +197,10 @@
 			this.$nextTick(() => {
 			       this.playerShow = true;
 				   console.log(this.$refs.songsPlayer)
-				  
+					uni.$on('titleBack',function(data){
+						console.log(data)
+						_this.title = data;
+					})
 				   this.nextTickTime = setTimeout(()=>{
 					   if(!uniAudio.paused&&this.$refs.songsPlayer){
 					   	this.$refs.songsPlayer.onCanplay();

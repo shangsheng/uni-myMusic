@@ -80,7 +80,7 @@ var components
 try {
   components = {
     uniTag: function() {
-      return __webpack_require__.e(/*! import() | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/components/uni-tag/uni-tag.vue */ 144))
+      return __webpack_require__.e(/*! import() | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/components/uni-tag/uni-tag.vue */ 151))
     }
   }
 } catch (e) {
@@ -104,7 +104,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l7 = _vm.__map(_vm.blockData, function(pageItem, index) {
+  var l8 = _vm.__map(_vm.blockData, function(pageItem, index) {
     var $orig = _vm.__get_orig(pageItem)
 
     var l0 =
@@ -207,13 +207,27 @@ var render = function() {
             }
           })
         : null
+    var l7 =
+      pageItem.type !== "banners" && pageItem.type === "videoShuffle"
+        ? _vm.__map(pageItem.extInfo, function(item, videoShuffleIndex) {
+            var $orig = _vm.__get_orig(item)
+
+            var f5 = _vm._f("countNumber")(item.resource.mlogExtVO.playCount)
+
+            return {
+              $orig: $orig,
+              f5: f5
+            }
+          })
+        : null
     return {
       $orig: $orig,
       l0: l0,
       l2: l2,
       l3: l3,
       l4: l4,
-      l6: l6
+      l6: l6,
+      l7: l7
     }
   })
 
@@ -221,7 +235,7 @@ var render = function() {
     {},
     {
       $root: {
-        l7: l7
+        l8: l8
       }
     }
   )
@@ -259,6 +273,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

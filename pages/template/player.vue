@@ -12,19 +12,22 @@
 				<image src="@/static/icon_play.png" class="iocnSuspendPlay" v-else></image>
 				<canvas  canvas-id="firstCanvas" id="firstCanvas" class="SongsCanvas" @tap="onPlay"></canvas>
 			</view>
-			<view class="player-list iconfont icon-width-56 icon-icon"></view>
+			<view class="player-list iconfont icon-width-56 icon-icon" @click="onClickPlayList"></view>
 			
 		</view>
+		<playingList :playListData="songsData" :show="showBoolen" :listIndex="playIndex" :playMode="lsrBoolen" v-if="songsData"></playingList>
 	</view>
 </template>
 
 <script>
+	import playingList from '@/pages/template/playing_list.vue';
 	import { uniAudio, audioPlay } from '@/common/player.js';
 	import app from "@/App.vue";
 	var _self;
 	var canvaColumn=null;
 	var canplayTime = null;
 	export default{
+		components:{playingList},
 		data(){
 			return{
 				play:false,
@@ -40,7 +43,8 @@
 				songsId:0,
 				lsrBoolen:0,
 				playIndex:0,
-				privileges:null
+				privileges:null,
+				showBoolen:false
 			}
 		},
 		props:{
@@ -51,6 +55,10 @@
 			playerIndex:{
 				type:Number,
 				default:0
+			},
+			titles:{
+				type:String,
+				default:''
 			}
 		},
 		created() {
@@ -113,7 +121,10 @@
 			
 		},
 		beforeUpdate() {
-			
+			let _this = this;
+			uni.$on('clickshow',function(data){
+				_this.showBoolen = data;
+			})
 		},
 		updated() {
 			
@@ -126,9 +137,12 @@
 			
 		},
 		methods:{
-			
+			onClickPlayList(){
+				this.showBoolen = true;
+			},
 			onPlay(){
 				console.log(this.play)
+				
 				if(this.play){
 					//暂停
 					uniAudio.pause();
@@ -138,6 +152,10 @@
 							key:'currentTime',
 							data:uniAudio.currentTime
 						})
+					})
+					uni.$emit('titleBack',this.titles)
+					uni.setNavigationBarTitle({
+						title:this.titles
 					})
 				}else{
 					uni.getStorage({
@@ -286,7 +304,10 @@
 									console.log(res)
 								}
 							})
-
+							uni.$emit('titleBack',this.songsData[this.playIndex].name)
+							uni.setNavigationBarTitle({
+								title:this.songsData[this.playIndex].name
+							})
 						}
 				}, 1000)
 			},

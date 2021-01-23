@@ -210,6 +210,8 @@ function TimeTransformation(time){
 		return _format(m) + ':' + _format(s);
 	}
 }
+//滚动播放歌曲的题目
+
 module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,

@@ -304,7 +304,7 @@
 			</view>
 		</view>
 		<view class="playerSongs">
-			<songSplayer ref="songsPlayer" :playListId="playListId" :playerIndex="playIndex" v-if="playerShow"></songSplayer>
+			<songSplayer ref="songsPlayer" :playListId="playListId" :playerIndex="playIndex" v-if="playerShow" :titles="titles"></songSplayer>
 		</view>
 	</view>
 </template>
@@ -348,6 +348,10 @@
 			playIndex:{
 				type:Number,
 				default:0
+			},
+			titles:{
+				type:String,
+				default:''
 			}
 		},
 		created() {

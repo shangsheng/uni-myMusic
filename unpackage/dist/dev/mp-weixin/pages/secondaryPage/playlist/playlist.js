@@ -309,13 +309,14 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
       privileges: null,
       headerBackground: null,
       jianjieBackgrund: null,
-      playListId: 0,
+      playListIds: 0,
       scrollHeigh: 500,
       songsHeigh: 400,
       playIndex: 0, //播放第几条歌曲
       playerShow: false,
       playListIndex: 0,
-      nextTickTime: null };
+      nextTickTime: null,
+      playBoolen: false };
 
   },
   onLoad: function onLoad(option) {var _this2 = this;
@@ -325,15 +326,16 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
       key: 'playlistId',
       success: function success(res) {
 
-        if (_this2.playListId === Number(res.data)) {
+        if (_this2.playListIds === Number(res.data)) {
           uni.getStorage({
             key: 'playIndex',
             success: function success(res) {
               _this2.playListIndex = Number(res.data);
+              _this2.playBoolen = true;
             } });
 
         } else {
-          _this2.playListId = Number(res.data);
+          _this2.playListIds = Number(res.data);
         }
       } });
 
@@ -347,6 +349,7 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
       _this2.playerShow = true;
       _this2.getInof();
     });
+
   },
   onUnload: function onUnload() {
 
@@ -362,6 +365,7 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
     this.$nextTick(function () {
       _this3.playerShow = true;
       console.log(_this3.$refs.songsPlayer);
+
       _this3.nextTickTime = setTimeout(function () {
         if (!_player.uniAudio.paused && _this3.$refs.songsPlayer) {
           _this3.$refs.songsPlayer.onCanplay();
@@ -387,19 +391,23 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
                   _this.$refs.songsPlayer.dynamic(timeNum);
                 } });
 
-              uni.getStorage({
-                key: 'playIndex',
-                success: function success(resp) {
-                  _this.playListIndex = Number(resp.data);
-                } });
 
             } });
 
 
         }
+        uni.getStorage({
+          key: 'playIndex',
+          success: function success(resp) {
+            console.log(resp);
+            _this.playListIndex = Number(resp.data);
+          } });
+
+        _this.playsongNum();
       }, 1000);
 
     });
+
   },
   methods: {
     getPlaylist: function getPlaylist(id) {var _this4 = this;
@@ -487,7 +495,7 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
             console.log(data);
             _this5.playIndex = Number(data.songPlayIndex);
             _this5.playListIndex = Number(data.songPlayIndex);
-            _this5.playListId = event.currentTarget.dataset.id;
+            _this5.playListIds = Number(event.currentTarget.dataset.id);
           } },
 
         success: function success(res) {
@@ -498,6 +506,16 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
           console.log(res);
         } });
 
+    },
+    playsongNum: function playsongNum() {var _this6 = this;
+      uni.$on('playsongNum', function (res) {
+
+        if (_this6.playListIds === res.playListId) {
+          _this6.playBoolen = res.play;
+        }
+
+        _this6.playListIndex = Number(res.playIndex);
+      });
     } },
 
   filters: {
