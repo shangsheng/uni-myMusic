@@ -25,7 +25,7 @@ http.setConfig((config) => { /* 设置全局配置 */
 //请求前拦截，用来动态加参
 http.interceptors.request.use((config) => { // 可使用async await 做异步操作
 	if(config.url !== '/logins' && config.url!=='/captcha/logins'){
-		config.header.Authorization ='Bearer '+ uni.getStorageSync("token")
+		config.header.setCookie = uni.getStorageSync("token")
 	}
 	
 	console.log('请求前拦截header',config)
@@ -33,7 +33,7 @@ http.interceptors.request.use((config) => { // 可使用async await 做异步操
 		config.header = {
         'Accept': 'application/json',
         'Content-Type': 'multipart/form-data',
-		'Authorization':'Bearer' +' ' + uni.getStorageSync("token")
+		'set-cookie':uni.getStorageSync("token")
       }
 	}
 	config.header = {
@@ -73,9 +73,9 @@ http.interceptors.response.use((response) => {
 		    duration: 2000
 		});
 		
-		if(response.config.url !== "/logins"){
+		if(response.config.url !== "/api/login"){
 			uni.reLaunch({
-				url:'/pages/login/login'
+				url:'/pages/secondaryPage/signUp/login'
 			})
 		}
 	}else{

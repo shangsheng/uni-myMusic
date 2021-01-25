@@ -60,6 +60,16 @@
 				"transparentTitle":"always",
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path":"pages/secondaryPage/signUp/login",
+			"style":{
+				"navigationBarBackgroundColor":"#000000",
+				"navigationBarTitleText":"登录",
+				"navigationBarTextStyle":"white",
+				"transparentTitle":"always",
+				"navigationStyle":"custom"
+			}
 		}
 	],
 	
