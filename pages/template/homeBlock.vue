@@ -301,7 +301,40 @@
 						</swiper-item>
 					</swiper>
 				</view>
+				<!-- 排行榜 -->
+				<view class="playlistList" v-if="pageItem.type === 'rankingList'">
+					<swiper class="swiper-playList" :previousMargin="previousMarginPlayList" :nextMargin="nextMarginPlayList" :circular="circular" :autoplay="autoplay">
+						<swiper-item class="playlist-item" v-for="(item,index) in pageItem.playlistData" :key="index">
+							<view class="playlist-box">
+								<view class="playlist-header">
+									<navigator :url="'/playlistCollection?id='+item.playlist.id" ><text class="text-gd icon-chevron-copy icon iconfont ">{{item.playlist.name}}</text></navigator>
+								</view>
+								<view class="paylist-ul">
+									<view class="playlist-li" v-for="(songItem,songIndex) in item.playlist.songs" :key="songIndex">
+										<view class="playlist-left">
+											<image :src="songItem.al.picUrl" class="playlist-img"></image>
+											<view class="icon iconfont  icon-icon_play text-play-width" :data-id="songItem.id"></view>
+										</view>
+										<view class="playlist-modle">
+											<text class="text-number">{{songIndex+1}}</text>
+											<view class="text-name-ar">
+												<text class="text-name">{{songItem.name}}</text>
+												<text class="text-ar">- {{songItem.arName}}</text>
+											</view>
+										</view>
+										<view class="playlist-right">
+											<text class="text-new">NEW</text>
+										</view>
+									</view>
+								</view>
+							</view>
+						</swiper-item>
+					</swiper>
+				</view>
 			</view>
+		</view>
+		<view v-show="loadingShow">
+			<uni-load-more :status="loadStatus"></uni-load-more>
 		</view>
 		<view class="playerSongs">
 			<songSplayer ref="songsPlayer" :playListId="playListId" :playerIndex="playIndex" v-if="playerShow" :titles="titles"></songSplayer>
@@ -319,13 +352,16 @@
 			return{
 				previousMargin:"30rpx",
 				nextMargin:'30rpx',
+				nextMarginPlayList:"60rpx",
+				previousMarginPlayList:"0rpx",
 				circular:false,
 				autoplay:false,
 				songsAlbumsIndex:0,
 				podcastTitleIndex:0,
 				animateNum:5,
 				songsData:{},
-				playerShow:false
+				playerShow:false,
+				loadStatus:'loading'
 			}
 		},
 		props:{
@@ -352,9 +388,14 @@
 			titles:{
 				type:String,
 				default:''
+			},
+			loadingShow:{
+				type:Boolean,
+				default:false
 			}
 		},
 		created() {
+			console.log(this.blockData)
 			console.log(this.playListId)
 			console.log(this.playIndex)
 			this.playerShow = true;
@@ -873,5 +914,101 @@
 	}
 	.videoCollection .swiper-videoCollection{
 		height: 400rpx;
+	}
+	.playlistList{
+		padding: 40rpx 0;
+	}
+	.playlist-item{
+		background-color: #FFFFFF;
+		padding: 33rpx 22rpx 0rpx 33rpx;
+		box-sizing: border-box;
+		
+	}
+	.playlist-item .playlist-box{
+		border-radius: 16rpx;
+		padding-right: 22rpx;
+		box-shadow: 3px 3px 10px #f7f7f7, 3px 3px 10px #f7f7f7;
+	}
+	.playlist-header{
+		padding-top: 40rpx;
+		margin-bottom: 73rpx;
+		color: #333333;
+		font-size: 32rpx;
+		font-weight: bold;
+		text-align: center;
+	}
+	.playlist-header .text-gd{
+		display: inline-block;
+		border: none;
+		color: #333333;
+	}
+	.paylist-ul{
+		width: 100%;
+	}
+	.playlist-li{
+		padding-bottom:93rpx;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: nowrap;
+	}
+	.playlist-li .playlist-left{
+		width: 100rpx;
+		height: 100rpx;
+		position: relative;
+		flex:0;
+	}
+	.playlist-li .playlist-left .playlist-img{
+		width: 100rpx;
+		height: 100rpx;
+		border-radius: 16rpx;
+	}
+	.playlist-li .playlist-left .text-play-width{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 31rpx;
+		height: 31rpx;
+		margin-top: -30rpx;
+		margin-left: -15rpx;
+		color: rgba(255,255,255,0.8);
+	}
+	.playlist-modle{
+		width: 376rpx;
+		overflow: hidden;
+		text-align: left;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		color: #333333;
+		font-size: 24rpx;
+		font-weight: bold;
+	}
+	.text-name-ar{
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: #999999;
+	}
+	.playlist-modle .text-ar{
+		color: #999999;
+		font-size: 17rpx;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.playlist-modle .text-number{
+		margin-right: 32rpx;
+	}
+	.playlist-right{
+		font-size: 12rpx;
+	}
+	.text-new{
+		color: #5e9f5f;
+	}
+	.swiper-playList{
+		height: 780rpx;
 	}
 </style>

@@ -8,7 +8,7 @@
 		</view>
 		<drawerMenu ref="drawMenu"></drawerMenu>
 		<view class="uni-card-section">
-			<scroll-view class="section-srcoll-y" scroll-y="true" :style="{height:scrollviewHigh+'px'}" :show-scrollbar="showScrollbar" >
+			<scroll-view class="section-srcoll-y" scroll-y="true" :style="{height:scrollviewHigh+'px'}" :show-scrollbar="showScrollbar" @scrolltolower="getReach">
 				<view class="srcoll-y">
 					<view class="uni-padding">
 						<uni-swiper-dot :info="SwiperInfo" :current="swiperDot.current"  :mode="swiperDot.mode" :dotsStyles="swiperDot.dotsStyles">
@@ -36,7 +36,7 @@
 						</scroll-view>
 					</view>
 					<view class="Blockpage">
-						<homePage ref="homePage" :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData" :playListId="playListId" :playIndex="playIndex" :titles="titlePage"></homePage>
+						<homePage ref="homePage" :blockData="Blockpage" :personalizedData="personalizedData" :broadcastData="broadcastData" :playListId="playListId" :playIndex="playIndex" :titles="titlePage" :loadingShow="loadingShow"></homePage>
 						<!-- 刷新 -->
 						<view class="refresh">
 							<view class="refresh-title">
@@ -99,14 +99,17 @@
 				{type:'exclusive',title:'专属场景歌单',blockCode:'HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST'},{type:'songsDiscsalbums',title:'',blockCode:'HOMEPAGE_BLOCK_NEW_ALBUM_NEW_SONG'},
 				{type:'scallop',title:'推荐以下新歌 赚双倍云贝',blockCode:'HOMEPAGE_YUNBEI_NEW_SONG'},{type:'podcast',title:'24播客合辑',blockCode:'HOMEPAGE_VOICELIST_RCMD'},
 				{type:'videoCollection',title:'视频合辑',blockCode:'HOMEPAGE_BLOCK_VIDEO_PLAYLIST'},{type:'podcast24',title:'24小时播客',blockCode:'HOMEPAGE_PODCAST24'},
-				{type:'videoShuffle',title:'24精选音乐视频',blockCode:'HOMEPAGE_MUSIC_MLOG'}],//'yuncunKTV',podcastCollection
+				{type:'videoShuffle',title:'24精选音乐视频',blockCode:'HOMEPAGE_MUSIC_MLOG'},{type:'rankingList',title:'排行榜',blockCode:'HOMEPAGE_RANKING_LIST'}],//'yuncunKTV',podcastCollection
 				pageConfig:{},
 				personalizedData:[],
 				broadcastData:{},
 				scrollviewHigh:600,
 				refreshRotate:false,
 				playListId:0,
-				playIndex:0
+				playIndex:0,
+				toplistId:[{id:3779629,title:'新歌榜'},{id:2884035,title:'原创榜'},{id:3778678,title:'热歌榜'},{id:19723756,title:'飙升榜'}],
+				loadingShow:false,
+				page:0
 			}
 		},
 		onReady() {
@@ -162,7 +165,16 @@
 			// uni.$on('timeCanvasPlay',(res)=>{
 			// 	this.timeCanvas(res)
 			// })
-			
+			//退出
+			// this.$http.get(this.$_logout).then(res=>{
+			// 	console.log(res)
+			// 	uni.removeStorage({
+			// 		key:'token',
+			// 		success:function(mse){
+			// 			console.log(mse)
+			// 		}
+			// 	})
+			// })
 			uni.getStorage({
 				key:'playlistId',
 				success:(res)=>{
@@ -177,6 +189,14 @@
 				}
 			})
 		},
+		/*onReachBottom(){
+			console.log('上拉加载')
+			if(!this.loadingShow){  //此处判断，上锁，防止重复请求
+			    this.loadingShow=true;
+			    this.page+=1;
+			   this.getReach();
+			}
+		},*/
 		onShow(){
 			let _this = this;
 			console.log(this)
@@ -252,7 +272,6 @@
 			//homepageBlockpage
 			homePage(){
 				this.$http.get(this.$_homepageBlockpage,{params:{refresh:true}}).then(res=>{
-					
 					res.data.blocks.forEach((item,index)=>{
 						
 						this.blockType.forEach((key,nums)=>{
@@ -275,12 +294,9 @@
 					this.pageConfig = res.data.pageConfig;
 					this.refreshRotate = false;
 				})
-				//推荐歌单
-				this.$http.get(this.$_personalized,{params:{limit:6}}).then(res=>{
-					console.log(res)
-					this.personalizedData = res.result
-				})
-				//排行榜
+				//专属场景歌单
+				
+				//排行榜详情
 				this.$http.get(this.$_topList).then(res=>{
 					console.log(res)
 				})
@@ -301,6 +317,66 @@
 					this.homePage();
 				},1000)
 				
+			},
+			//下拉加载
+			getReach(){
+				console.log('滚动到底部')
+				if(!this.loadingShow){  //此处判断，上锁，防止重复请求
+				    this.page+=1;
+						if(this.page == 1){
+							this.loadingShow=true;
+							let playlistData=[];
+							let songNums = 0;
+							this.toplistId.forEach((item,index)=>{
+								this.$http.get(this.$_playlistDetail,{params:{id:item.id}}).then(res=>{
+									res.playlist.songs=[];
+									return res;
+								}).then(comments=>{
+									let flog = false;
+									comments.playlist.trackIds.forEach((el,num)=>{
+										if(num<3){
+											this.$http.get(this.$_songDetail,{params:{ids:el.id}}).then(resSong=>{
+												console.log(resSong)
+												console.log(resSong.songs[0].name);
+												resSong.songs[0].arName = '';
+												resSong.songs[0].ar.forEach(((arName,arIndex)=>{
+													resSong.songs[0].arName = arIndex<resSong.songs[0].ar.length-1? resSong.songs[0].arName+arName.name+'/':resSong.songs[0].arName+arName.name;
+												}))
+												comments.playlist.songs.push(resSong.songs[0])
+												
+											}).then(post=>{
+												songNums++;
+												if(songNums%3 == 0){
+													if(flog){
+														playlistData.push(comments);
+														if(playlistData.length===4){
+															let playlistObj = {
+																type : 'rankingList',
+																uiElement:{
+																	button:{action:'playlist/toplist',text:'更多',actionType:'orpheus'},
+																	subTitle:{title:'排行榜'}
+																},
+																playlistData:playlistData
+															};
+															this.loadingShow=false;
+															this.Blockpage.push(playlistObj)
+															console.log(this.Blockpage)
+														}
+													}
+												}
+											})
+										}else{
+											flog = true;
+											return false;
+										}
+									})
+									
+								})
+							})
+							
+						}
+					   
+				}
 			}
 		}
 	}

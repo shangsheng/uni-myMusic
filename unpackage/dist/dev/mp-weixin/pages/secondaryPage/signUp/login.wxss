@@ -1,0 +1,81 @@
+
+.login.data-v-1a81f477{
+	background-color:#de2e21;
+	height: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+}
+.uni-ul.data-v-1a81f477{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.uni-li.data-v-1a81f477{
+	color: #FFFFFF;
+	font-size: 22rpx;
+	padding: 20rpx 40rpx;
+	border-radius: 30rpx;
+}
+.uni-li-active.data-v-1a81f477{
+	background-color: #c50e00;
+}
+.nui-from.data-v-1a81f477{
+	width: 100%;
+}
+.uni-forms-item.data-v-1a81f477{
+	background-color: transparent;
+	color: #FFFFFF;
+}
+.captcha.data-v-1a81f477{
+	width: 300rpx;
+	margin: 0;
+	line-height: 2;
+}
+.from-captcha .input-captcha.data-v-1a81f477{
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 1 50%;
+	        flex: 0 1 50%;
+}
+.eSuffix.data-v-1a81f477{
+	position: relative;
+}
+.uni-email-ul.data-v-1a81f477{
+	background-color: #FFFFFF;
+	text-align: left;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	box-shadow: 0 0 10rpx #333333;
+	position: absolute;
+	top: 100rpx;
+	left: 0;
+	width: 100%;
+	z-index: 99;
+	display: none;
+}
+.uni-email-item.data-v-1a81f477{
+	text-align: left;
+	border-bottom: 2rpx solid #F1F1F1;
+	color: #333333;
+	border-radius: 2rpx;
+	width: 100%;
+}
+.uni-emailActive.data-v-1a81f477{
+	display: block;
+}
+

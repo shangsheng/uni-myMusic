@@ -24,7 +24,13 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.drawer {
+.drawer.data-v-1faf2d3c {
   width: 100%;
+}
+.logn.data-v-1faf2d3c {
+  margin-top: 100rpx;
+}
+.van-button--primary.data-v-1faf2d3c {
+  margin-top: 50rpx;
 }
 

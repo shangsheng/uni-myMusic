@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uniIcons: function() {
-      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 82))
+      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 90))
     },
     uniSearchBar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-search-bar/uni-search-bar */ "components/uni-search-bar/uni-search-bar").then(__webpack_require__.bind(null, /*! @/components/uni-search-bar/uni-search-bar.vue */ 90))
+      return __webpack_require__.e(/*! import() | components/uni-search-bar/uni-search-bar */ "components/uni-search-bar/uni-search-bar").then(__webpack_require__.bind(null, /*! @/components/uni-search-bar/uni-search-bar.vue */ 98))
     },
     uniSwiperDot: function() {
-      return __webpack_require__.e(/*! import() | components/uni-swiper-dot/uni-swiper-dot */ "components/uni-swiper-dot/uni-swiper-dot").then(__webpack_require__.bind(null, /*! @/components/uni-swiper-dot/uni-swiper-dot.vue */ 97))
+      return __webpack_require__.e(/*! import() | components/uni-swiper-dot/uni-swiper-dot */ "components/uni-swiper-dot/uni-swiper-dot").then(__webpack_require__.bind(null, /*! @/components/uni-swiper-dot/uni-swiper-dot.vue */ 105))
     }
   }
 } catch (e) {
@@ -223,11 +223,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _util = __webpack_require__(/*! @/common/util.js */ 39);
-var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = function drawerMenu() {__webpack_require__.e(/*! require.ensure | pages/template/drawerMenu */ "pages/template/drawerMenu").then((function () {return resolve(__webpack_require__(/*! ../../template/drawerMenu.vue */ 104));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homePage = function homePage() {__webpack_require__.e(/*! require.ensure | pages/template/homeBlock */ "pages/template/homeBlock").then((function () {return resolve(__webpack_require__(/*! ../../template/homeBlock.vue */ 111));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = function drawerMenu() {__webpack_require__.e(/*! require.ensure | pages/template/drawerMenu */ "pages/template/drawerMenu").then((function () {return resolve(__webpack_require__(/*! ../../template/drawerMenu.vue */ 112));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homePage = function homePage() {__webpack_require__.e(/*! require.ensure | pages/template/homeBlock */ "pages/template/homeBlock").then((function () {return resolve(__webpack_require__(/*! ../../template/homeBlock.vue */ 119));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: { drawerMenu: drawerMenu, homePage: homePage },
   data: function data() {
     return {
+      titlePage: 'my-music',
       search: {
         placeholder: "请输入搜索内容",
         radius: "42",
@@ -322,7 +323,16 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var drawerMenu = 
     // uni.$on('timeCanvasPlay',(res)=>{
     // 	this.timeCanvas(res)
     // })
-
+    //退出
+    // this.$http.get(this.$_logout).then(res=>{
+    // 	console.log(res)
+    // 	uni.removeStorage({
+    // 		key:'token',
+    // 		success:function(mse){
+    // 			console.log(mse)
+    // 		}
+    // 	})
+    // })
     uni.getStorage({
       key: 'playlistId',
       success: function success(res) {

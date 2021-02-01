@@ -7,6 +7,7 @@
 				"navigationBarBackgroundColor":"#f2ebe5",
 				"navigationBarTextStyle":"black",
 				"navigationBarTitleText":"my-music"
+				//"onReachBottomDistance":100
 			}
 		},
 		{

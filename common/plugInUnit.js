@@ -5,7 +5,7 @@ let defaultUrl = ''
 if(process.env.NODE_ENV === 'production'){
 	defaultUrl = baseUrl
 }else{
-	defaultUrl = 'http://localhost:3000/'//https://m.bilibili.com/
+	defaultUrl = 'http://192.168.1.149:3000/'//https://m.bilibili.com/
 }
  
 http.setConfig((config) => { /* 设置全局配置 */

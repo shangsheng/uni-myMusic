@@ -2,8 +2,8 @@
 	<view class="drawer" >
 		<uni-drawer ref="draw"  :mask="mask" :maskClick="maskClick" :mode="mode" :width="drawWid">
 			<view class="logn" v-if="loginBollen">
-				<button type="primary" class="van-button--primary" @click="login">登录</button>
-				<button type="primary" class="van-button--primary">注册</button>
+				<button type="primary" class="van-button--primary" @click="login" data-index="0">登录</button>
+				<button type="primary" class="van-button--primary" @click="login" data-index="1">注册</button>
 			</view>
 			<view class="lognMy" v-else>
 				
@@ -40,10 +40,11 @@
 			open(){
 				this.$refs.draw.open();
 			},
-			login(){
+			login(e){
 				console.log(1)
+				let num = e.currentTarget.dataset.index;
 				uni.navigateTo({
-					url:'/pages/secondaryPage/signUp/login',
+					url:'/pages/secondaryPage/signUp/login?num='+num,
 					success: function(res) {
 					    // 通过eventChannel向被打开页面传送数据
 						console.log(res)

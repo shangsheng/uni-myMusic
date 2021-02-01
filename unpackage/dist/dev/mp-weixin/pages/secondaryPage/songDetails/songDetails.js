@@ -227,10 +227,10 @@ var components
 try {
   components = {
     uniNavBar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 123))
+      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 131))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 82))
+      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 90))
     }
   }
 } catch (e) {
@@ -484,9 +484,9 @@ var _util = __webpack_require__(/*! @/common/util.js */ 39);function _interopReq
 //需要从这个页面当前播放的歌曲id和歌单列表数据传递到其他页面，以及组件,
 //暂停时歌曲播放的时间需要报错到缓存中storage
 //通过 app.globalData 进行组件数据关联
-var playingList = function playingList() {__webpack_require__.e(/*! require.ensure | pages/template/playing_list */ "pages/template/playing_list").then((function () {return resolve(__webpack_require__(/*! @/pages/template/playing_list.vue */ 137));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var canplayTime = null;var _default = { components: { playingList: playingList }, data: function data() {return { text: "", title: '歌曲', color: "#ffffff", backgroundColor: "transparent", statusBar: true, headerBackground: '#000', iconsType: "arrowleft", playBoolen: false, windowHeight: 520, songPlayIndex: 0, songsData: null, audioDuration: 0, audiocurrentTime: 0, waitFlag: false, nextIndex: 1, //下一首
+var playingList = function playingList() {__webpack_require__.e(/*! require.ensure | pages/template/playing_list */ "pages/template/playing_list").then((function () {return resolve(__webpack_require__(/*! @/pages/template/playing_list.vue */ 145));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var canplayTime = null;var _default = { components: { playingList: playingList }, data: function data() {return { text: "", title: '歌曲详情', color: "#ffffff", backgroundColor: "transparent", statusBar: true, headerBackground: '#000', iconsType: "arrowleft", playBoolen: false, windowHeight: 520, songPlayIndex: 0, songsData: null, audioDuration: 0, audiocurrentTime: 0, waitFlag: false, nextIndex: 1, //下一首
       prevIndex: 0, //上一首
-      barWidth: 0, cacheBar: 0, dragBoolen: true, badBoolen: 0, eventChannel: null, lsrBoolen: 0, playListIs: 0, showBoolen: false };}, onLoad: function onLoad(option) {var _this2 = this;this.getInof();this.formPage(option);uni.getStorage({ key: 'lsrBoolen', success: function success(res) {console.log(res);_this2.lsrBoolen = Number(res.data);} });}, onShow: function onShow() {var _this = this;uni.$on('clickshow', function (data) {_this.showBoolen = data;});}, onUnload: function onUnload() {this.eventChannel.off('privilegesIdprivileges');this.uniAudioContext();}, methods: { goBack: function goBack() {var pages = getCurrentPages();var nowPage = pages[pages.length - 1]; //当前页页面实例
+      barWidth: 0, cacheBar: 0, dragBoolen: true, badBoolen: 0, eventChannel: null, lsrBoolen: 0, playListIs: 0, showBoolen: false, titlePlay: '歌曲详情' };}, onLoad: function onLoad(option) {var _this2 = this;console.log(option);this.getInof();this.formPage(option);uni.getStorage({ key: 'lsrBoolen', success: function success(res) {console.log(res);_this2.lsrBoolen = Number(res.data);} });}, onShow: function onShow() {var _this = this;uni.$on('clickshow', function (data) {_this.showBoolen = data;});uni.$on('titleBack', function (data) {_this.titlePlay = data;});}, onUnload: function onUnload() {this.eventChannel.off('privilegesIdprivileges');this.uniAudioContext();}, methods: { goBack: function goBack() {var pages = getCurrentPages();var nowPage = pages[pages.length - 1]; //当前页页面实例
       var prevPage = pages[pages.length - 2]; //上一页页面实例
       prevPage.$vm.songPlayIndex = this.songPlayIndex; //修改上一页data里面的searchVal参数值为1211
       prevPage.$vm.playIndex = this.songPlayIndex; //修改上一页data里面的searchVal参数值为1211
@@ -494,7 +494,12 @@ var playingList = function playingList() {__webpack_require__.e(/*! require.ensu
         delta: 1 });}, //获取高度
     getInof: function getInof() {var _this = this;this.$nextTick(function () {uni.getSystemInfo({ success: function success(res) {// 计算组件的高度
             setTimeout(function () {var view = uni.createSelectorQuery().in(_this).select('.uni-header');view.boundingClientRect(function (data) {_this.windowHeight = data ? res.windowHeight - data.height + 'px' : res.windowHeight + 'px';}).exec();}, 1000);} });});}, //获取传送数据
-    formPage: function formPage(options) {var _this3 = this;console.log(options);var _this = this;this.playListIs = options.id;this.eventChannel = this.getOpenerEventChannel();_this.songPlayIndex = options.songPlayIndex;
+    formPage: function formPage(options) {var _this3 = this;
+
+      var _this = this;
+      this.playListIs = options.id;
+      this.eventChannel = this.getOpenerEventChannel();
+      _this.songPlayIndex = Number(options.songPlayIndex);
       uni.getStorage({
         key: 'playlistId',
         success: function success(r) {
@@ -511,6 +516,8 @@ var playingList = function playingList() {__webpack_require__.e(/*! require.ensu
               _this.getsongDetail(_this.songIds(res.data));
 
             });
+
+
 
           } else {
 
@@ -720,6 +727,9 @@ var playingList = function playingList() {__webpack_require__.e(/*! require.ensu
               console.log(res);
             } });
 
+          uni.setNavigationBarTitle({
+            title: _this10.songsData[_this10.songPlayIndex].name });
+
         }
       }, 1000);
     },
@@ -843,7 +853,6 @@ var playingList = function playingList() {__webpack_require__.e(/*! require.ensu
     },
     //点击显示播放列表
     onClickPlayList: function onClickPlayList() {
-      console.log('显示播放列表');
       this.showBoolen = true;
     } },
 

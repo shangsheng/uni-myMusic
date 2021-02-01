@@ -20,6 +20,9 @@
 	display: -webkit-flex;
 	display: flex;
 }
+.music-playing-list.data-v-dd56e64a{
+	margin-bottom: 120rpx;
+}
 .music-swiper-item.data-v-dd56e64a{
 	background-color: #FFFFFF;
 	border-radius: 44rpx;

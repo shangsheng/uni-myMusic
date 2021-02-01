@@ -27,6 +27,15 @@
 		flex-shrink: 0 !important;
 		display: inline-block;
 }
+.from-captcha .uni-forms-item__content[data-v-39373d84]{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.uni-error-message[data-v-39373d84]{
+		color: #FFFFFF !important;
+	}
 .uni-card-section{
 	/* background-color: #FFFFFF; */
 	padding-bottom: 50px;
@@ -136,7 +145,15 @@ body {
 	.songsDetails .uni-navbar__content.data-v-4afea59e{
 		overflow:inherit !important;
 	}
-	
+	.from-captcha .uni-forms-item__content.data-v-39373d84{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+	.uni-error-message.data-v-39373d84{
+			color: #FFFFFF !important;
+		}
 /*#endif*/
 
 

@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uniNavBar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 123))
+      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 131))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 82))
+      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 90))
     }
   }
 } catch (e) {
@@ -292,13 +292,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _util = __webpack_require__(/*! @/common/util.js */ 39);
-var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer = function songSplayer() {__webpack_require__.e(/*! require.ensure | pages/template/player */ "pages/template/player").then((function () {return resolve(__webpack_require__(/*! ../../template/player.vue */ 130));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer = function songSplayer() {__webpack_require__.e(/*! require.ensure | pages/template/player */ "pages/template/player").then((function () {return resolve(__webpack_require__(/*! ../../template/player.vue */ 138));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: { songSplayer: songSplayer },
   data: function data() {
     return {
       text: "歌单",
-      title: '菜单',
+      title: '歌单列表',
       color: "#ffffff",
       backgroundColor: "transparent",
 
@@ -316,7 +316,8 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
       playerShow: false,
       playListIndex: 0,
       nextTickTime: null,
-      playBoolen: false };
+      playBoolen: false,
+      titlePlay: '歌单列表' };
 
   },
   onLoad: function onLoad(option) {var _this2 = this;
@@ -365,7 +366,10 @@ var _player = __webpack_require__(/*! @/common/player.js */ 8);var songSplayer =
     this.$nextTick(function () {
       _this3.playerShow = true;
       console.log(_this3.$refs.songsPlayer);
-
+      uni.$on('titleBack', function (data) {
+        console.log(data);
+        _this.title = data;
+      });
       _this3.nextTickTime = setTimeout(function () {
         if (!_player.uniAudio.paused && _this3.$refs.songsPlayer) {
           _this3.$refs.songsPlayer.onCanplay();

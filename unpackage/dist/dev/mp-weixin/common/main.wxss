@@ -104,6 +104,41 @@
 .songsDetails .uni-navbar__content[data-v-4afea59e]{
 	overflow: inherit !important;
 }
+.uni-navbar__header-btns-left[data-v-4afea59e]{
+	-webkit-flex-shrink: 0;
+	        flex-shrink: 0;
+}
+.uni-navbar__header-btns-right[data-v-4afea59e]{
+	-webkit-flex-shrink: 0;
+	        flex-shrink: 0;
+}
+.uni-nav-bar-text[data-v-4afea59e]{
+	    width: 400rpx;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    display: inline-block;
+	    overflow: hidden;
+		text-align: center;
+		-webkit-flex-shrink: 0 !important;
+		        flex-shrink: 0 !important;
+		display: inline-block;
+}
+.from-captcha .uni-forms-item__content[data-v-39373d84]{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.uni-error-message[data-v-39373d84]{
+		color: #FFFFFF !important;
+}
 .uni-card-section{
 	/* background-color: #FFFFFF; */
 	padding-bottom: 50px;
@@ -207,6 +242,22 @@ page {
 }
 .songsDetails .uni-navbar__content.data-v-4afea59e{
 		overflow:inherit !important;
+}
+.from-captcha .uni-forms-item__content.data-v-39373d84{
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		        justify-content: space-between;
+		-webkit-flex-wrap: nowrap;
+		        flex-wrap: nowrap;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		        align-items: center;
+}
+.uni-error-message.data-v-39373d84{
+			color: #FFFFFF !important;
 }
 .yinyuepinpu{
             height: 40rpx;
