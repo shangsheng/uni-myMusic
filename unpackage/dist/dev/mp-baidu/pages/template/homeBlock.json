@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "uni-tag": "/components/uni-tag/uni-tag",
+    "song-splayer": "/pages/template/player"
+  },
+  "component": true
+}

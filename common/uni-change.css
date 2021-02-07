@@ -1,0 +1,159 @@
+.uni-searchbar[data-v-64ee3838]{
+	background-color: transparent !important;
+}
+.uni-searchbar__box[data-v-64ee3838]{
+	background-color: #fdfdfd !important;
+	border: none !important;
+}
+.uni-navbar--border[data-v-4afea59e]{
+	border: none !important;
+}
+.songsDetails .uni-navbar__content[data-v-4afea59e]{
+	overflow: inherit !important;
+}
+.uni-navbar__header-btns-left[data-v-4afea59e]{
+	flex-shrink: 0;
+}
+.uni-navbar__header-btns-right[data-v-4afea59e]{
+	flex-shrink: 0;
+}
+.uni-nav-bar-text[data-v-4afea59e]{
+	    width: 400rpx;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    display: inline-block;
+	    overflow: hidden;
+		text-align: center;
+		flex-shrink: 0 !important;
+		display: inline-block;
+}
+.from-captcha .uni-forms-item__content[data-v-39373d84]{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.uni-error-message[data-v-39373d84]{
+		color: #FFFFFF !important;
+	}
+.uni-card-section{
+	/* background-color: #FFFFFF; */
+	padding-bottom: 50px;
+}
+.icon{
+	display: inline-block;
+}
+.icon-width-12{
+	width: 21.6rpx;
+	height: 21.6rpx;
+}
+.icon-width-14{
+	width: 25.2rpx;
+	height: 25.2rpx;
+}
+.icon-width-18{
+	width: 36rpx;
+	height: 36rpx;
+}
+.uni-card-modular{
+	background-color: #FFFFFF; 
+}
+.icon-width-84{
+	width: 84rpx;
+	height: 84rpx;
+}
+.icon-width-40{
+	width: 40rpx;
+	height: 40rpx;
+}
+.icon-width-56{
+	width: 56rpx;
+	height: 56rpx;
+}
+.playerSongs{
+	position: fixed;
+	z-index: 99;
+	bottom: 90rpx;
+	width: 100%;
+}
+.main-color{
+	color: #333333;
+}
+.icon-width-53{
+	width:35rpx;
+	height:31rpx;
+}
+.icon-width-10{
+	width:7rpx;
+	height: 31rpx;
+}
+.icon-width-47{
+	width: 47rpx;
+	height: 47rpx;
+}
+.icon-width-80{
+	width: 53rpx;
+	height: 53rpx;
+}
+.font-color{
+	font-size: 24rpx;
+	color: #595959;
+}
+html {
+  overflow-y: scroll;
+}
+
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+}
+@media screen and (max-width: 360px) {
+    .broadcastName{
+		width: 260rpx !important;
+	}
+}
+
+/*#ifdef MP*/
+	.uni-searchbar.data-v-64ee3838{
+		background-color: transparent !important;
+	}
+	.uni-searchbar__box.data-v-64ee3838{
+		background-color: #fdfdfd !important;
+		border: none !important;
+	}
+	.uni-tag.data-v-3f606880{
+		padding: 4rpx 8rpx !important;
+		height: 25.2rpx !important;
+		line-height: 25.2rpx !important;
+		margin-right: 10.8rpx !important;
+	}
+	.playerSongs{
+		bottom:0;
+	}
+	.uni-navbar--border.data-v-4afea59e{
+		border: none !important;
+	}
+	.songsDetails .uni-navbar__content.data-v-4afea59e{
+		overflow:inherit !important;
+	}
+	.from-captcha .uni-forms-item__content.data-v-39373d84{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+	.uni-error-message.data-v-39373d84{
+			color: #FFFFFF !important;
+		}
+/*#endif*/
+
+

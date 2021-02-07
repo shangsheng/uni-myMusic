@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "playing-list": "/pages/template/playing_list"
+  },
+  "component": true
+}
